@@ -1,0 +1,31 @@
+{
+    "name": "quiznow",
+    "authors": [{
+        "name": "Gabriel Viegas da Silva",
+        "email": "gabrielgl13@hotmail.com"
+    }, {
+        "name": "Taís Medeiros da Rosa",
+        "email": "taismedeirosdarosa@gmail.com"
+    }],
+    "require": {
+        "twig/twig": "^3.0",
+        "coffeecode/router": "^1.0",
+        "twbs/bootstrap": "^5.0",
+        "components/font-awesome": "^5.15"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "rm -rf public/assets/bootstrap",
+            "cp -R vendor/twbs/bootstrap/dist public/assets/bootstrap",
+
+            "cp -R vendor/components/font-awesome/css/all.min.css public/assets/font-awesome/css",
+            "cp -R vendor/components/font-awesome/webfonts public/assets/font-awesome"
+
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    }
+}

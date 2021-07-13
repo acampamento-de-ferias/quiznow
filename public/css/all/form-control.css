@@ -1,0 +1,109 @@
+.default-form-group {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.default-form-group .icon,
+.default-form-group .existing-icon {
+    position: absolute;
+    right: 25px;
+    z-index: 1;
+    margin: 38px 0;
+    cursor: pointer;
+    color: var(--dark-gray-color);
+}
+
+.default-form-group input {
+    position: relative;
+    border: 1px solid rgba(27, 38, 44, 0.2);
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: var(--light-gray-color);
+}
+
+.success-field input {
+    border: 1px solid var(--green-color);
+    background: var(--white-color);
+}
+
+.success-field label {
+    color: var(--green-color);
+}
+
+.success-field .existing-icon::before {
+    color: var(--green-color);
+}
+
+.success-field .icon::before {
+    color: var(--green-color);
+    content: "\f00c";
+}
+
+.focus-field input {
+    border: 1px solid var(--blue-color);
+    background: var(--white-color);
+}
+
+.focus-field label {
+    color: var(--blue-color);
+}
+
+.focus-field .icon::before,
+.focus-field .existing-icon::before {
+    color: var(--blue-color);
+}
+
+.failed-field input {
+    border: 1px solid var(--red-color);
+    background: var(--white-color);
+}
+
+.failed-field .icon::before {
+    color: var(--red-color);
+    content: "\f00d";
+}
+
+.failed-field .existing-icon::before {
+    color: var(--red-color);
+}
+
+.failed-field label {
+    color: var(--red-color);
+}
+
+.failed-field .error-message {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--red-color);
+}
+
+.default-button {
+    width: 100%;
+    padding: 15px;
+    background: var(--blue-color);
+    border-radius: 4px;
+    color: var(--white-color);
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.default-button:enabled:hover {
+    background: var(--light-blue-color);
+    color: var(--white-color);
+}
+
+.default-button:disabled {
+    background: var(--light-gray-color);
+    color: var(--black-color) 20%;
+    pointer-events: all !important;
+    cursor: not-allowed !important;
+}

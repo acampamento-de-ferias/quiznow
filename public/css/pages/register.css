@@ -1,0 +1,23 @@
+.register-title {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+    color: var(--dark-blue-color);
+}
+
+.hasAccount {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--black-color) 80%;
+}
+
+.hasAccount .login {
+    color: var(--blue-color);
+    font-weight: 700;
+    text-decoration: none;
+}
