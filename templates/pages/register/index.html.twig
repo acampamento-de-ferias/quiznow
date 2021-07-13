@@ -21,7 +21,7 @@
                         class="form-control shadow-none" 
                         formControl="name"
                         id="registerName" 
-                        onblur="validateName(event, {{ usernameMinCharacteres }})" 
+                        onblur="validateName(event, 3)" 
                         onFocus="handleFocusInput(event)" 
                         maxlength="120" 
                         required>
@@ -50,7 +50,7 @@
                         class="form-control shadow-none" 
                         formControl="password"
                         id="registerPassword"
-                        onblur="validatePassword(event, {{ passwordMinCharacteres }})" 
+                        onblur="validatePassword(event, 3)" 
                         onFocus="handleFocusInput(event)"  
                         maxlength="32" 
                         placeholder="8-32 caracteres" 
@@ -65,7 +65,7 @@
                         class="form-control shadow-none" 
                         id="registerPasswordConfirmation" 
                         formControl="passwordConfirmation"
-                        onblur="validatePasswordConfirmation(event, {{ passwordMinCharacteres }})" 
+                        onblur="validatePasswordConfirmation(event, 3)" 
                         onFocus="handleFocusInput(event)"
                         maxlength="32" 
                         required>
