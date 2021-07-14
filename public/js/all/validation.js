@@ -23,6 +23,7 @@ function validateName(ev, minCharacteres) {
         ev.target.parentElement.classList.add("failed-field");
         ev.target.nextElementSibling.innerHTML = 'O campo nome não pode conter números';
         formControl[formControlNode].validate = false;
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -31,6 +32,7 @@ function validateName(ev, minCharacteres) {
         ev.target.parentElement.classList.add("failed-field");
         ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacteres + ' caracteres';
         formControl[formControlNode].validate = false;
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -63,6 +65,7 @@ function validateEmail(ev) {
         ev.target.parentElement.classList.add("failed-field");
         ev.target.nextElementSibling.innerHTML = 'O campo e-mail deve ser um e-mail válido';
         formControl[formControlNode].validate = false;
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -97,6 +100,7 @@ function validatePassword(ev, minCharacteres) {
         ev.target.parentElement.classList.add("failed-field");
         formControl[formControlNode].validate = false;
         ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos um número';
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -105,6 +109,7 @@ function validatePassword(ev, minCharacteres) {
         ev.target.parentElement.classList.add("failed-field");
         formControl[formControlNode].validate = false;
         ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos uma letra';
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -113,6 +118,7 @@ function validatePassword(ev, minCharacteres) {
         ev.target.parentElement.classList.add("failed-field");
         ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos ' + minCharacteres + ' caracteres';
         formControl[formControlNode].validate = false;
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
@@ -139,17 +145,12 @@ function validatePasswordConfirmation(ev, minCharacteres) {
         ev.target.parentElement.classList.remove("focus-field");
     }
 
-    // Check if string is a valid password
-    if (!validatePassword(ev, minCharacteres)) {
-        formControl[formControlNode].validate = false;
-        return;
-    }
-
     // Check if password is equals than confirm password
     if (document.getElementById("registerPassword").value !== ev.target.value) {
         ev.target.parentElement.classList.add("failed-field");
         formControl[formControlNode].validate = false;
         ev.target.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
+        document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
