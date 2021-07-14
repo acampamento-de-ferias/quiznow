@@ -46,7 +46,7 @@
 
 .default-divider {
     border: 1px solid;
-    border-image: linear-gradient(90deg, #0F4C75 1%, #BBE1FA 95%) 1;
+    border-image: linear-gradient(90deg, var(--dark-blue-color) 1%, var(--navy-blue-color) 95%) 1;
 }
 
 @media (max-width: 992px) {
