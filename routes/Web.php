@@ -7,6 +7,7 @@ $router->namespace("App\Controllers");
 
 $router->group(null);
 $router->get("/register", "RegisterController:index");
+$router->post("/register", "RegisterController:store");
 $router->get("/login", "LoginController:index");
 
 $router->dispatch();

@@ -16,9 +16,12 @@
     <div id="content">{% block content %}{% endblock %}</div>
 
     
+    <script type="text/javascript">
+        const url = "{{ url }}";
+    </script>
+    <script src="./js/all/script.js"></script>
     {% block scripts %}
     {% endblock %}
-    <script src="./js/all/script.js"></script>
 
 </body>
 </html>
