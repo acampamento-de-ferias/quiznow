@@ -27,7 +27,7 @@ class UserRepository extends User
 
         $user = $statement->fetch($this->connection::FETCH_ASSOC);
 
-        return new User($user['id'], $user['name'], $user['email']);
+        return new User($user['id'], $user['name'], $user['email'], $user['password']);
     }
     
     public function findByEmail(string $email): User
@@ -43,7 +43,7 @@ class UserRepository extends User
 
         $user = $statement->fetch($this->connection::FETCH_ASSOC);
 
-        return new User($user['id'], $user['name'], $user['email']);
+        return new User($user['id'], $user['name'], $user['email'], $user['password']);
     }
 
     public function insert(array $data): User 

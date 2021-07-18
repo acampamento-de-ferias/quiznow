@@ -18,6 +18,7 @@ class Controller
 
         $twig->addGlobal('path', PATH);
         $twig->addGlobal('url', URL);
+        $twig->addGlobal('user', $_SESSION['user'] ?? null);
 
         $this->twig = $twig;
     }

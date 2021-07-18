@@ -11,11 +11,12 @@ class User
     private $email;
     private $password;
 
-    public function __construct($id, $name, $email) 
+    public function __construct($id, $name, $email, $password) 
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
+        $this->password = $password;
     }
 
     public function getUserArray()
@@ -29,5 +30,10 @@ class User
             'name' => $this->name,
             'email' => $this->email
         ];
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 }
