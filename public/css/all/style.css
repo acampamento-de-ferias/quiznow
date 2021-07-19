@@ -15,6 +15,10 @@
     --red-color: #DC3545;
 }
 
+html {
+    font-family: Work Sans;
+}
+
 #content {
     background: var(--light-gray-color);
     min-height: 100vh;
@@ -26,8 +30,37 @@
     border-image: linear-gradient(90deg, var(--dark-blue-color) 1%, var(--navy-blue-color) 95%) 1;
 }
 
+.secondary-divider {
+    border: 1px solid;
+    border-image: linear-gradient(90deg, var(--navy-blue-color) 1%, var(--dark-blue-color) 95%) 1;
+}
+
+.small-text {
+    font-size: 0.875rem;
+    color: var(--black-color);
+    opacity: 0.8;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.hasAccount {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--black-color);
+    opacity: 0.8;
+}
+
+.hasAccount a {
+    color: var(--blue-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 992px) {
-    .card .row .col {
+    /* .card .row .col {
         margin-top: 1rem !important;
-    }
+    }*/
 }
