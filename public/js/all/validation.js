@@ -1,9 +1,9 @@
 
 /**
- * Validate input name
+ * Validate input name on blur
  * 
  */
-function validateName(ev, minCharacteres) {
+function validateName(ev, minCharacteres, type) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
@@ -11,17 +11,17 @@ function validateName(ev, minCharacteres) {
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
-
-    // Remove focus styles
-    if (ev.target.parentElement.classList.contains('focus-field')) {
-        ev.target.parentElement.classList.remove("focus-field");
-    }
+    resetValidationInput(ev);
 
     // Check if string has at least one number
     const regex = /\d/;
     if (regex.test(ev.target.value)) {
-        ev.target.parentElement.classList.add("failed-field");
-        ev.target.nextElementSibling.innerHTML = 'O campo nome não pode conter números';
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo nome não pode conter números';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+        }
         formControl[formControlNode].validate = false;
         document.querySelector('button[type="submit"]').disabled = true;
         return;
@@ -29,14 +29,20 @@ function validateName(ev, minCharacteres) {
 
     // Check if string has the minimum of characteres
     if (ev.target.value.length < minCharacteres) {
-        ev.target.parentElement.classList.add("failed-field");
-        ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacteres + ' caracteres';
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacteres + ' caracteres';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
+    ev.target.nextElementSibling.innerHTML = "";
     applySubmitStatus();
     return true;
 }
@@ -45,7 +51,7 @@ function validateName(ev, minCharacteres) {
 * Validate input email
 * 
 */
-function validateEmail(ev) {
+function validateEmail(ev, type) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
@@ -53,23 +59,25 @@ function validateEmail(ev) {
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
-
-    // Remove focus styles
-    if (ev.target.parentElement.classList.contains('focus-field')) {
-        ev.target.parentElement.classList.remove("focus-field");
-    }
+    resetValidationInput(ev);
 
     // Check if string is a valid email
     const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!regex.test(ev.target.value)) {
-        ev.target.parentElement.classList.add("failed-field");
-        ev.target.nextElementSibling.innerHTML = 'O campo e-mail deve ser um e-mail válido';
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo e-mail deve ser um e-mail válido';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
+    ev.target.nextElementSibling.innerHTML = "";
     applySubmitStatus();
     return true;
 }
@@ -78,7 +86,7 @@ function validateEmail(ev) {
 * Validate password
 * 
 */
-function validatePassword(ev, minCharacteres) {
+function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmationNode = false) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
@@ -86,42 +94,74 @@ function validatePassword(ev, minCharacteres) {
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
-
-    // Remove focus styles
-    if (ev.target.parentElement.classList.contains('focus-field')) {
-        ev.target.parentElement.classList.remove("focus-field");
-    }
+    resetValidationInput(ev);
 
     const regexNumber = /\d/;
     const regexLetter = /[a-zA-Z]/;
 
+    // Apply changes to force verification on confirmation password
+    if (formControlPasswordConfirmationNode) {
+        const passwordConfirmation = document.querySelector(`[formControl=${formControlPasswordConfirmationNode}]`);
+        if (passwordConfirmation.value.length) {
+            resetValidationInput(passwordConfirmation);
+            if (passwordConfirmation.value !== ev.target.value) {
+                passwordConfirmation.parentElement.classList.add("failed-field");
+                passwordConfirmation.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
+                formControl[formControlPasswordConfirmationNode].validate = false;
+                document.querySelector('button[type="submit"]').disabled = true;
+            } else {
+                passwordConfirmation.nextElementSibling.innerHTML = "";
+                passwordConfirmation.parentElement.classList.add("success-field");
+                formControl[formControlPasswordConfirmationNode].validate = true;
+                applySubmitStatus();
+            }
+        }
+        
+    }
+
     // Check if string has at least one number
     if (!regexNumber.test(ev.target.value)) {
-        ev.target.parentElement.classList.add("failed-field");
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos um número';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
-        ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos um número';
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
     // Check if string has at least one letter
     if (!regexLetter.test(ev.target.value)) {
-        ev.target.parentElement.classList.add("failed-field");
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos uma letra';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
-        ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos uma letra';
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
     // Check if string has the minimum of characteres
     if (ev.target.value.length < minCharacteres) {
-        ev.target.parentElement.classList.add("failed-field");
-        ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos ' + minCharacteres + ' caracteres';
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos ' + minCharacteres + ' caracteres';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
+    ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
     applySubmitStatus();
     return true;
@@ -131,7 +171,7 @@ function validatePassword(ev, minCharacteres) {
 * Validate password confirmation
 * 
 */
-function validatePasswordConfirmation(ev, minCharacteres) {
+function validatePasswordConfirmation(ev, type) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
@@ -139,21 +179,23 @@ function validatePasswordConfirmation(ev, minCharacteres) {
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
-
-    // Remove focus styles
-    if (ev.target.parentElement.classList.contains('focus-field')) {
-        ev.target.parentElement.classList.remove("focus-field");
-    }
+    resetValidationInput(ev);
 
     // Check if password is equals than confirm password
     if (document.getElementById("registerPassword").value !== ev.target.value) {
-        ev.target.parentElement.classList.add("failed-field");
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = "";
+        }
         formControl[formControlNode].validate = false;
-        ev.target.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
         document.querySelector('button[type="submit"]').disabled = true;
         return;
     }
 
+    ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
     applySubmitStatus();
     return true;
@@ -179,13 +221,22 @@ function applySubmitStatus() {
 * 
 */
 function resetValidationInput(ev) {
-    if (ev.target.parentElement.classList.contains('failed-field')) {
-        ev.target.parentElement.classList.remove("failed-field");
-        ev.target.nextElementSibling.innerHTML = '';
+    const element = ev.target ? ev.target : ev;
+    if (element.parentElement.classList.contains('failed-field')) {
+        element.parentElement.classList.remove("failed-field");
+        element.nextElementSibling.innerHTML = '';
+        return "failed-field";
     }
-    if (ev.target.parentElement.classList.contains('success-field')) {
-        ev.target.parentElement.classList.remove("success-field");
+    if (element.parentElement.classList.contains('success-field')) {
+        element.parentElement.classList.remove("success-field");
+        return "success-field";
     }
+    if (element.parentElement.classList.contains('focus-field')) {
+        element.parentElement.classList.remove("focus-field");
+        return "focus-field";
+    }
+
+    return;
 }
 
 /**
@@ -193,6 +244,10 @@ function resetValidationInput(ev) {
 *  
 */
 function handleFocusInput(ev) {
-    resetValidationInput(ev);
-    ev.target.parentElement.classList.add("focus-field");
+    const actualClass = resetValidationInput(ev);
+    if (actualClass === "success-field") {
+        ev.target.parentElement.classList.add("success-field");
+    } else {
+        ev.target.parentElement.classList.add("focus-field");
+    }
 }

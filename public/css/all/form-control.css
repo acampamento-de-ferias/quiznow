@@ -30,6 +30,10 @@
     background: var(--white-color);
 }
 
+.success-field input:focus {
+    border: 1px solid var(--green-color);
+}
+
 .success-field label {
     color: var(--green-color);
 }

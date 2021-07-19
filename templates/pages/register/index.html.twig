@@ -37,8 +37,9 @@
                                 class="form-control shadow-none" 
                                 formControl="name"
                                 id="registerName" 
-                                onblur="validateName(event, 3)" 
-                                onFocus="handleFocusInput(event)" 
+                                onkeyup="validateName(event, 3, 'keyup')" 
+                                onblur="validateName(event, 3, 'blur')" 
+                                onfocus="handleFocusInput(event)" 
                                 maxlength="120" 
                                 required>
                             <span class="error-message"></span>
@@ -51,7 +52,8 @@
                                 class="form-control shadow-none" 
                                 formControl="email"
                                 id="registerEmail"
-                                onblur="validateEmail(event)" 
+                                onkeyup="validateEmail(event, 'keyup')" 
+                                onblur="validateEmail(event, 'blur')" 
                                 onFocus="handleFocusInput(event)"  
                                 maxlength="256" 
                                 required>
@@ -66,7 +68,8 @@
                                 class="form-control shadow-none" 
                                 formControl="password"
                                 id="registerPassword"
-                                onblur="validatePassword(event, 3)" 
+                                onkeyup="validatePassword(event, 8, 'keyup', 'passwordConfirmation')" 
+                                onblur="validatePassword(event, 8, 'blur', 'passwordConfirmation')" 
                                 onFocus="handleFocusInput(event)"  
                                 maxlength="32" 
                                 placeholder="8-32 caracteres" 
@@ -81,7 +84,8 @@
                                 class="form-control shadow-none" 
                                 id="registerPasswordConfirmation" 
                                 formControl="passwordConfirmation"
-                                onblur="validatePasswordConfirmation(event, 3)" 
+                                onkeyup="validatePasswordConfirmation(event, 'keyup')" 
+                                onblur="validatePasswordConfirmation(event, 'blur')" 
                                 onFocus="handleFocusInput(event)"
                                 maxlength="32" 
                                 required>
