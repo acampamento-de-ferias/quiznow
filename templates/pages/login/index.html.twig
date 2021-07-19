@@ -8,14 +8,13 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="container p-4">
         <img class="img-fluid px-4 d-lg-none" src="./images/logo-quiznow.png" alt="Logo QuizNow" title="Logo QuizNow">
         <div class="card">
             <div class="row m-0">
                 <div class="col mt-3 pb-4 px-4">
                     <div id="form-login">
-                        <h3 class="text-center login-title">Faça seu login</h3>
+                        <h3 class="login-title text-center">Faça seu login</h3>
                         <div class="form-group default-form-group py-3">
                             <label for="login-email" class="pb-2">E-mail</label>
                             <i class="fas icon"></i>
@@ -51,7 +50,7 @@
             <div class="col">
                 <span class="hasAccount">
                     Não tem uma conta?
-                    <a href="#">Registre-se</a>
+                    <a href="{{ url }}/register">Registre-se</a>
                 </span>
             </div>
         </div>
