@@ -1,4 +1,3 @@
-
 /**
  * Validate input name on blur
  * 
@@ -7,6 +6,9 @@ function validateName(ev, minCharacteres, type) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
+
+    // Do not validate empty input
+    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -56,6 +58,9 @@ function validateEmail(ev, type) {
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
+    // Do not validate empty input
+    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
@@ -90,6 +95,9 @@ function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmat
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
+
+    // Do not validate empty input
+    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -176,6 +184,9 @@ function validatePasswordConfirmation(ev, type) {
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
+    // Do not validate empty input
+    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
@@ -240,11 +251,29 @@ function resetValidationInput(ev) {
 }
 
 /**
+ * 
+ * Do not validate empty input
+ */
+ function refuseValidationOnEmptyValue(ev, formControlNode) {
+    if (!ev.target.value.length) {
+        formControl[formControlNode].value = ev.target.value;
+        formControl[formControlNode].validate = false;
+        resetValidationInput(ev);
+        applySubmitStatus();
+        return true;
+    }
+
+    return false;
+}
+
+/**
 * Focus input
 *  
 */
 function handleFocusInput(ev) {
     const actualClass = resetValidationInput(ev);
+        if (!ev.target.value.length) return;
+
     if (actualClass === "success-field") {
         ev.target.parentElement.classList.add("success-field");
     } else {
