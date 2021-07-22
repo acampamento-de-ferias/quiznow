@@ -35,13 +35,23 @@
     .card .primary-button button {
         margin-bottom: 2rem;
     }
-
+    
     .card .license {
-        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .card .license a {
         font-size: 0.625rem;
         text-decoration: none;
         color: var(--black-color);
         opacity: 0.8;
-        margin-bottom: 1rem;
+        transition: background 0.2s;
+    }
+
+    .card .license a:hover {
+        font-size: 0.625rem;
+        text-decoration: none;
+        color: var(--black-color);
+        opacity: 0.5;
     }
 }
