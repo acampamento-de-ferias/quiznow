@@ -110,6 +110,13 @@ ul {
     color: var(--blue-color);
     font-weight: 700;
     text-decoration: none;
+    transition: background 0.2s;
+}
+
+.hasAccount a:hover {
+    color: var(--light-blue-color);
+    font-weight: 700;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 992px) {
