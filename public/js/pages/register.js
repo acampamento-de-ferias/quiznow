@@ -37,13 +37,18 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
         password: formControl.password.value
     };
 
+    // Show loading before request be finished
+    const loading = document.getElementById("loading");
+    loading.classList.remove("d-none");
+
     // Send data to backend using fetch
-    fetch('/register', {
+    fetch(url + '/register', {
         method: 'POST',
         headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
+        dataType: "json",
         mode: "same-origin",
         credentials: "same-origin",
         body: JSON.stringify(data),
@@ -61,6 +66,8 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
         window.location.href = url;
     }).catch(function(error) {
         alert(error.message);
+    }).finally(function() {
+        loading.classList.add("d-none");
     });
 
 }, false);
