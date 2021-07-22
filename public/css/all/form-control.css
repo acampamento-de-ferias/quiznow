@@ -1,28 +1,24 @@
 .default-form-group {
     position: relative;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 19px;
+    margin-top: 1rem;
 }
 
 .default-form-group .icon,
 .default-form-group .existing-icon {
     position: absolute;
-    right: 10px;
+    right: 0.625rem;
     z-index: 1;
-    margin: 38px 0;
+    margin: 2.375rem 0;
     cursor: pointer;
     color: var(--dark-gray-color);
 }
 
 .default-form-group input {
+    margin-top: 0.5rem;
     padding-right: 2rem;
     position: relative;
-    border: 1px solid rgba(27, 38, 44, 0.2);
-    box-sizing: border-box;
-    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
     background: var(--light-gray-color);
 }
 
@@ -81,43 +77,27 @@
 }
 
 .failed-field .error-message {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 0.75rem;
     color: var(--red-color);
 }
 
-.default-button button {
-    width: 100%;
-    padding: 15px;
-    background: var(--blue-color);
-    border-radius: 4px;
-    color: var(--white-color);
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 23px;
-}
-
-.default-button button:enabled:hover {
-    background: var(--light-blue-color);
-    color: var(--white-color);
-}
-
-.default-button button:disabled {
-    background: var(--light-gray-color);
-    color: var(--black-color) 20%;
-    pointer-events: all !important;
-    cursor: not-allowed !important;
-}
-
 @media screen and (min-width: 992px) {
-    .default-form-group,
-    .default-button {
-        width: 75%;
-        margin: 0 auto;
+    .form {
+        padding: 2rem 2rem 0;
+        width: 70%;
+        margin: auto;
+    }
+
+    .default-form-group {
+        margin-top: 1.5rem;
+    }
+
+    .default-form-group input {
+        height: 3rem;
+    }
+
+    .default-form-group .icon,
+    .default-form-group .existing-icon {
+        margin: 2.7rem 0;
     }
 }

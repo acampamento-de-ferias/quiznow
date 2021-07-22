@@ -8,29 +8,24 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container p-4">
-        <img class="img-fluid px-4 d-lg-none" title="Logo QuizNow" src="./images/logo-quiznow.png" alt="Logo QuizNow" />
+    <div class="container">
+        <img class="img-fluid logo d-lg-none" src="./images/logo-quiznow.png" alt="Logo QuizNow" title="Logo QuizNow"/>
         <div class="card">
-            <div class="row m-0">
-                <div class="col-3 p-0 d-none d-lg-block">
-                    <div class="banner px-3 py-5">
-                        <img class="img-fluid" title="Logo QuizNow" src="./images/logo-quiznow.png" />
-                        <p class="py-4">
-                            Cadastre-se e crie quantos quizzes você quiser.
-                        </p>
-                        <div class="images">
-                            <img class="img-fluid" title="city-2" src="./images/city-2.jpeg" />
-                            <img class="img-fluid" title="city-1" src="./images/city-1.jpeg" />
-                            <img class="img-fluid" title="courtney" src="./images/courtney.jpeg" />
-                        </div>
+            <div class="row">
+                <div class="col-4 d-none d-lg-block">
+                    <div class="banner">
+                        <img class="img-fluid" title="QuizNow" alt="Logo QuizNow" src="./images/logo-quiznow.png" />
+                        <p class="text-center">Cadastre-se e crie quantos quizzes você quiser.</p>
+                        <img class="img-fluid" title="Cadastre-se" alt="Homem em dúvida entre alternativas" src="./images/register-banner.png" />
+                        <a href="https://storyset.com/marketing" target="_blank" class="license">Marketing illustrations by Storyset</a>
                     </div>
                 </div>
-                <div class="col mt-3 pb-4 px-4">
-                    <form id="form-register">
-                        <h3 class="register-title text-center">Crie sua conta</h3>
-                        <div class="default-divider mb-2 d-none d-lg-block"></div>
-                        <div class="form-group default-form-group py-3">
-                            <label for="registerName" class="pb-2">Nome</label>
+                <div class="col">
+                    <form id="form-register" class="form">
+                        <h3 class="title text-center">Crie sua conta</h3>
+                        <div class="primary-divider d-none d-lg-block"></div>
+                        <div class="form-group default-form-group">
+                            <label for="registerName">Nome</label>
                             <i class="fas icon"></i>
                             <input 
                                 type="text" 
@@ -44,8 +39,8 @@
                                 required>
                             <span class="error-message"></span>
                         </div>
-                        <div class="form-group default-form-group pb-3">
-                            <label for="registerEmail" class="pb-2">E-mail</label>
+                        <div class="form-group default-form-group">
+                            <label for="registerEmail">E-mail</label>
                             <i class="fas icon"></i>
                             <input 
                                 type="email" 
@@ -60,8 +55,8 @@
                             <span class="error-message"></span>
 
                         </div>
-                        <div class="form-group default-form-group pb-3">
-                            <label for="registerPassword" class="pb-2">Senha</label>
+                        <div class="form-group default-form-group">
+                            <label for="registerPassword">Senha</label>
                             <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
                             <input 
                                 type="password" 
@@ -77,7 +72,7 @@
                             <span class="error-message"></span>
                         </div>
                         <div class="form-group default-form-group">
-                            <label for="registerPassword" class="pb-2">Confirmar Senha</label>
+                            <label for="registerPasswordConfirmation">Confirmar Senha</label>
                             <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
                             <input 
                                 type="password" 
@@ -91,10 +86,10 @@
                                 required>
                             <span class="error-message"></span>
                         </div>
-                        <div class="default-button">
-                            <button type="submit" class="btn mt-4 shadow-none" disabled> Cadastrar </button>
+                        <div class="primary-button">
+                            <button type="submit" class="btn shadow-none" disabled> Cadastrar </button>
                         </div>
-                        <div class="row text-center d-none d-lg-block pt-3">
+                        <div class="row text-center d-none d-lg-block">
                             <div class="col">
                                 <span class="hasAccount">Já tem uma conta? 
                                     <a href="{{ url }}/login" class="login"> Entre </a>
@@ -104,9 +99,8 @@
                     </form>
                 </div>
             </div>
-            
         </div>
-        <div class="row mt-4 text-center d-lg-none">
+        <div class="row text-center d-lg-none">
             <div class="col">
                 <span class="hasAccount">Já tem uma conta? 
                     <a href="{{ url }}/login" class="login"> Entre </a>
@@ -114,7 +108,6 @@
             </div>
         </div>
     </div>
-    
 {% endblock %}
 
 {% block scripts %}
