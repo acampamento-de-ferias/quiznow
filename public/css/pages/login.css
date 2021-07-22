@@ -1,15 +1,11 @@
-.login-title {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 2rem;
-  line-height: 3rem;
-  color: var(--dark-blue-color);
-}
-
 .connected {
   display: flex;
   align-items: center;
+  margin-top: 1rem;
+}
+
+#connected-checkbox {
+  margin-top: 0;
 }
 
 #connected-checkbox:checked {
@@ -24,4 +20,21 @@
 #forgot-password {
   opacity: 0.6;
   text-decoration: underline;
+  color: var(--black-color);
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 992px) {
+  .connected {
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  #connected-checkbox,
+  #connected-text {
+    cursor: pointer;
+  }
+
+  .card .secondary-divider {
+    margin: 2rem 0;
+  }
 }

@@ -8,45 +8,66 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container p-4">
-        <img class="img-fluid px-4 d-lg-none" src="./images/logo-quiznow.png" alt="Logo QuizNow" title="Logo QuizNow">
+    <div class="container">
+        <img class="img-fluid logo d-lg-none" src="./images/logo-quiznow.png" alt="Logo QuizNow" title="QuizNow">
         <div class="card">
-            <div class="row m-0">
-                <div class="col mt-3 pb-4 px-4">
-                    <div id="form-login">
-                        <h3 class="login-title text-center">Faça seu login</h3>
-                        <div class="form-group default-form-group py-3">
-                            <label for="login-email" class="pb-2">E-mail</label>
+            <div class="row">
+                <div class="col-4 d-none d-lg-block">
+                    <div class="banner">
+                        <img class="img-fluid" title="QuizNow" alt="Logo QuizNow" src="./images/logo-quiznow.png" />
+                        <p class="text-center">Bem-vindo de volta!</p>
+                        <img class="img-fluid" title="Entre na plataforma" alt="Mulher concentrada respondendo um teste online através de um notebook" src="./images/login-banner.png" />
+                        <a href="https://storyset.com/people" target="_blank" class="license">People illustrations by Storyset</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="form-login" class="form">
+                        <h3 class="title text-center">Faça seu login</h3>
+                        <div class="primary-divider d-none d-lg-block"></div>
+                        <div class="form-group default-form-group">
+                            <label for="login-email">E-mail</label>
                             <i class="fas icon"></i>
                             <input type="text" class="form-control shadow-none" formcontrol="email" id="login-email" onblur="validateEmail(event)" onfocus="handleFocusInput(event)" maxlength="256" required>
                             <span class="error-message"></span>
                         </div>
-                        <div class="form-group default-form-group pb-3">
-                            <label for="login-password" class="pb-2">Senha</label>
+                        <div class="form-group default-form-group">
+                            <label for="login-password">Senha</label>
                             <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
                             <input type="password" class="form-control shadow-none" formcontrol="password" id="login-password" onblur="validatePassword(event, 8)" onfocus="handleFocusInput(event)" maxlength="32" required>
                             <span class="error-message"></span>
                         </div>
                         <div class"row">
-                            <div class="col mt-0">
+                            <div class="col">
                                 <div class="connected">
-                                    <input id="connected-checkbox" class="form-check-input shadow-none my-0" type="checkbox">
+                                    <input id="connected-checkbox" class="form-check-input shadow-none" type="checkbox">
                                     <label id="connected-text" class="small-text" for="connected-checkbox">Mantenha-me conectado</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="default-button">
-                            <button type="submit" class="btn mt-4 shadow-none">Entrar</button>
+                        <div class="primary-button">
+                            <button type="submit" class="btn shadow-none">Entrar</button>
+                        </div>
+                        <div class="text-center d-none d-lg-block">
+                            <a href="#" id="forgot-password" class="small-text">Esqueceu a senha?</a>
+                        </div>
+                        <div class="secondary-divider d-none d-lg-block"></div>
+                        <div class="row text-center d-none d-lg-block">
+                            <div class="col">
+                                <span class="hasAccount">
+                                    Não tem uma conta?
+                                    <a href="{{ url }}/register">Registre-se</a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center mb-4">
+        <div class="text-center d-lg-none">
             <a href="#" id="forgot-password" class="small-text">Esqueceu a senha?</a>
         </div>
-        <div class="secondary-divider"></div>
-        <div class="row mt-4 text-center d-lg-none">
+        <div class="secondary-divider d-lg-none"></div>
+        <div class="row text-center d-lg-none">
             <div class="col">
                 <span class="hasAccount">
                     Não tem uma conta?
@@ -55,10 +76,9 @@
             </div>
         </div>
     </div>
-    
+
 {% endblock %}
 
 {% block scripts %}
-    <script src="./js/all/validation.js"></script>
     <script src="./js/pages/login.js"></script>
 {% endblock %}

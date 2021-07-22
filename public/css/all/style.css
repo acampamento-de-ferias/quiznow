@@ -13,10 +13,21 @@
     --white-color: #FFFFFF;
     --green-color: #28A745;
     --red-color: #DC3545;
+    --border-color: rgba(27, 38, 44, 0.2);
 }
 
-html {
-    font-family: Work Sans;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 400 1rem Work Sans;
+    color: var(--black-color);
+}
+
+ul {
+    list-style: none;
 }
 
 #content {
@@ -25,32 +36,74 @@ html {
     height: 100%;
 }
 
-.default-divider {
+.logo {
+    margin-top: 1.5rem;
+    padding: 0 2.75rem;
+}
+
+.title {
+    font: 600 2rem Poppins;
+    color: var(--dark-blue-color);
+}
+
+.primary-button button {
+    width: 100%;
+    padding: 1rem;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+    background: var(--blue-color);
+    color: var(--white-color);
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-button button:enabled:hover {
+    background: var(--light-blue-color);
+    color: var(--white-color);
+}
+
+.primary-button button:disabled {
+    pointer-events: all !important;
+    cursor: not-allowed !important;
+}
+
+.primary-button button:disabled:hover {
+    color: var(--gray-color);
+}
+
+.secondary-button button {
+    width: 100%;
+}
+
+.primary-divider {
     border: 1px solid;
-    border-image: linear-gradient(90deg, var(--dark-blue-color) 1%, var(--navy-blue-color) 95%) 1;
+    border-image: linear-gradient(
+        90deg,
+        var(--dark-blue-color) 1%,
+        var(--navy-blue-color) 95%)
+    1;
 }
 
 .secondary-divider {
+    margin: 1.5rem;
     border: 1px solid;
-    border-image: linear-gradient(90deg, var(--navy-blue-color) 1%, var(--dark-blue-color) 95%) 1;
-}
-
-.small-text {
-    font-size: 0.875rem;
-    color: var(--black-color);
-    opacity: 0.8;
-    font-style: normal;
-    font-weight: 400;
-    text-decoration: none;
+    border-image: linear-gradient(
+        90deg,
+        var(--navy-blue-color) 1%,
+        var(--dark-blue-color) 95%
+        ) 1;
 }
 
 .hasAccount {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
+    display: block;
+    font-size: 1rem;
     color: var(--black-color);
     opacity: 0.8;
+    margin-bottom: 1.5rem;
 }
 
 .hasAccount a {
@@ -59,8 +112,22 @@ html {
     text-decoration: none;
 }
 
-@media screen and (max-width: 992px) {
-    /* .card .row .col {
-        margin-top: 1rem !important;
-    }*/
+@media screen and (min-width: 992px) {
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    #content {
+        min-height: 100vh;
+        padding-top: 2rem;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .hasAccount {
+        margin-bottom: 2rem;
+    }
 }

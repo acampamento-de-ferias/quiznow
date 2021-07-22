@@ -1,54 +1,47 @@
 .card {
-    margin: 1.5rem 0;
+    margin: 2rem 0.75rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
     background: var(--white-color);
     border: 1px solid var(--black-color) 20%;
     border-radius: 4px;
     filter: drop-shadow(0rem 2px 4px rgba(0, 0, 0, 0.10));
 }
 
-.card .banner {
-    background: var(--navy-blue-color);
-    width: 100%;
-    height: 100%;
-    margin: 0;
+.card .primary-button button {
+    margin-top: 1.5rem;
 }
 
-.card .banner p {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
-    color: var(--black-color);
-}
+@media screen and (min-width: 992px) {
+    .card {
+        margin: 0;
+        padding: 0;
+    }
 
-.card .banner .images {
-    position: relative;
-    height: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .card .banner {
+        background: var(--navy-blue-color);
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 2rem 1rem 0;
+    }
+    
+    .card .banner p {
+        margin: 3rem 0;
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--black-color);
+    }
 
-.card .banner .images img {
-    position: absolute;
-    width: 90%;
-}
+    .card .primary-button button {
+        margin-bottom: 2rem;
+    }
 
-.card .banner .images img:nth-child(1) {
-    top: 0;
-    transform: rotate(340deg);
-    margin-left: -0.6rem;
-}
-
-.card .banner .images img:nth-child(2) {
-    top: 45px;
-    transform: rotate(10deg);
-    margin-left: 1rem;
-}
-
-.card .banner .images img:nth-child(3) {
-    top: 80px;
-    transform: rotate(355deg);
-    width: 85%;
+    .card .license {
+        display: block;
+        font-size: 0.625rem;
+        text-decoration: none;
+        color: var(--black-color);
+        opacity: 0.8;
+        margin-bottom: 1rem;
+    }
 }
