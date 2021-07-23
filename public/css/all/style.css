@@ -119,6 +119,11 @@ ul {
     text-decoration: none;
 }
 
+#loading img {
+    margin-top: 1.5rem;
+    max-height: 2rem;
+}
+
 @media screen and (min-width: 992px) {
     html {
         margin: 0;
