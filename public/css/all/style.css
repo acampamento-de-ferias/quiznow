@@ -65,6 +65,11 @@ ul {
     transition: all 0.8s ease-in;
 }
 
+.hide-element:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
 .show-element {
     visibility: visible;
     opacity: 1;
