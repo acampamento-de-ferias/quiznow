@@ -51,7 +51,7 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
         dataType: "json",
         mode: "same-origin",
         credentials: "same-origin",
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
     }).then(function(response) {
         if (response.status !== 200) {
             throw new Error("Erro: não foi possível realizar sua requisição");

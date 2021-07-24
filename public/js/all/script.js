@@ -15,6 +15,18 @@ function handleInputType(ev) {
 }
 
 /**
+ * Reset fields after submit
+ * 
+ */
+ window.onunload = function() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(function(input) {
+        input.value = '';
+        input.checked = false;
+    });
+}
+
+/**
  * Open element instantly
  *  
  */
