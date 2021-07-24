@@ -39,7 +39,7 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
 
     // Show loading before request be finished
     const loading = document.getElementById("loading");
-    loading.classList.remove("d-none");
+    openElement(loading)
 
     // Send data to backend using fetch
     fetch(url + '/register', {
@@ -65,9 +65,11 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
 
         window.location.href = url;
     }).catch(function(error) {
-        alert(error.message);
+        openElement(document.querySelector("#alert"), false, true);
+        document.querySelector("#alert .alert-message").innerHTML = error.message;
+        closeElementByTime(document.querySelector("#alert"), 4000);
     }).finally(function() {
-        loading.classList.add("d-none");
+        closeElement(loading);
     });
 
 }, false);

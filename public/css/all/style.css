@@ -36,6 +36,41 @@ ul {
     height: 100%;
 }
 
+#loading,
+#alert {
+    margin-top: 1.5rem;
+}
+
+.default-alert .close-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 0.6rem;
+    top: 0.3rem;
+}
+
+.element-effected {
+    position: fixed;
+    right: 1rem;
+    bottom: 0.5rem;
+    z-index: 10;
+}
+
+.element-effected .alert-message {
+    padding-right: 1rem;
+}
+
+.hide-element {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.8s ease-in;
+}
+
+.show-element {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.8s ease-out;
+}
+
 .logo {
     margin-top: 1.5rem;
     padding: 0 2.75rem;
@@ -81,21 +116,13 @@ ul {
 
 .primary-divider {
     border: 1px solid;
-    border-image: linear-gradient(
-        90deg,
-        var(--dark-blue-color) 1%,
-        var(--navy-blue-color) 95%)
-    1;
+    border-image: linear-gradient( 90deg, var(--dark-blue-color) 1%, var(--navy-blue-color) 95%) 1;
 }
 
 .secondary-divider {
     margin: 1.5rem;
     border: 1px solid;
-    border-image: linear-gradient(
-        90deg,
-        var(--navy-blue-color) 1%,
-        var(--dark-blue-color) 95%
-        ) 1;
+    border-image: linear-gradient( 90deg, var(--navy-blue-color) 1%, var(--dark-blue-color) 95%) 1;
 }
 
 .hasAccount {
@@ -117,16 +144,13 @@ ul {
         margin: 0;
         padding: 0;
     }
-
     #content {
         min-height: 100vh;
         padding-top: 2rem;
     }
-
     .title {
         font-size: 3rem;
     }
-
     .hasAccount {
         margin-bottom: 2rem;
     }

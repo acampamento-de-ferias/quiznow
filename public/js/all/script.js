@@ -14,3 +14,73 @@ function handleInputType(ev) {
     }
 }
 
+/**
+ * Open element instantly
+ *  
+ */
+ function openElement(ev, hasHash = false, hasEffect = false) {
+    const element = ev.target || ev;
+    if (element.classList.contains('d-none') ||  element.classList.contains('hide-element')) {
+        element.classList.remove(hasEffect ? 'hide-element' : 'd-none');
+        if (hasEffect) {
+            element.classList.add('show-element');
+        }
+    }
+
+    if (hasHash) {
+        element.setAttribute('hash', generateHash());
+    }
+}
+
+/**
+ * Close element instantly
+ *  
+ */
+ function closeElement(ev, hash = '', hasEffect = false) {
+    const element = ev.target || ev;
+
+    // Return element already closed
+    if (element.classList.contains('d-none') || element.classList.contains('hide-element')) {
+        return;
+    }
+
+    // Remove element with effect
+    if (hasEffect) {
+        element.classList.remove('show-element');
+    }
+
+    // Close element without hash
+    if (hash === '') {
+        element.classList.add(hasEffect ? 'hide-element' : 'd-none');
+        return;
+    }
+
+    // Close element with hash
+    const hashAttribute = element.hasAttribute('hash') ? element.getAttribute('hash') : '';
+    if (hash === hashAttribute) {
+        element.setAttribute('hash', hash);
+        element.classList.add(hasEffect ? 'hide-element' : 'd-none');
+        return;
+    }
+}
+
+/**
+ * Close element after defined time
+ *  
+ */
+function closeElementByTime(ev, time) {
+    const element = ev.target || ev;
+    const hash = generateHash();
+    element.setAttribute('hash', hash);
+    setTimeout(() => {
+        closeElement(element, hash, true);
+    }, time);
+}
+
+/**
+ * Generate hash by timestamp
+ * 
+ */
+function generateHash() {
+    return new Date().getUTCMilliseconds().toString();
+}
