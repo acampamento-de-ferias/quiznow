@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Exception;
 use PDO;
 
 class Connection
@@ -12,7 +13,7 @@ class Connection
         try {
 
             if (!isset(self::$connection)) {
-                self::$connection = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);
+                self::$connection = new PDO('mysql:host=db'.";port=3306".';dbname='.DB_NAME, DB_USERNAME, DB_PASSWORD);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
 
