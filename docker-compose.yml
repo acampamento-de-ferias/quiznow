@@ -14,8 +14,7 @@ services:
     image: mysql
     restart: always
     volumes:
-      - ./dumps:/docker-entrypoint-initdb.d
-      - /var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
     environment:
         MYSQL_ROOT_PASSWORD: 123456
         MYSQL_DATABASE: quiznow
