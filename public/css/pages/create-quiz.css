@@ -1,0 +1,27 @@
+.category {
+    height: 100%;
+    width: 100%;
+    padding: 24px 0;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.category > div {
+    width: 50%;
+    text-align: center;
+}
+
+.category img {
+    height: 96px;
+    width: 96px;
+}
+
+.category p {
+    padding-top: 8px;
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
