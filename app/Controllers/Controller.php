@@ -12,6 +12,8 @@ class Controller
     {
         $loader = new \Twig\Loader\FilesystemLoader(PATH . '/templates');
 
+        $loader->addPath(PATH . '/templates', 'core');
+
         $twig = new \Twig\Environment($loader, [
             // 'cache' => __DIR__ . '/cache',
         ]);

@@ -18,4 +18,8 @@ $router->post("/register", "RegisterController:store");
 $router->get("/login", "LoginController:index");
 $router->post("/login", "LoginController:login");
 
+// Create Quiz
+$router->get("/create-quiz", "QuizController:index");
+$router->post("/create-quiz", "QuizController:store");
+
 $router->dispatch();

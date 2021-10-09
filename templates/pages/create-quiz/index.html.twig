@@ -1,0 +1,36 @@
+{% extends "components/base.html.twig" %}
+
+{% block title %} Criar Quiz {% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="./css/pages/create-quiz.css" />
+    <link type="text/css" rel="stylesheet" href="./css/pages/create-question.css" />
+    <link type="text/css" rel="stylesheet" href="./css/pages/rating.css" />
+{% endblock %}
+
+{% block content %}
+    
+    <div class="container">
+
+        <div class="create-quiz">
+            oi, sou create-quiz
+        </div>
+
+        <div class="create-question">
+            {% include '@core/pages/create-question/index.html.twig' %}
+        </div>
+
+        <div class="rating">
+            {% include '@core/pages/rating/index.html.twig' %}
+        </div>
+
+    </div>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="./js/pages/create-quiz.js"></script>
+    <script src="./js/pages/create-question.js"></script>
+    <script src="./js/pages/rating.js"></script>
+{% endblock %}
