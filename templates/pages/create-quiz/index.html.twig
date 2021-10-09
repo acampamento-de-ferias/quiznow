@@ -3,27 +3,43 @@
 {% block title %} Criar Quiz {% endblock %}
 
 {% block head %}
-    {{ parent() }}
     <link type="text/css" rel="stylesheet" href="./css/pages/create-quiz.css" />
     <link type="text/css" rel="stylesheet" href="./css/pages/create-question.css" />
     <link type="text/css" rel="stylesheet" href="./css/pages/rating.css" />
+    {{ parent() }}
 {% endblock %}
 
 {% block content %}
     
+    {% include '@core/components/menu.html.twig' %}
+
     <div class="container">
 
         <div class="create-quiz">
-            oi, sou create-quiz
+            
+            <h3 class="title text-center">Criar Quiz</h3>
+            <div class="primary-divider"></div>
+
+            <div class="category">
+                <div class="questions-answers">
+                    <img src="./images/answer.png" alt="Questions and Answers option">
+                    <p> Perguntas & Respostas </p>
+                </div>
+                <div class="personality">
+                    <img src="./images/personality.png" alt="Questions and Answers option">
+                    <p> Personalidade </p>
+                </div>
+            </div>
         </div>
 
+        {#
         <div class="create-question">
             {% include '@core/pages/create-question/index.html.twig' %}
         </div>
 
         <div class="rating">
             {% include '@core/pages/rating/index.html.twig' %}
-        </div>
+        </div>#}
 
     </div>
     
