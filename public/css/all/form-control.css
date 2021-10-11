@@ -30,6 +30,16 @@
     background: var(--light-gray-color);
 }
 
+.default-form-group label .optional {
+    font-family: Work Sans;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: var(--black-color);
+    opacity: 0.5;
+}
+
 .success-field input {
     border: 1px solid var(--green-color);
     background: var(--white-color);

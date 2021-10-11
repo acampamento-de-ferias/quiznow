@@ -12,6 +12,7 @@
     --black-color: #1B262C;
     --gray-color: #C4C4C4;
     --dark-gray-color: #757575;
+    --medium-gray-color: #DADADA;
     --blue-color: #3282B8;
     --white-color: #FFFFFF;
     --green-color: #28A745;
@@ -195,6 +196,20 @@ ul {
 #loading img {
     margin-top: 1.5rem;
     max-height: 2rem;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.bg-white {
+    background: var(--white-color);
+}
+
+.pb-helper-5 {
+    padding-bottom: 3.75rem;
 }
 
 @media screen and (min-width: 992px) {
