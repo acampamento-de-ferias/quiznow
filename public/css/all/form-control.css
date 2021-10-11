@@ -22,6 +22,14 @@
     background: var(--light-gray-color);
 }
 
+.default-form-group textarea {
+    margin-top: 0.5rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    background: var(--light-gray-color);
+}
+
 .success-field input {
     border: 1px solid var(--green-color);
     background: var(--white-color);

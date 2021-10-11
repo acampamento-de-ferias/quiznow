@@ -1,0 +1,37 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+#footer ul {
+  background-color: var(--black-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.125rem 4.5rem;
+}
+
+#footer ul li p {
+  color: var(--white-color);
+  font: 400 1rem Work Sans;
+  margin: 0;
+}
+
+#footer ul li a {
+  color: var(--blue-color);
+  font: 600 1rem Work Sans;
+  text-decoration: none;
+  transition: 0.2;
+}
+
+#footer ul li a:hover {
+  color: var(--navy-blue-color);
+}
+
+.footer-logo {
+  height: 3.75rem;
+}
+
+#github-icon {
+  height: 2rem;
+}

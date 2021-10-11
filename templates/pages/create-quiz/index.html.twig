@@ -12,9 +12,9 @@
 {% block content %}
     
     {% include '@core/components/menu.html.twig' %}
-
+    {#
     <div class="container">
-
+        
         <div class="create-quiz">
             
             <h3 class="title text-center">Criar Quiz</h3>
@@ -32,17 +32,18 @@
             </div>
         </div>
 
-        {#
-        <div class="create-question">
-            {% include '@core/pages/create-question/index.html.twig' %}
-        </div>
-
+        
         <div class="rating">
             {% include '@core/pages/rating/index.html.twig' %}
-        </div>#}
+        </div>
 
     </div>
-    
+    #}
+    <div class="create-question container">
+        {% include '@core/pages/create-question/index.html.twig' %}
+    </div>
+
+    {% include '@core/components/footer.html.twig' %}
 {% endblock %}
 
 {% block scripts %}

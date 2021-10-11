@@ -22,6 +22,12 @@
   text-decoration: underline;
   color: var(--black-color);
   font-size: 0.875rem;
+  transition: 0.2s;
+}
+
+#forgot-password:hover {
+  opacity: 0.4;
+  color: var(--black-color)
 }
 
 @media screen and (min-width: 992px) {
