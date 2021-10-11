@@ -61,7 +61,7 @@ const formLogin = document.querySelector('#form-login');
         if (body.status === 400) {
             throw new Error(body.message);
         }
-
+        
         window.location.href = url;
     }).catch(function(error) {
         openElement(document.querySelector("#alert"), false, true);

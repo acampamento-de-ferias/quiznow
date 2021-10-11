@@ -42,7 +42,7 @@ document.getElementById("form-register").addEventListener("submit", function(ev)
     openElement(loading)
 
     // Send data to backend using fetch
-    fetch(url + '/register', {
+    fetch('/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

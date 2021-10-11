@@ -1,19 +1,51 @@
 <header>
             
     <nav>
-        <div id="menu-mobile">
-            <ul>
+        <div id="menu">
+            <ul class="menu-mobile">
                 <li>
-                    <img src="./images/hamburger.png" alt="menu hamburger">
+                    <img src="./images/hamburger.png" alt="Menu">
                 </li>
                 <li>
-                    <img src="./images/search.png" alt="search bar">
+                    <img src="./images/user.png" alt="Meus dados">
                 </li>
                 <li>
-                    <img src="./images/user.png" alt="user profile">
+                    <img src="./images/search.png" alt="Buscar">
                 </li>
             </ul>
-        </div>  
+            <ul class="menu-desktop d-none d-lg-flex">
+                <li>
+                    <a href="{{ url }}/">
+                        <img src="./images/logo-quiznow.png" id="menu-logo" alt="Logo QuizNow">                    
+                    </a>
+                </li>
+                <li>
+                    <a href="">Perguntas &amp; Respostas</a>
+                </li>
+                <li>
+                    <a href="">Personalidade</a>
+                </li>
+                <li>
+                    <div class="menu-search">
+                        <input class="form-control shadow-none" placeholder="Buscar" type="search">
+                        <a href="#">
+                            <img src="./images/search.png" alt="Buscar">
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="account">
+                        <a href="{{ url }}/login" id="login-button">Entrar</a>
+                        <div class="vertical-divider"></div>
+                        <a href="{{ url }}/register" class="register-button">
+                            <div class="primary-button">
+                                <button class="btn shadow-none">Criar conta</button>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
     
 </header>
