@@ -1,4 +1,4 @@
-ul {
+ul, p {
   margin: 0;
   padding: 0;
 }
@@ -6,20 +6,19 @@ ul {
 #footer ul {
   background-color: var(--black-color);
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.125rem 4.5rem;
+  padding: 1rem 2rem;
 }
 
 #footer ul li p {
   color: var(--white-color);
-  font: 400 1rem Work Sans;
-  margin: 0;
+  font: 400 0.75rem Work Sans;
 }
 
 #footer ul li a {
   color: var(--blue-color);
-  font: 600 1rem Work Sans;
+  font: 600 0.75rem Work Sans;
   text-decoration: none;
   transition: 0.2;
 }
@@ -30,8 +29,28 @@ ul {
 
 .footer-logo {
   height: 3.75rem;
+  margin-bottom: 1rem;
 }
 
 #github-icon {
   height: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 992px) {
+  #footer ul {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.125rem 4.5rem;
+  }
+
+  #footer ul li p,
+  #footer ul li a {
+    font-size: 1rem;
+  }
+
+  .footer-logo,
+  #github-icon {
+    margin: 0;
+  }
 }
