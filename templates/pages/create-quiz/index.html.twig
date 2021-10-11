@@ -13,35 +13,243 @@
     
     {% include '@core/components/menu.html.twig' %}
 
-    <div class="container">
+    <div class="create-quiz">
 
-        <div class="create-quiz">
+        <div class="container">
             
             <h3 class="title text-center">Criar Quiz</h3>
             <div class="primary-divider"></div>
 
             <div class="category">
-                <div class="questions-answers">
-                    <img src="./images/answer.png" alt="Questions and Answers option">
+                <div class="option questions-answers active-option" onclick="selectCategory('questions-answers')">
+                    <div class="check">
+                        <img src="./images/check.png" alt="Checked icon">
+                    </div>
+                    <div class="option-wrap questions-answers-wrap">
+                        <img src="./images/answer.png" alt="Questions and Answers option">
+                    </div>
                     <p> Perguntas & Respostas </p>
                 </div>
-                <div class="personality">
-                    <img src="./images/personality.png" alt="Questions and Answers option">
+                <div class="option personality" onclick="selectCategory('personality')">
+                    <div class="check">
+                        <img src="./images/check.png" alt="Checked icon">
+                    </div>
+                    <div class="option-wrap personality-wrap">
+                        <img src="./images/personality.png" alt="Questions and Answers option">
+                    </div>
                     <p> Personalidade </p>
                 </div>
             </div>
+
         </div>
 
-        {#
+        <form>
+            <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quz">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-basic-infos">
+                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-basic-infos" aria-expanded="false" aria-controls="content-basic-infos">
+                            <img class="arrow-down" src="./images/arrow-collapse-down.png" alt="Seta para baixo">
+                            <span>
+                                Informações Básicas
+                            </span> 
+                        </button>
+                    </h2>
+                    <div id="content-basic-infos" class="accordion-collapse collapse show" aria-labelledby="heading-basic-infos" data-bs-parent="#accordion-create-quz">
+                        <div class="accordion-body">
+
+                            <div class="form-group default-form-group miniatura mt-0">
+                                <p> Miniatura </p>
+                                <label for="quiz-miniature">
+                                    <img src="./images/file.png" alt="Add a image here">
+                                    <p> Adicione uma imagem </p>
+                                </label>
+                                <input type="file" class="custom-file-input d-none" id="quiz-miniature">
+                            </div>
+
+                            <div class="form-group default-form-group">
+                                <label for="quiz-title">Título</label>
+                                <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-title" id="quiz-title" maxlength="256" required>
+                            </div>
+
+                            <div class="form-group default-form-group">
+                                <label for="quiz-description">Descrição <span class="optional"> (Opcional) </span></label>
+                                <textarea class="form-control shadow-none bg-white" id="quiz-description" maxlength="280"></textarea>
+                            </div>
+
+                            <div class="form-group default-form-group">
+                                <label for="quiz-keywords">Palavras-chave</label>
+                                <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-keywords" id="quiz-keywords" maxlength="256" required>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-questions">
+                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-questions" aria-expanded="false" aria-controls="content-questions">
+                            <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
+                            <span>
+                                Perguntas
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="content-questions" class="accordion-collapse collapse" aria-labelledby="heading-questions" data-bs-parent="#accordion-create-quz">
+                        <div class="accordion-body">
+                            
+                            <div class="basic-card">
+                                <div class="row">
+                                    <div class="col-10 question-infos">
+                                        <h3>Qual a cor do céu?</h3>
+                                        <p class="answers">
+                                            <span>
+                                                Amarelo
+                                            </span>   
+                                            <span>
+                                                Vermelho
+                                            </span>   
+                                            <span class="correct-answer">
+                                                Azul
+                                            </span> 
+                                        </p>
+                                    </div>
+                                    <div class="col-2 management">
+                                        <div class="remove-question">
+                                            <img src="./images/trash.png" alt="Remove question">
+                                        </div>
+                                        <div class="edit-question">
+                                            <img src="./images/edit.png" alt="Edit question">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="basic-card">
+                                <div class="row">
+                                    <div class="col-10 question-infos">
+                                        <h3>O sol é uma estrela.</h3>
+                                            <p class="answers">
+                                                <span class="correct-answer">
+                                                    Verdadeiro
+                                                </span> 
+                                                <span>
+                                                    Falso
+                                                </span>   
+                                            </p>
+                                    </div>
+                                    <div class="col-2 management">
+                                        <div class="remove-question">
+                                            <img src="./images/trash.png" alt="Remove question">
+                                        </div>
+                                        <div class="edit-question">
+                                            <img src="./images/edit.png" alt="Edit question">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="secondary-button">
+                                <button class="btn shadow-none">
+                                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
+                                    Adicionar resultado
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-rating">
+                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-rating" aria-expanded="false" aria-controls="content-rating">
+                            <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
+                            <span>
+                                Resultados
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="content-rating" class="accordion-collapse collapse" aria-labelledby="heading-rating" data-bs-parent="#accordion-create-quz">
+                        <div class="accordion-body">
+                            
+                            <div class="basic-card">
+                                <div class="row rating-image">
+                                    <div class="col">
+                                        <img src="./images/tais.jpg" alt="Imagem do resultado">
+                                    </div>
+                                </div>
+                                <div class="row rating-wrap">
+                                    <div class="col-10 rating-infos">
+                                        <h3>Você acertou X questões</h3>
+                                        <p class="rating-text">
+                                            Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit. Suspendisse venenatis
+                                            metus et eros laoreet finibus.
+                                        </p>
+                                    </div>
+                                    <div class="col-2 management">
+                                        <div class="remove-question">
+                                            <img src="./images/trash.png" alt="Remove question">
+                                        </div>
+                                        <div class="edit-question">
+                                            <img src="./images/edit.png" alt="Edit question">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="basic-card">
+                                <div class="row rating-image">
+                                    <div class="col">
+                                        <img src="./images/motel.jpg" alt="Imagem do resultado">
+                                    </div>
+                                </div>
+                                <div class="row rating-wrap">
+                                    <div class="col-10 rating-infos">
+                                        <h3>Você acertou Y questões</h3>
+                                        <p class="rating-text">
+                                            Maecenas vitae justo ultrices tortor
+                                            laoreet imperdiet. Praesent suscipit turpis
+                                            in dui ultrices, quis tincidunt erat lacinia.
+                                            Vestibulum viverra, nunc ac varius rhoncus,
+                                            libero tortor imperdiet mauris, sit amet
+                                            viverra turpis lacus ac dolor.
+                                        </p>
+                                    </div>
+                                    <div class="col-2 management">
+                                        <div class="remove-question">
+                                            <img src="./images/trash.png" alt="Remove question">
+                                        </div>
+                                        <div class="edit-question">
+                                            <img src="./images/edit.png" alt="Edit question">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="secondary-button">
+                                <button class="btn shadow-none">
+                                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
+                                    Adicionar resultado
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="primary-button fixed-footer">
+                <button type="submit" class="btn shadow-none">Publicar quiz</button>
+            </div>
+        </form>
+    </div>
+    
+    {#
         <div class="create-question">
             {% include '@core/pages/create-question/index.html.twig' %}
         </div>
 
         <div class="rating">
             {% include '@core/pages/rating/index.html.twig' %}
-        </div>#}
-
-    </div>
+        </div>
+    #}
     
 {% endblock %}
 

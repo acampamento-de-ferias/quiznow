@@ -10,6 +10,7 @@
     --black-color: #1B262C;
     --gray-color: #C4C4C4;
     --dark-gray-color: #757575;
+    --medium-gray-color: #DADADA;
     --blue-color: #3282B8;
     --white-color: #FFFFFF;
     --green-color: #28A745;
@@ -118,6 +119,36 @@ ul {
 
 .secondary-button button {
     width: 100%;
+    padding: 1rem;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+    background: var(--white-color);
+    color: var(--blue-color);
+    border: var(--blue-color) 0.15rem solid;
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondary-button button:enabled:hover {
+    background: var(--secondary-hover-color);
+    color: var(--dark-blue-color);
+    border-color: var(--dark-blue-color);
+}
+
+.secondary-button button:disabled {
+    pointer-events: all !important;
+    cursor: not-allowed !important;
+    color: var(--gray-color);
+    border-color: var(--gray-color);
+}
+.plus-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 1rem;
 }
 
 .primary-divider {
@@ -155,6 +186,20 @@ ul {
 #loading img {
     margin-top: 1.5rem;
     max-height: 2rem;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.bg-white {
+    background: var(--white-color);
+}
+
+.pb-helper-5 {
+    padding-bottom: 3.75rem;
 }
 
 @media screen and (min-width: 992px) {
