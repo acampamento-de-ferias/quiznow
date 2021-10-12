@@ -2,14 +2,13 @@ textarea {
     resize: none;
 }
 
-.create-question {
+.create-question .basic-card {
     width: 100vw;
     height: 100vh;
-    background: var(--white-color);
     padding: 2rem 1rem 1rem;
 }
 
-.create-question .secondary-divider {
+.create-question .basic-card .secondary-divider {
     margin: 0.5rem 1rem 1.5rem;
 }
 
@@ -17,11 +16,11 @@ textarea {
     margin: 0 2.5rem;
 }
 
-.create-question .answers-section {
+.create-question .basic-card .answers-section {
     margin: 2rem 2.5rem 0;
 }
 
-.answer {
+.answers-section .answer {
     margin-top: 0.5rem;
 }
 
@@ -111,7 +110,64 @@ textarea {
 }
 
 @media screen and (min-width: 992px) {
-    .actions-section {
-        display: none;
+    .create-question .basic-card {
+        height: auto;
+        max-width: 80%;
+        margin: 6rem auto 4rem;
+        padding: 2rem 8rem 1rem;
+    }
+
+    .create-question .basic-card .primary-divider {
+        margin: 0.5rem 0 2rem;
+    }
+
+    .title-section .form-group {
+        margin: 0 4rem;
+    }
+
+    .title-section .title {
+        font-size: 2rem;
+    }
+
+    .create-question .basic-card .answers-section {
+        margin: 3rem 4rem 0;
+    }
+
+    .answers-section .answer {
+        margin-top: 1rem;
+    }
+
+    .answers-section button {
+        max-width: 19rem;
+        margin: 2rem auto;
+    }
+    
+    .right-bg {
+        width: 8%;
+    }
+    
+    .wrong-bg {
+        width: 8%;
+    }
+
+    #question-title {
+        height: 4rem;
+    }
+
+    .create-question .basic-card .actions-section {
+        position: relative;
+        margin-top: 3.5rem;
+    }
+
+    .actions-section button.btn {
+        height: 5.5rem;
+        font-size: 2rem;
+        max-width: 25rem;
+    }
+
+    .actions-section .primary-button {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
     }
 }

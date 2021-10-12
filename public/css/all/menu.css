@@ -88,7 +88,7 @@
     .vertical-divider {
         height: 2rem;
         margin: 0 1rem;
-        border: var(--dark-blue-color) 0.1rem solid;
+        border-left: var(--dark-blue-color) 0.1rem solid;
     }
 
     .register-button button.btn {

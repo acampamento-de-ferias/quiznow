@@ -2,17 +2,16 @@
     margin: 2rem 0.75rem 1.5rem;
     padding: 1rem 1.5rem 1.5rem;
     background: var(--white-color);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--black-color) 20%;
     border-radius: 4px;
-    filter: drop-shadow(0rem 2px 4px rgba(0, 0, 0, 0.10));
 }
 
 .basic-card {
     background: var(--white-color);
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--black-color) 20%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
-    filter: drop-shadow(0rem 1px 1px rgba(0, 0, 0, 0.5));
 }
 
 .card .primary-button button {
@@ -23,6 +22,11 @@
     .card {
         margin: 0;
         padding: 0;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .basic-card {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .card .banner {
