@@ -265,3 +265,7 @@
     width: 100%;
     height: 12.5rem;
 }
+
+.publish-quiz {
+    height: 4.5rem !important;
+}

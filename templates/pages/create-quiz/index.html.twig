@@ -23,7 +23,7 @@
             <div class="category">
                 <div class="option questions-answers active-option" onclick="selectCategory('questions-answers')">
                     <div class="check">
-                        <img src="./images/check.png" alt="Checked icon">
+                        <img src="./images/selected.png" alt="Checked icon">
                     </div>
                     <div class="option-wrap questions-answers-wrap">
                         <img src="./images/answer.png" alt="Questions and Answers option">
@@ -47,7 +47,7 @@
             <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quz">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading-basic-infos">
-                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-basic-infos" aria-expanded="false" aria-controls="content-basic-infos">
+                        <button id="button-basic-info" class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-basic-infos" aria-expanded="false" aria-controls="content-basic-infos">
                             <img class="arrow-down" src="./images/arrow-collapse-down.png" alt="Seta para baixo">
                             <span>
                                 Informações Básicas
@@ -86,7 +86,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading-questions">
-                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-questions" aria-expanded="false" aria-controls="content-questions">
+                        <button id="button-questions" class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-questions" aria-expanded="false" aria-controls="content-questions">
                             <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
                             <span>
                                 Perguntas
@@ -159,7 +159,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading-rating">
-                        <button class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-rating" aria-expanded="false" aria-controls="content-rating">
+                        <button id="button-rating" class="accordion-button collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-rating" aria-expanded="false" aria-controls="content-rating">
                             <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
                             <span>
                                 Resultados
@@ -236,7 +236,7 @@
                 </div>
             </div>
             <div class="primary-button fixed-footer">
-                <button type="submit" class="btn shadow-none">Publicar quiz</button>
+                <button type="submit" class="btn publish-quiz shadow-none">Publicar quiz</button>
             </div>
         </form>
     </div>
