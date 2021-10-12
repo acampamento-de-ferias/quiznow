@@ -1,12 +1,15 @@
-let categorySelected = document.querySelector('.option');
+let categorySelected = document.querySelectorAll('.option.active-option');
 
-function selectCategory(className) {
+function selectCategory(className, screen = "mobile") {
+    const indexScreen = screen === "mobile" ? 0 : 1;
+    categorySelected = NodeList.prototype.isPrototypeOf(categorySelected) ? categorySelected[indexScreen] : categorySelected;
+
     if (categorySelected.classList.contains(className)) {
         return;
     }
 
     categorySelected.classList.remove("active-option");
-    const element = document.getElementsByClassName(className)[0];
+    const element = document.getElementsByClassName(className)[indexScreen];
     element.classList.add("active-option");
     categorySelected = element;
 }
