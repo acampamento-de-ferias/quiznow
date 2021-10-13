@@ -28,7 +28,11 @@ textarea {
     margin-top: 2rem;
 }
 
-.answers-section button {
+.answers-section .remove-question {
+    cursor: pointer;
+}
+
+.answers-section button#add-answer {
     margin-top: 2rem;
 }
 
@@ -137,7 +141,7 @@ textarea {
         margin-top: 1rem;
     }
 
-    .answers-section button {
+    .answers-section button#add-answer {
         max-width: 19rem;
         margin: 2rem auto;
     }
