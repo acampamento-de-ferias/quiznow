@@ -6,6 +6,7 @@
 
 #connected-checkbox {
   margin-top: 0;
+  cursor: pointer;
 }
 
 #connected-checkbox:checked {
@@ -15,6 +16,12 @@
 
 #connected-text {
   padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+#connected-text,
+#forgot-password {
+  font: 400 0.875rem Work Sans;
 }
 
 #forgot-password {
@@ -33,11 +40,6 @@
 @media screen and (min-width: 992px) {
   .connected {
     margin: 1.5rem 0 2.5rem;
-  }
-
-  #connected-checkbox,
-  #connected-text {
-    cursor: pointer;
   }
 
   .card .secondary-divider {
