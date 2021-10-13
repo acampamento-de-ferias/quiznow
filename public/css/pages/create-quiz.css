@@ -2,9 +2,9 @@
 .category {
     height: 100%;
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem 0.8rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .category .option {
@@ -12,7 +12,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 50%;
+    width: 8.5rem;
+    margin: 0 0.56rem;
     text-align: center;
 }
 
@@ -30,7 +31,7 @@
 
     margin-top: 0.5rem;
     height: 8.16rem;
-    width: 8.16rem;
+    width: 90%;
     box-shadow: 0 0.13rem 0.3rem rgba(0, 0, 0, 0.1);
     border-radius: 0.3rem;
 }
@@ -53,7 +54,7 @@
 }
 
 .category .option > p {
-    padding-top: 0.5rem;
+    padding: 0.5rem;
     font-family: Work Sans;
     font-style: normal;
     font-weight: normal;
@@ -85,43 +86,8 @@
     width: 1.5rem;
 }
 
-/* Accordion */
-#content-basic-infos .accordion-body,
-#content-questions .accordion-body,
-#content-rating .accordion-body {
-    height: 40vh;
-    overflow-y: auto;
-}
-
-.accordion .accordion-header .accordion-button {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 2.25rem;
-    color: var(--dark-blue-color);
-}
-
-.accordion .accordion-header .accordion-button img {
-    width: 1rem;
-    height: 1rem;
-    margin-right: 1rem;
-}
-
-.accordion .accordion-header .accordion-button:not(.collapsed) {
-    background: var(--white-color);
-}
-
-.accordion .accordion-item .accordion-collapse {
-    background: var(--light-gray-color);
-}
-
-.accordion-button::after {
-    display: none;
-}
-
-/* Accordion basic infos */
-.accordion .miniatura label {
+/* Miniatura style */
+.basic-info .miniatura label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,118 +103,66 @@
     border-radius: 0.25rem;
 }
 
-.accordion .miniatura label img {
+.basic-info .miniatura label img {
     width: 3rem;
     height: 3rem;
 }
 
-.accordion .miniatura label p {
-    margin-top: 0.5rem;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 0.875rem;
-    line-height: 1rem;
-    color: rgba(27, 38, 44, 0.6);
-}
-
-.accordion .miniatura > p {
-    margin-bottom: 0;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 1.188rem;
-    color: var(--black-color);
-}
-
-/* Accordion questions and answers / rating */
-#content-questions .basic-card {
+/** Question **/
+.question .basic-card {
     padding: 1.5rem 0.5rem;
     margin: 1rem 0;
 }
 
-#content-rating .basic-card {
-    margin: 1rem 0;
-}
-
-#content-questions .basic-card:first-child,
-#content-rating .basic-card:first-child {
-    margin-top: 0;
-}
-
-#content-rating .basic-card .rating-wrap {
-    padding: 1rem 0;
-}
-
-#content-questions .basic-card .question-infos,
-#content-rating .basic-card .rating-infos {
+.question .basic-card .question-infos {
     text-align: center;
-    padding-left: 1.5rem;
+    padding: 0 1.5rem; 
 }
 
-#content-questions .basic-card h3,
-#content-rating .basic-card h3 {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.375rem;
-    line-height: 1.625rem;
-    color: var(--dark-blue-color);
-    margin-bottom: 0.5rem;
-}
-
-#content-rating .basic-card .rating-text {
+.question .basic-card .answers {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 0.875rem;
-    text-align: initial;
-    line-height: 1rem;
-    color: var(--black-color);
+}
 
+.question .basic-card .answers span {
     margin: 0 0.313rem;
 }
 
-#content-questions .basic-card .answers {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    margin-bottom: 0;
-}
-
-#content-questions .basic-card .answers span {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 0.875rem;
-    line-height: 1rem;
-    color: var(--black-color);
-
-    margin: 0 0.313rem;
-}
-
-#content-questions .basic-card .answers .correct-answer {
+.question .basic-card .answers .correct-answer {
     background: rgba(40, 167, 69, 0.5);
     border-radius: 0.25rem;
     padding: 0.12rem 0.25rem;
 }
 
-#content-questions .basic-card .management img,
-#content-rating .basic-card .management img {
+/* Rating */
+.rating .basic-card {
+    margin: 1rem 0;
+}
+
+.rating .basic-card .rating-wrap {
+    padding: 1.5rem 1rem;
+}
+
+.rating .basic-card .rating-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: initial;
+}
+
+.rating .basic-card .rating-image img {
+    width: 100%;
+    height: 12.5rem;
+}
+
+.basic-card .management img {
     height: 1rem;
     width: 1rem;
 }
 
-#content-questions .basic-card .management,
-#content-rating .basic-card .management {
+.basic-card .management {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -256,16 +170,93 @@
     padding: 0;
 }
 
-#content-questions .basic-card .management div:first-child,
-#content-rating .basic-card .management div:first-child {
+.basic-card .management div:first-child {
     padding-bottom: 0.875rem;
-}
-
-#content-rating .basic-card .rating-image img {
-    width: 100%;
-    height: 12.5rem;
 }
 
 .publish-quiz {
     height: 4.5rem !important;
+}
+
+/* Desktop */
+.create-quiz-desktop {
+    padding: 3rem 0 4rem;
+}
+.create-quiz-desktop .create-quiz-card {
+    padding: 1.563rem 8.875rem 1.5rem;
+}
+
+.create-quiz-desktop .create-quiz-section {
+    padding: 1.5rem 0;
+}
+
+.create-quiz-desktop .secondary-button {
+    padding-top: 1.5rem;
+}
+
+.create-quiz-desktop .publish-quiz {
+    margin: 32px auto;
+}
+
+.create-quiz-desktop .basic-info .miniatura {
+    height: 100%;
+}
+
+.create-quiz-desktop .basic-info .miniatura label {
+    height: calc(100% - 3.23rem);
+}
+
+.create-quiz-desktop .question .question-infos {
+    padding-right: 1rem;
+}
+
+.create-quiz-desktop .rating .rating-infos .management {
+    padding-right: 1.5rem;
+    align-items: flex-end;
+}
+
+.create-quiz-desktop .question .management {
+    display: inline;
+    float: right;
+    margin: inherit;
+}
+
+/* Mobile only */
+.create-quiz-mobile #content-rating .basic-card:first-child,
+.create-quiz-mobile #content-questions .basic-card:first-child {
+    margin-top: 0;
+}
+
+.create-quiz-mobile #content-rating .basic-card .rating-infos {
+    text-align: center;
+    padding-left: 1.5rem;
+    padding-right: 0; 
+}
+
+.create-quiz-mobile .accordion .accordion-body {
+    height: 40vh;
+    overflow-y: auto;
+}
+
+.create-quiz-mobile .accordion .accordion-header .accordion-button img {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
+}
+
+.create-quiz-mobile .accordion .accordion-header .accordion-button:not(.collapsed) {
+    background: var(--white-color);
+    color: var(--dark-blue-color);
+}
+
+.create-quiz-mobile .accordion .accordion-item .accordion-collapse {
+    background: var(--light-gray-color);
+}
+
+.create-quiz-mobile .accordion-button::after {
+    display: none;
+}
+
+.create-quiz-mobile .secondary-button {
+    margin-bottom: 1rem;
 }
