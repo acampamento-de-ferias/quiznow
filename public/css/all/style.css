@@ -190,11 +190,20 @@ ul {
     border-color: var(--dark-blue-color);
 }
 
+.secondary-button button:enabled:hover .plus-icon {
+    filter: brightness(0.5);
+}
+
 .secondary-button button:disabled {
     pointer-events: all !important;
     cursor: not-allowed !important;
     color: var(--gray-color);
     border-color: var(--gray-color);
+}
+
+.secondary-button button:disabled .plus-icon {
+    filter: saturate(0);
+    opacity: 0.3;
 }
 
 .plus-icon {
@@ -204,13 +213,13 @@ ul {
 }
 
 .primary-divider {
-    border: 1px solid;
+    border-bottom: 1px solid;
     border-image: linear-gradient( 90deg, var(--dark-blue-color) 1%, var(--navy-blue-color) 95%) 1;
 }
 
 .secondary-divider {
     margin: 1.5rem;
-    border: 1px solid;
+    border-bottom: 1px solid;
     border-image: linear-gradient( 90deg, var(--navy-blue-color) 1%, var(--dark-blue-color) 95%) 1;
 }
 

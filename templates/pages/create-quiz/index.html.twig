@@ -12,7 +12,7 @@
 {% block content %}
     
     {% include '@core/components/menu.html.twig' %}
-
+    {#
     <div class="create-quiz">
 
         <div class="create-quiz-mobile d-lg-none">
@@ -467,15 +467,20 @@
         </div>
     </div>
     
-    {#
-        <div class="create-question">
-            {% include '@core/pages/create-question/index.html.twig' %}
-        </div>
+
 
         <div class="rating">
             {% include '@core/pages/rating/index.html.twig' %}
-        </div>
-    #}
+        </div>#}
+
+
+    <div class="create-question">
+        {% include '@core/pages/create-question/index.html.twig' %}
+    </div>
+
+    <div class="d-none d-lg-block">
+        {% include '@core/components/footer.html.twig' %}
+    </div>
     
 {% endblock %}
 
