@@ -83,6 +83,7 @@ textarea {
 .actions-section .primary-button {
     margin: 1rem;
     align-items: center;
+    flex-direction: column;
 }
 
 .actions-section button.btn {
@@ -93,6 +94,7 @@ textarea {
 }
 
 #cancel-question {
+    font: 400 1rem Work Sans;
     color: rgba(27, 38, 44, 0.8);
     text-decoration: underline;
     transition: 0.2s;
