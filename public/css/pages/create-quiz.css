@@ -222,6 +222,10 @@
 }
 
 /* Mobile only */
+.create-quiz-mobile {
+    margin-top: 1rem;
+}
+
 .create-quiz-mobile #content-rating .basic-card:first-child,
 .create-quiz-mobile #content-questions .basic-card:first-child {
     margin-top: 0;

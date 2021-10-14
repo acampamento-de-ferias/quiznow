@@ -5,7 +5,7 @@ textarea {
 .create-question .basic-card {
     width: 100vw;
     height: 100vh;
-    padding: 2rem 1rem 1rem;
+    padding: 1rem 1rem;
 }
 
 .create-question .basic-card .secondary-divider {
@@ -104,7 +104,7 @@ textarea {
     color: var(--red-color);
 }
 
-@media screen and (max-width: 360px) {
+@media (max-width: 360px) {
     .plus-icon {
         width: 1rem;
         height: 1rem;
@@ -113,13 +113,21 @@ textarea {
     .secondary-button button {
         font-size: 1rem !important;
     }
+    
+    .right-bg {
+        width: 18%;
+    }
+    
+    .wrong-bg {
+        width: 18%;
+    }
 }
 
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
     .create-question .basic-card {
         height: auto;
         max-width: 80%;
-        margin: 6rem auto 4rem;
+        margin: 3rem auto;
         padding: 2rem 8rem 1rem;
     }
 
@@ -162,11 +170,10 @@ textarea {
 
     .create-question .basic-card .actions-section {
         position: relative;
-        margin-top: 3.5rem;
+        margin-top: 1.5rem;
     }
 
     .actions-section button.btn {
-        height: 5.5rem;
         font-size: 2rem;
         max-width: 25rem;
     }
@@ -176,4 +183,8 @@ textarea {
         display: flex;
         flex-direction: column;
     }
+}
+
+@media (min-width: 1750px) {
+    
 }
