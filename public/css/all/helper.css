@@ -1,0 +1,12 @@
+.bg-white {
+    background: var(--white-color);
+}
+
+.pb-helper-5 {
+    padding-bottom: 4.375rem;
+}
+
+.pb-negative-helper-5 {
+    margin-left: -3.125rem;
+    margin-right: -3.125rem;
+}

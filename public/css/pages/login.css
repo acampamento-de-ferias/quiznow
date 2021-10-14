@@ -37,6 +37,27 @@
   color: var(--black-color)
 }
 
+.hasAccount {
+  display: block;
+  font-size: 1rem;
+  color: var(--black-color);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.hasAccount a {
+  color: var(--blue-color);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hasAccount a:hover {
+  color: var(--light-blue-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 992px) {
   .connected {
     margin: 1.5rem 0 2.5rem;
@@ -44,5 +65,9 @@
 
   .card .secondary-divider {
     margin: 2rem 0;
+  }
+  
+  .hasAccount {
+    margin-bottom: 2rem;
   }
 }
