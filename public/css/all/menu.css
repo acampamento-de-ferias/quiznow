@@ -7,6 +7,7 @@
 
 .menu-mobile {
     margin: 0;
+    margin-bottom: 1rem;
     padding: 0.8rem 1rem;
     overflow: hidden;
 }
@@ -28,6 +29,12 @@
 @media screen and (min-width: 992px) {
     .menu-mobile {
         display: none;
+    }
+
+    .hidden-menu {
+        height: 4rem;
+        width: 100%;
+        margin-top: -2rem;
     }
 
     .menu-desktop {
