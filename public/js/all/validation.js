@@ -2,13 +2,13 @@
  * Validate input name on blur
  * 
  */
-function validateName(ev, minCharacteres, type) {
-
+function validateName(ev, minCharacters, type) {
+    
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -25,27 +25,65 @@ function validateName(ev, minCharacteres, type) {
             ev.target.parentElement.classList.add("focus-field");
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
     // Check if string has the minimum of characteres
-    if (ev.target.value.length < minCharacteres) {
+    if (ev.target.value.length < minCharacters) {
         if (type === 'blur') {
             ev.target.parentElement.classList.add("failed-field");
-            ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacteres + ' caracteres';
+            ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacters + ' caracteres';
         } else {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
     ev.target.nextElementSibling.innerHTML = "";
-    applySubmitStatus();
+    applySubmitStatus('button[type="submit"]');
+    return true;
+}
+
+/**
+ * Validate input title on blur
+ * @param {Object} ev 
+ * @param {Number} minCharacters 
+ * @param {String} type 
+ */
+function validateTitle(ev, minCharacters, type) {
+    // Get form control node
+    const formControlNode = ev.target.attributes.formControl.nodeValue;
+
+    // Do not validate empty input
+    if (refuseValidationOnEmptyValue(ev, formControlNode, '.actions-section button')) return;
+
+    // Set data to formControl
+    formControl[formControlNode].value = ev.target.value;
+    formControl[formControlNode].validate = true;
+    resetValidationInput(ev);
+
+    // Check if string has the minimum of characteres
+    if (ev.target.value.length < minCharacters) {
+        if (type === 'blur') {
+            ev.target.parentElement.classList.add("failed-field");
+            ev.target.nextElementSibling.innerHTML = 'O campo nome deve ter ao menos ' + minCharacters + ' caracteres';
+        } else {
+            ev.target.parentElement.classList.add("focus-field");
+            ev.target.nextElementSibling.innerHTML = '';
+        }
+        formControl[formControlNode].validate = false;
+        changeButtonState('.actions-section button', true);
+        return;
+    }
+
+    ev.target.parentElement.classList.add("success-field");
+    ev.target.nextElementSibling.innerHTML = "";
+    applySubmitStatus('.actions-section button');
     return true;
 }
 
@@ -77,13 +115,13 @@ function validateEmail(ev, type) {
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
     ev.target.nextElementSibling.innerHTML = "";
-    applySubmitStatus();
+    applySubmitStatus('button[type="submit"]');
     return true;
 }
 
@@ -91,7 +129,7 @@ function validateEmail(ev, type) {
 * Validate password
 * 
 */
-function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmationNode = false) {
+function validatePassword(ev, minCharacters, type, formControlPasswordConfirmationNode = false) {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
@@ -116,12 +154,12 @@ function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmat
                 passwordConfirmation.parentElement.classList.add("failed-field");
                 passwordConfirmation.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
                 formControl[formControlPasswordConfirmationNode].validate = false;
-                document.querySelector('button[type="submit"]').disabled = true;
+                changeButtonState('button[type="submit"]', true);
             } else {
                 passwordConfirmation.nextElementSibling.innerHTML = "";
                 passwordConfirmation.parentElement.classList.add("success-field");
                 formControl[formControlPasswordConfirmationNode].validate = true;
-                applySubmitStatus();
+                applySubmitStatus('button[type="submit"]');
             }
         }
         
@@ -137,7 +175,7 @@ function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmat
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
@@ -151,27 +189,27 @@ function validatePassword(ev, minCharacteres, type, formControlPasswordConfirmat
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
-    // Check if string has the minimum of characteres
-    if (ev.target.value.length < minCharacteres) {
+    // Check if string has the minimum of characters
+    if (ev.target.value.length < minCharacters) {
         if (type === 'blur') {
             ev.target.parentElement.classList.add("failed-field");
-            ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos ' + minCharacteres + ' caracteres';
+            ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos ' + minCharacters + ' caracteres';
         } else {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
     ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
-    applySubmitStatus();
+    applySubmitStatus('button[type="submit"]');
     return true;
 }
 
@@ -202,13 +240,13 @@ function validatePasswordConfirmation(ev, type) {
             ev.target.nextElementSibling.innerHTML = "";
         }
         formControl[formControlNode].validate = false;
-        document.querySelector('button[type="submit"]').disabled = true;
+        changeButtonState('button[type="submit"]', true);
         return;
     }
 
     ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
-    applySubmitStatus();
+    applySubmitStatus('button[type="submit"]');
     return true;
 }
 
@@ -216,8 +254,8 @@ function validatePasswordConfirmation(ev, type) {
 * Apply submit button status
 * 
 */
-function applySubmitStatus() {
-    const button = document.querySelector('button[type="submit"]');
+function applySubmitStatus(sel) {
+    const button = document.querySelector(sel);
     let disabled = true;
     for (const property in formControl) {
         if (!formControl[property].validate) {
@@ -254,12 +292,12 @@ function resetValidationInput(ev) {
  * 
  * Do not validate empty input
  */
- function refuseValidationOnEmptyValue(ev, formControlNode) {
+ function refuseValidationOnEmptyValue(ev, formControlNode, sel) {
     if (!ev.target.value.length) {
         formControl[formControlNode].value = ev.target.value;
         formControl[formControlNode].validate = false;
         resetValidationInput(ev);
-        applySubmitStatus();
+        applySubmitStatus(sel);
         return true;
     }
 

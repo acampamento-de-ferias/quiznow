@@ -36,7 +36,7 @@
                                 id="registerName" 
                                 onkeyup="validateName(event, 3, 'keyup')" 
                                 onblur="validateName(event, 3, 'blur')" 
-                                onfocus="handleFocusInput(event)" 
+                                onfocus="handleFocusInput(event)"
                                 maxlength="120" 
                                 required>
                             <span class="error-message"></span>
@@ -120,6 +120,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="./js/all/validation.js"></script>
     <script src="./js/pages/register.js"></script>
 {% endblock %}

@@ -1,3 +1,10 @@
+const formControl = {
+  title: {
+    value: '',
+    validate: ''
+  }
+};
+
 function addNewAnswer(element) {
   const newWrongAnswer = element[element.length - 1].cloneNode(true);
   newWrongAnswer.querySelector('input').value = '';

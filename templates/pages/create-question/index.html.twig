@@ -6,7 +6,20 @@
             <div class="primary-divider d-none d-lg-block"></div>
             <div class="form-group default-form-group">
                 <label for="question-title">Título</label>
-                <textarea class="form-control shadow-none" id="question-title" cols="30" rows="3" minlength="8" maxlength="150" placeholder="8-150 caracteres"></textarea>
+                <textarea
+                    class="form-control shadow-none"
+                    id="question-title"
+                    cols="30"
+                    rows="3"
+                    minlength="8"
+                    maxlength="150"
+                    placeholder="8-150 caracteres"
+                    formControl="title"
+                    onkeyup="validateTitle(event, 8, 'keyup')"
+                    onblur="validateTitle(event, 8, 'blur')"
+                    onfocus="handleFocusInput(event)"
+                    required></textarea>
+                <span class="error-message"></span>
             </div>
         </div>
 
@@ -34,7 +47,7 @@
 
         <div class="actions-section fixed-bottom">
             <div class="primary-button text-center">
-                <button class="btn shadow-none">Salvar</button>
+                <button class="btn shadow-none" disabled>Salvar</button>
                 <a href="#" id="cancel-question">Cancelar</a>
             </div>
         </div>

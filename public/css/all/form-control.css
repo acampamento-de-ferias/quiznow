@@ -45,7 +45,16 @@
     background: var(--white-color);
 }
 
+.success-field textarea {
+    border: 1px solid var(--green-color);
+    background: var(--white-color);
+}
+
 .success-field input:focus {
+    border: 1px solid var(--green-color);
+}
+
+.success-field textarea:focus {
     border: 1px solid var(--green-color);
 }
 
@@ -67,6 +76,11 @@
     background: var(--white-color);
 }
 
+.focus-field textarea {
+    border: 1px solid var(--blue-color);
+    background: var(--white-color);
+}
+
 .focus-field label {
     color: var(--blue-color);
 }
@@ -77,6 +91,11 @@
 }
 
 .failed-field input {
+    border: 1px solid var(--red-color);
+    background: var(--white-color);
+}
+
+.failed-field textarea {
     border: 1px solid var(--red-color);
     background: var(--white-color);
 }
@@ -111,6 +130,10 @@
     }
 
     .default-form-group input {
+        height: 3rem;
+    }
+    
+    .default-form-group textarea {
         height: 3rem;
     }
 
