@@ -49,6 +49,7 @@
         justify-content: space-between;
         background: var(--light-gray-color);
         box-shadow: 0 0.13rem 0.3rem rgba(0, 0, 0, 0.1);
+        height: 4rem;
     }
 
     .menu-desktop li {
