@@ -24,6 +24,7 @@ function addNewAnswer(element) {
   newWrongAnswer.querySelector('input').value = '';
   newWrongAnswer.dataset.id++;
   element[element.length - 1].after(newWrongAnswer);
+  newWrongAnswer.querySelector('input').focus();
   formControl.answers.push({
     value: '',
     validate: ''
@@ -86,12 +87,31 @@ function reoderAnswersIndex(element) {
 }
 
 /**
+ * Enable or disable button
+ * @param {String} el 
+ * @param {Boolean} value 
+ */
+ function changeButtonState(el, value) {
+  if (value === false) {
+    if (formControl.title.validate) {
+      document.querySelector(el).disabled = value;
+    }
+  } else {
+    document.querySelector(el).disabled = value;
+  }
+}
+
+/**
  * Init question and answers events
  */
 function createQuestionController() {
   let wrongAnswers = document.getElementsByClassName('wrong-answer');
   let wrongIcons = document.getElementsByClassName('wrong-icon');
   const addAnswerButton = document.querySelector('#add-answer');
+
+  document.addEventListener('DOMContentLoaded', function(event) {
+    event.target.querySelector('.title-section textarea').focus();
+  });
 
   addAnswerButton.addEventListener('click', () => {
     if (wrongAnswers.length < 7) {

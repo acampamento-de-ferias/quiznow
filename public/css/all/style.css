@@ -42,6 +42,10 @@ ul {
     list-style: none;
 }
 
+textarea {
+    resize: none;
+}
+
 #content {
     background: var(--light-gray-color);
     min-height: 100vh;

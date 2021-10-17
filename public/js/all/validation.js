@@ -247,10 +247,18 @@ function validatePasswordConfirmation(ev, type) {
     ev.target.parentElement.classList.add('success-field');
     ev.target.nextElementSibling.innerHTML = '';
     applySubmitStatus('.actions-section button');
+    validateList('answer', 'answers');
     return true;
 }
 
-function validateList(ev, className, formControlNode) {
+/**
+ * Validate each input from a list
+ * @param {Object} ev 
+ * @param {String} className 
+ * @param {String} formControlNode 
+ * @returns 
+ */
+function validateList(className, formControlNode, ev) {
     const elementsList = document.getElementsByClassName(className);
     let isEmpty = false;
 
@@ -265,7 +273,9 @@ function validateList(ev, className, formControlNode) {
         }
     }
 
-    resetValidationInput(ev);
+    if (ev) {
+        resetValidationInput(ev);
+    }
 
     if (isEmpty) {
         changeButtonState('.actions-section button', true);
