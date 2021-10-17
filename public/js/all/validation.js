@@ -29,7 +29,7 @@ function validateName(ev, minCharacters, type) {
         return;
     }
 
-    // Check if string has the minimum of characteres
+    // Check if string has the minimum of characters
     if (ev.target.value.length < minCharacters) {
         if (type === 'blur') {
             ev.target.parentElement.classList.add("failed-field");
@@ -59,7 +59,7 @@ function validateEmail(ev, type) {
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -97,7 +97,7 @@ function validatePassword(ev, minCharacters, type, formControlPasswordConfirmati
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -185,7 +185,7 @@ function validatePasswordConfirmation(ev, type) {
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode)) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
 
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
@@ -230,7 +230,7 @@ function validatePasswordConfirmation(ev, type) {
     formControl[formControlNode].validate = true;
     resetValidationInput(ev);
 
-    // Check if string has the minimum of characteres
+    // Check if string has the minimum of characters
     if (ev.target.value.length < minCharacters) {
         if (type === 'blur') {
             ev.target.parentElement.classList.add("failed-field");
@@ -244,9 +244,35 @@ function validatePasswordConfirmation(ev, type) {
         return;
     }
 
-    ev.target.parentElement.classList.add("success-field");
-    ev.target.nextElementSibling.innerHTML = "";
+    ev.target.parentElement.classList.add('success-field');
+    ev.target.nextElementSibling.innerHTML = '';
     applySubmitStatus('.actions-section button');
+    return true;
+}
+
+function validateList(ev, className, formControlNode) {
+    const elementsList = document.getElementsByClassName(className);
+    let isEmpty = false;
+
+    for (let i = 0; i < elementsList.length; i++) {
+        formControl[formControlNode][i].value = elementsList[i].firstElementChild.value;
+        // Do not validate empty input
+        if (!elementsList[i].firstElementChild.value.length) {
+            formControl[formControlNode][i].validate = false;
+            isEmpty = true;
+        } else {
+            formControl[formControlNode][i].validate = true;
+        }
+    }
+
+    resetValidationInput(ev);
+
+    if (isEmpty) {
+        changeButtonState('.actions-section button', true);
+        return;
+    }
+    
+    changeButtonState('.actions-section button', false);
     return true;
 }
 
@@ -293,15 +319,16 @@ function resetValidationInput(ev) {
  * Do not validate empty input
  */
  function refuseValidationOnEmptyValue(ev, formControlNode, sel) {
+    let isEmpty = false;
     if (!ev.target.value.length) {
         formControl[formControlNode].value = ev.target.value;
         formControl[formControlNode].validate = false;
         resetValidationInput(ev);
         applySubmitStatus(sel);
-        return true;
+        isEmpty = true;
     }
-
-    return false;
+    
+    return isEmpty;
 }
 
 /**

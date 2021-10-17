@@ -25,6 +25,8 @@ textarea {
 }
 
 .answers-section {
+    height: 35vh;
+    overflow: auto;
     margin-top: 2rem;
 }
 
@@ -33,7 +35,7 @@ textarea {
 }
 
 .answers-section button#add-answer {
-    margin-top: 2rem;
+    margin: 2rem 0 1rem;
 }
 
 .right-icon {
@@ -105,13 +107,13 @@ textarea {
 }
 
 @media (max-width: 360px) {
-    .plus-icon {
+    .answers-section .plus-icon {
         width: 1rem;
         height: 1rem;
     }
 
-    .secondary-button button {
-        font-size: 1rem !important;
+    .answers-section #add-answer {
+        font-size: 0.875rem;
     }
     
     .right-bg {
@@ -145,6 +147,11 @@ textarea {
 
     .create-question .basic-card .answers-section {
         margin: 3rem 4rem 0;
+    }
+
+    .answers-section {
+        height: auto;
+        overflow: hidden;
     }
 
     .answers-section .answer {
@@ -185,6 +192,15 @@ textarea {
     }
 }
 
-@media (min-width: 1750px) {
-    
+@media (min-height: 800px) {
+    .answers-section {
+        height: 44vh;
+    }
+}
+
+@media screen and (min-height: 1000px) {
+    .answers-section {
+        height: auto;
+        overflow: hidden;
+    }
 }
