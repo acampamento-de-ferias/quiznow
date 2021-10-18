@@ -228,6 +228,7 @@ function validatePasswordConfirmation(ev, type) {
     // Set data to formControl
     formControl[formControlNode].value = ev.target.value;
     formControl[formControlNode].validate = true;
+
     resetValidationInput(ev);
 
     // Check if string has the minimum of characters
@@ -264,6 +265,8 @@ function validateList(className, formControlNode, ev) {
 
     for (let i = 0; i < elementsList.length; i++) {
         formControl[formControlNode][i].value = elementsList[i].firstElementChild.value;
+        console.log(formControl[formControlNode][i].value);
+        
         // Do not validate empty input
         if (!elementsList[i].firstElementChild.value.length) {
             formControl[formControlNode][i].validate = false;
@@ -272,11 +275,11 @@ function validateList(className, formControlNode, ev) {
             formControl[formControlNode][i].validate = true;
         }
     }
-
+    
     if (ev) {
         resetValidationInput(ev);
     }
-
+    
     if (isEmpty) {
         changeButtonState('.actions-section button', true);
         return;
@@ -317,8 +320,8 @@ function resetValidationInput(ev) {
         return "success-field";
     }
     if (element.parentElement.classList.contains('focus-field')) {
-        element.parentElement.classList.remove("focus-field");
-        return "focus-field";
+        element.parentElement.classList.remove('focus-field');
+        return 'focus-field';
     }
 
     return;

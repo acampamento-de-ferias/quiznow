@@ -21,10 +21,11 @@ const formControl = {
  */
 function addNewAnswer(element) {
   const newWrongAnswer = element[element.length - 1].cloneNode(true);
-  newWrongAnswer.querySelector('input').value = '';
+  const newWrongAnswerInput = newWrongAnswer.querySelector('input');
+  newWrongAnswerInput.value = '';
   newWrongAnswer.dataset.id++;
   element[element.length - 1].after(newWrongAnswer);
-  newWrongAnswer.querySelector('input').focus();
+  newWrongAnswerInput.focus();
   formControl.answers.push({
     value: '',
     validate: ''

@@ -15,7 +15,7 @@
                     maxlength="150"
                     placeholder="8-150 caracteres"
                     formControl="title"
-                    onkeyup="validateTitle(event, 8, 'keyup')"
+                    onkeydown="validateTitle(event, 8, 'keyup')"
                     onblur="validateTitle(event, 8, 'blur')"
                     onfocus="handleFocusInput(event)"
                     required></textarea>
@@ -30,6 +30,7 @@
                     type="text"
                     class="form-control shadow-none"
                     formControl="answers"
+                    onkeydown="validateList('answer', 'answers', event)"
                     onkeyup="validateList('answer', 'answers', event)"
                     onfocus="handleFocusInput(event)"
                     required>
@@ -42,6 +43,7 @@
                     type="text"
                     class="form-control shadow-none"
                     formControl="answers"
+                    onkeydown="validateList('answer', 'answers', event)"
                     onkeyup="validateList('answer', 'answers', event)"
                     onfocus="handleFocusInput(event)"
                     required>
