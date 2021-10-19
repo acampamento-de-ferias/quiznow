@@ -1,17 +1,21 @@
 <header>       
     <nav>
         <div id="menu">
+            
+            <!-- Mobile Menu -->
             <ul class="menu-mobile">
                 <li>
-                    <img src="./images/hamburger.png" alt="Menu">
+                    <img src="./images/hamburger.png" alt="Menu" onclick="openModal('hamburger-modal')">
                 </li>
                 <li>
-                    <img src="./images/user.png" alt="Meus dados">
+                    <img src="./images/user.png" alt="Meus dados" onclick="openModal('logged-user-modal')">
                 </li>
                 <li>
-                    <img src="./images/search.png" alt="Buscar">
+                    <img src="./images/search.png" alt="Buscar" onclick="openModal('search-modal')">
                 </li>
             </ul>
+
+            <!-- Desktop Menu -->
             <ul class="menu-desktop d-none d-lg-flex">
                 <li>
                     <a href="{{ url }}/">
@@ -44,7 +48,109 @@
                     </div>
                 </li>
             </ul>
+
+            <!-- Invisible block div -->
             <div class="d-none d-lg-block hidden-menu"></div>
+            
+            <!-- Modal logged user -->
+            <div class="modal fade custom-modal" id="logged-user-modal">
+                <div class="close-icon" onclick="closeModal('logged-user-modal')">
+                    <img src="./images/close3.png" alt="Close icon">
+                </div>
+                <div class="modal-dialog modal-left">
+                    <div class="modal-content">
+                        <div class="modal-body p-0 bg-white">
+                            <ul>
+                                <li>
+                                    <img src="./images/user3.png" alt="User profile">
+                                    Minha conta
+                                </li>
+                                <div class="third-divider"></div>
+                                <li>
+                                    <img src="./images/logout.png" alt="Logout">
+                                    Sair
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal visiting user -->
+            <div class="modal fade custom-modal" id="visiting-user-modal">
+                <div class="close-icon" onclick="closeModal('visiting-user-modal')">
+                    <img src="./images/close3.png" alt="Close icon">
+                </div>
+                <div class="modal-dialog modal-left">
+                    <div class="modal-content">
+                        <div class="modal-body p-0 bg-white">
+                            <ul>
+                                <li>
+                                    Entrar
+                                </li>
+                                <div class="third-divider"></div>
+                                <li>
+                                    Criar conta
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal hamburger -->
+            <div class="modal fade custom-modal" id="hamburger-modal">
+                <div class="close-icon" onclick="closeModal('hamburger-modal')">
+                    <img src="./images/close3.png" alt="Close icon">
+                </div>
+                <div class="modal-dialog modal-left">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <div class="logo-modal">
+                                <a href="{{ url }}/">
+                                    <img src="./images/logo-quiznow.png" id="menu-logo" alt="Logo QuizNow">                    
+                                </a>
+                            </div>
+                            <ul class="bg-white h-100">
+                                <li>
+                                    <img src="./images/answer.png" alt="Answer">
+                                    <span>Perguntas & Respostas</span>
+                                </li>
+                                <div class="third-divider"></div>
+                                <li>
+                                    <img src="./images/personality.png" alt="Personality">
+                                    Personalidade
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal search -->
+            <div class="modal fade custom-modal" id="search-modal">
+                <div class="close-icon" onclick="closeModal('search-modal')">
+                    <img src="./images/close2.png" alt="Close icon">
+                </div>
+                <div class="modal-dialog modal-full">
+                    <div class="modal-content">
+                        <div class="menu-search p-0 w-100">
+                            <input class="form-control shadow-none w-100" placeholder="Buscar" type="search">
+                            <a href="#">
+                                <img src="./images/search.png" alt="Buscar">
+                            </a>
+                        </div>
+                        <p class="clean-search">
+                            Limpar pesquisa
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Background modals -->
+            <div class="modal-backdrop modal-backdrop-custom fade show d-none" id="backdrop"></div>
+
+
         </div>
     </nav>
 </header>

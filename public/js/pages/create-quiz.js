@@ -1,4 +1,92 @@
+let categoryForm = 'questions-answers';
+let questionsForm = [{
+    title: "Qual a cor do céu?",
+    answers: [{
+        value: "Amarelo"
+    }, {
+        value: "Verde"
+    }, {
+        value: "Azul"
+    }]
+}, {
+    title: "O sol é uma estrela",
+    answers: [{
+        value: "Verdadeiro"
+    }, {
+        value: "Falso"
+    }]
+}];
+
+const urlArrowDown = "./images/arrow-collapse-down.png";
+const urlArrowRight = "./images/arrow-collapse-right.png";
 let categorySelected = document.querySelectorAll('.option.active-option');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    renderQuestionSection();
+});
+
+function renderQuestionSection() {
+    
+    // Get the dinamicDiv Desktop
+    const questionDivDesktop = document.querySelector("#question-dinamic-desktop");
+
+    // Get the dinamicDiv Mobile
+    const questionDivMobile = document.querySelector("#question-dinamic-mobile");
+
+    // Get the html for desktop
+    const questionHtmlDesktop = questionsForm.map(question =>
+        `<div class="basic-card">
+            <div class="question-infos">
+                <div class="management">
+                    <div class="remove-question">
+                        <img src="./images/trash.png" alt="Remove question">
+                    </div>
+                    <div class="edit-question">
+                        <img src="./images/edit.png" alt="Edit question">
+                    </div>
+                </div>
+            
+                <h3 class="third-title">${question.title}</h3>
+                <p class="answers">
+                    ${question.answers.map((answer, index) =>
+                        `<span class="simple-text ${!index ? 'correct-answer' : ''}">
+                            ${answer.value}
+                        </span>`   
+                    ).join('')}                    
+                </p>
+            </div>
+        </div>`
+    ).join('');
+
+    // Get the HTML for mobile
+    const questionHtmlMobile = questionsForm.map(question => 
+        `<div class="basic-card">
+            <div class="row">
+                <div class="col-10 question-infos">
+                    <h3 class="third-title">${question.title}</h3>
+                    <p class="answers">
+                        ${question.answers.map((answer, index) =>
+                            `<span class="simple-text ${!index ? 'correct-answer' : ''}">
+                                ${answer.value}
+                            </span>`   
+                        ).join('')} 
+                    </p>
+                </div>
+                <div class="col-2 management">
+                    <div class="remove-question">
+                        <img src="./images/trash.png" alt="Remove question">
+                    </div>
+                    <div class="edit-question">
+                        <img src="./images/edit.png" alt="Edit question">
+                    </div>
+                </div>
+            </div>
+        </div>`
+    ).join('');
+    
+    questionDivDesktop.innerHTML = questionHtmlDesktop;
+    questionDivMobile.innerHTML = questionHtmlMobile;
+}
 
 function selectCategory(className, screen = "mobile") {
     const indexScreen = screen === "mobile" ? 0 : 1;
@@ -12,10 +100,9 @@ function selectCategory(className, screen = "mobile") {
     const element = document.getElementsByClassName(className)[indexScreen];
     element.classList.add("active-option");
     categorySelected = element;
+    categoryForm = categorySelected.getAttribute('data-value');
 }
 
-const urlArrowDown = "./images/arrow-collapse-down.png";
-const urlArrowRight = "./images/arrow-collapse-right.png";
 function selectAccordion(event) {
     const element = event.children[0];
     const elementButton = event;

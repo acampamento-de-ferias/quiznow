@@ -1,0 +1,76 @@
+.custom-modal .modal-left, .custom-modal .modal-full {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.custom-modal .modal-full .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    padding: 0 1rem;
+    background: var(--light-gray-color);
+    border: 0;
+    border-radius: 0;
+}
+
+.custom-modal .close-icon {
+    position: fixed;
+    right: 3.8%;
+    top: 1rem;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.custom-modal .close-icon img {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.custom-modal .modal-left .modal-content {
+    background: var(--light-gray-color);
+    height: 100%;
+    width: 85%;
+    border: 0;
+    border-radius: 0;
+}
+
+.custom-modal .modal-left .modal-content .logo-modal img {
+    width: 100%;
+    padding: 1.5rem 1rem;
+}
+
+
+.custom-modal .modal-left .modal-content ul li {
+    padding: 1.5rem;
+    padding-right: 1rem;
+
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+    color: var(--blue-color);
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.custom-modal .modal-left .modal-content ul li img {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+}   
+
+.modal-backdrop-custom {
+    background: rgba(27, 38, 44, 0.9);
+    backdrop-filter: blur(1rem);
+}
+
+.modal-backdrop-custom.show {
+    opacity: 0.9;
+}
