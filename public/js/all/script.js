@@ -98,15 +98,6 @@ function generateHash() {
 }
 
 /**
- * Enable or disable button
- * @param {String} el 
- * @param {Boolean} value 
- */
-function changeButtonState(el, value) {
-    document.querySelector(el).disabled = value;
-}
-
-/**
  * Open default modal
  * 
  */
