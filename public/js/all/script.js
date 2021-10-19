@@ -96,3 +96,37 @@ function closeElementByTime(ev, time) {
 function generateHash() {
     return new Date().getUTCMilliseconds().toString();
 }
+
+/**
+ * Open default modal
+ * 
+ */
+function openModal(elementId) {
+    document.getElementById("backdrop").classList.remove("d-none");
+    document.getElementById(elementId).style.display = "block";
+    document.getElementById(elementId).classList.add("show");
+}
+
+/**
+ * Close default modal
+ * 
+ */
+function closeModal(elementId) {
+    document.getElementById("backdrop").classList.add("d-none");
+    document.getElementById(elementId).style.display = "none";
+    document.getElementById(elementId).classList.remove("show");
+}
+
+/** 
+ * When the user clicks anywhere outside of the modal, close it
+ * 
+ */
+window.onclick = function(event) {
+    const modals = document.getElementsByClassName("custom-modal");
+    for (element of modals) {
+        const elementId = element.getAttribute('id');
+        if (event.target == document.getElementById(elementId)) {
+            closeModal(elementId);
+        }
+    }
+}

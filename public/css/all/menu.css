@@ -11,6 +11,35 @@
     overflow: hidden;
 }
 
+.menu-search {
+    display: flex;
+    position: relative;
+}
+
+.menu-search input {
+    width: 18rem;
+}
+
+.menu-search img {
+    height: 1.25rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+#menu .clean-search {
+    width: 100%;
+    margin-top: 1rem;
+
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 1rem;
+
+    color: var(--red-color);
+}
+
 .menu-mobile li img {
     height: 2rem;
     width: 2rem;
