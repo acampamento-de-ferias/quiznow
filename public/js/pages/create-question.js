@@ -109,8 +109,10 @@ function createQuestionController() {
   let wrongAnswers = document.getElementsByClassName('wrong-answer');
   let wrongIcons = document.getElementsByClassName('wrong-icon');
   const addAnswerButton = document.querySelector('#add-answer');
+  const saveButton = document.querySelector('.actions-section button');
+  const cancelQuestion = document.querySelector('.actions-section #cancel-question');
 
-  document.addEventListener('DOMContentLoaded', function(event) {
+  document.addEventListener('DOMContentLoaded', (event) => {
     event.target.querySelector('.title-section textarea').focus();
   });
 
@@ -119,6 +121,17 @@ function createQuestionController() {
       addNewAnswer(wrongAnswers);
       changeIconToTrash(wrongIcons);
     }
+  });
+
+  saveButton.addEventListener('click', () => {
+    questionsForm.push({
+      title: formControl.title.value,
+      answers: formControl.answers
+    });
+  });
+
+  cancelQuestion.addEventListener('click', () => {
+    // chama a create quiz
   });
 };
 

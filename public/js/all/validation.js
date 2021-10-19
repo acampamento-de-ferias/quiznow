@@ -265,7 +265,6 @@ function validateList(className, formControlNode, ev) {
 
     for (let i = 0; i < elementsList.length; i++) {
         formControl[formControlNode][i].value = elementsList[i].firstElementChild.value;
-        console.log(formControl[formControlNode][i].value);
         
         // Do not validate empty input
         if (!elementsList[i].firstElementChild.value.length) {
