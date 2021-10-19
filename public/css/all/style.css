@@ -8,7 +8,7 @@
 @import url("icons.css");
 @import url("animations.css");
 @import url("button.css");
-
+@import url("modal.css");
 
 :root {
     --light-gray-color: #F5F5F5;
@@ -68,6 +68,12 @@ ul {
     margin: 1.5rem;
     border-bottom: 1px solid;
     border-image: linear-gradient( 90deg, var(--navy-blue-color) 1%, var(--dark-blue-color) 95%) 1;
+}
+
+.third-divider {
+    border-bottom: 1px solid;
+    opacity: 0.3;
+    border-image: linear-gradient(45deg, var(--navy-blue-color) 5%, var(--dark-blue-color) 95%) 1;
 }
 
 @media screen and (min-width: 992px) {
