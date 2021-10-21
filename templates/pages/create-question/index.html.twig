@@ -25,7 +25,8 @@
 
         <div class="answers-section">
             <h4 class="subtitle">Respostas</h4>
-            <div class="answer right-answer form-group default-form-group" data-id="0">
+            <div class="questions-answers">
+                <div class="answer right-answer form-group default-form-group" data-id="0">
                     <input
                     type="text"
                     class="form-control shadow-none"
@@ -35,10 +36,10 @@
                     onfocus="handleFocusInput(event)"
                     required>
                     <div class="right-bg">
-                        <img src="./images/check.png" class="right-icon" alt="Correta">
+                        <img src="./images/check.png" class="right-icon" alt="Resposta correta">
                     </div>
-            </div>
-            <div class="answer wrong-answer form-group default-form-group" data-id="1">
+                </div>
+                <div class="answer wrong-answer form-group default-form-group" data-id="1">
                     <input
                     type="text"
                     class="form-control shadow-none"
@@ -48,9 +49,24 @@
                     onfocus="handleFocusInput(event)"
                     required>
                     <div class="wrong-bg">
-                        <img src="./images/close.png" onclick="deleteAnswer(this)" class="wrong-icon" alt="Errada">
+                        <img src="./images/close.png" onclick="deleteAnswer(this)" class="wrong-icon" alt="Resposta errada">
                     </div>
+                </div>
             </div>
+            <!--<div class="personality">
+                <div class="answer answer-config form-group default-form-group">
+                    <input type="text" class="form-control shadow-none" formControl="answers" required>
+                    <div class="config-bg">
+                        <img src="./images/config.png" class="config-icon" alt="Configuração da resposta">
+                    </div>
+                </div>
+                <div class="answer answer-config form-group default-form-group">
+                    <input type="text" class="form-control shadow-none" formControl="answers" required>
+                    <div class="config-bg">
+                        <img src="./images/config.png" class="config-icon" alt="Configuração da resposta">
+                    </div>
+                </div>
+            </div>-->
             <div class="secondary-button">
                 <button id="add-answer" class="btn shadow-none">
                     <img class="plus-icon" src="./images/plus.png" alt="Adicionar resposta">
