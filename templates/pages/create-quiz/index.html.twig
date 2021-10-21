@@ -13,8 +13,7 @@
     
     {% include '@core/components/menu.html.twig' %}
 
-    {#
-    <div class="create-quiz">
+    <div id="create-quiz" class="d-block">
 
         <div class="create-quiz-mobile d-lg-none">
             <div class="container">
@@ -46,7 +45,7 @@
             </div>
 
             <form>
-                <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quz">
+                <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quiz">
                     <div class="accordion-item basic-info">
                         <h2 class="accordion-header" id="heading-basic-infos">
                             <button id="button-basic-info" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-basic-infos" aria-expanded="false" aria-controls="content-basic-infos">
@@ -56,7 +55,7 @@
                                 </span> 
                             </button>
                         </h2>
-                        <div id="content-basic-infos" class="accordion-collapse collapse show" aria-labelledby="heading-basic-infos" data-bs-parent="#accordion-create-quz">
+                        <div id="content-basic-infos" class="accordion-collapse collapse show" aria-labelledby="heading-basic-infos" data-bs-parent="#accordion-create-quiz">
                             <div class="accordion-body">
 
                                 <div class="form-group default-form-group miniatura mt-0">
@@ -95,7 +94,7 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="content-questions" class="accordion-collapse collapse" aria-labelledby="heading-questions" data-bs-parent="#accordion-create-quz">
+                        <div id="content-questions" class="accordion-collapse collapse" aria-labelledby="heading-questions" data-bs-parent="#accordion-create-quiz">
                             <div class="accordion-body">
                                 
                                 <div id="question-dinamic-mobile">
@@ -103,8 +102,8 @@
                                 </div>
 
                                 <div class="secondary-button">
-                                    <button class="btn shadow-none">
-                                        <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
+                                    <button class="btn shadow-none" onclick="renderQuestionPage()">
+                                        <img class="plus-icon" src="./images/plus.png" alt="Adicionar pergunta">
                                         Adicionar pergunta
                                     </button>
                                 </div>
@@ -121,7 +120,7 @@
                                 </span>
                             </button>
                         </h2>
-                        <div id="content-rating" class="accordion-collapse collapse" aria-labelledby="heading-rating" data-bs-parent="#accordion-create-quz">
+                        <div id="content-rating" class="accordion-collapse collapse" aria-labelledby="heading-rating" data-bs-parent="#accordion-create-quiz">
                             <div class="accordion-body">
                                 
                                 <div class="basic-card">
@@ -180,7 +179,7 @@
                                 </div>
 
                                 <div class="secondary-button">
-                                    <button class="btn shadow-none">
+                                    <button class="btn shadow-none" onclick="changePageWithSameUrl('create-quiz', 'rating')">
                                         <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
                                         Adicionar resultado
                                     </button>
@@ -276,8 +275,8 @@
                             </div>
                                                         
                             <div class="secondary-button">
-                                <button class="btn shadow-none w-auto">
-                                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
+                                <button class="btn shadow-none w-auto" onclick="renderQuestionPage()">
+                                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar pergunta">
                                     Adicionar pergunta
                                 </button>
                             </div>
@@ -352,7 +351,7 @@
                             </div>
 
                             <div class="secondary-button">
-                                <button class="btn shadow-none w-auto">
+                                <button class="btn shadow-none w-auto" onclick="changePageWithSameUrl('create-quiz', 'rating')">
                                     <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
                                     Adicionar resultado
                                 </button>
@@ -370,13 +369,13 @@
         </div>
     </div>
 
-    <div class="create-question">
+    <div id="create-question" class="d-none">
         {% include '@core/pages/create-question/index.html.twig' %}
     </div>
     
-    <div class="rating">
+    <div id="rating" class="d-none">
         {% include '@core/pages/rating/index.html.twig' %}
-    </div>#}
+    </div>
 
     <div class="d-none d-lg-block">
         {% include '@core/components/footer.html.twig' %}
