@@ -34,14 +34,14 @@ function renderQuestionSection() {
     const questionDivMobile = document.querySelector("#question-dinamic-mobile");
 
     // Get the html for desktop
-    const questionHtmlDesktop = questionsForm.map(question =>
+    const questionHtmlDesktop = questionsForm.map((question, indexQuestion) =>
         `<div class="basic-card">
             <div class="question-infos">
                 <div class="management">
-                    <div class="remove-question">
+                    <div class="remove-question cursor-pointer" onclick="deleteQuestionAnswers(${indexQuestion})">
                         <img src="./images/trash.png" alt="Remove question">
                     </div>
-                    <div class="edit-question">
+                    <div class="edit-question cursor-pointer" onclick="renderQuestionPage(${indexQuestion})">
                         <img src="./images/edit.png" alt="Edit question">
                     </div>
                 </div>
@@ -59,7 +59,7 @@ function renderQuestionSection() {
     ).join('');
 
     // Get the HTML for mobile
-    const questionHtmlMobile = questionsForm.map(question => 
+    const questionHtmlMobile = questionsForm.map((question, indexQuestion) => 
         `<div class="basic-card">
             <div class="row">
                 <div class="col-10 question-infos">
@@ -73,10 +73,10 @@ function renderQuestionSection() {
                     </p>
                 </div>
                 <div class="col-2 management">
-                    <div class="remove-question">
+                    <div class="remove-question cursor-pointer" onclick="deleteQuestionAnswers(${indexQuestion})">
                         <img src="./images/trash.png" alt="Remove question">
                     </div>
-                    <div class="edit-question">
+                    <div class="edit-question cursor-pointer" onclick="renderQuestionPage(${indexQuestion})">
                         <img src="./images/edit.png" alt="Edit question">
                     </div>
                 </div>
@@ -86,6 +86,20 @@ function renderQuestionSection() {
     
     questionDivDesktop.innerHTML = questionHtmlDesktop;
     questionDivMobile.innerHTML = questionHtmlMobile;
+}
+
+function renderQuestionPage(questionAnswersIndex = null) {
+    changePageWithSameUrl('create-quiz', 'create-question');
+    createQuestionController(questionAnswersIndex);
+}
+
+function renderRatingPage() {
+    changePageWithSameUrl('create-quiz', 'rating');
+}
+
+function deleteQuestionAnswers(questionAnswersIndex) {
+    questionsForm.splice(questionAnswersIndex, 1);
+    renderQuestionSection();
 }
 
 function selectCategory(className, screen = "mobile") {
@@ -132,3 +146,4 @@ function selectAccordion(event) {
         return;
     }
 }
+

@@ -105,7 +105,7 @@ function reoderAnswersIndex(element) {
 /**
  * Init question and answers events
  */
-function createQuestionController() {
+function createQuestionController(questionAnswersIndex = null) {
   let wrongAnswers = document.getElementsByClassName('wrong-answer');
   let wrongIcons = document.getElementsByClassName('wrong-icon');
   const addAnswerButton = document.querySelector('#add-answer');
@@ -128,11 +128,12 @@ function createQuestionController() {
       title: formControl.title.value,
       answers: formControl.answers
     });
+    changePageWithSameUrl('create-question', 'create-quiz');
+    renderQuestionSection();
   });
 
   cancelQuestion.addEventListener('click', () => {
-    // chama a create quiz
+    changePageWithSameUrl('create-question', 'create-quiz');
+    renderQuestionSection();
   });
 };
-
-createQuestionController();

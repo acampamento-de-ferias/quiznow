@@ -130,3 +130,15 @@ window.onclick = function(event) {
         }
     }
 }
+
+/**
+ * Change page (hide/show div) by javascript
+ * 
+ */
+function changePageWithSameUrl(idToHide, idToShow) {
+    document.getElementById(idToShow).classList.add("d-block");
+    document.getElementById(idToShow).classList.remove("d-none");
+
+    document.getElementById(idToHide).classList.add("d-none");
+    document.getElementById(idToShow).classList.remove("d-block");
+}
