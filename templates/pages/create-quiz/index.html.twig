@@ -5,7 +5,7 @@
 {% block head %}
     <link type="text/css" rel="stylesheet" href="./css/pages/create-quiz.css" />
     <link type="text/css" rel="stylesheet" href="./css/pages/create-question.css" />
-    <link type="text/css" rel="stylesheet" href="./css/pages/rating.css" />
+    <link type="text/css" rel="stylesheet" href="./css/pages/results.css" />
     {{ parent() }}
 {% endblock %}
 
@@ -108,31 +108,31 @@
                                     </button>
                                 </div>
 
-                            </div>
+                            </div>'
                         </div>
                     </div>
-                    <div class="accordion-item rating">
-                        <h2 class="accordion-header" id="heading-rating">
-                            <button id="button-rating" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-rating" aria-expanded="false" aria-controls="content-rating">
+                    <div class="accordion-item results">
+                        <h2 class="accordion-header" id="heading-results">
+                            <button id="button-results" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-results" aria-expanded="false" aria-controls="content-results">
                                 <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
                                 <span>
                                     Resultados
                                 </span>
                             </button>
                         </h2>
-                        <div id="content-rating" class="accordion-collapse collapse" aria-labelledby="heading-rating" data-bs-parent="#accordion-create-quiz">
+                        <div id="content-results" class="accordion-collapse collapse" aria-labelledby="heading-results" data-bs-parent="#accordion-create-quiz">
                             <div class="accordion-body">
                                 
                                 <div class="basic-card">
-                                    <div class="row rating-image">
+                                    <div class="row results-image">
                                         <div class="col">
                                             <img src="./images/tais.jpg" alt="Imagem do resultado">
                                         </div>
                                     </div>
-                                    <div class="row rating-wrap">
-                                        <div class="col-10 rating-infos">
+                                    <div class="row results-wrap">
+                                        <div class="col-10 results-infos">
                                             <h3 class="third-title">Você acertou X questões</h3>
-                                            <p class="rating-text small-text">
+                                            <p class="results-text small-text">
                                                 Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Suspendisse venenatis
                                                 metus et eros laoreet finibus.
@@ -150,15 +150,15 @@
                                 </div>
 
                                 <div class="basic-card">
-                                    <div class="row rating-image">
+                                    <div class="row results-image">
                                         <div class="col">
                                             <img src="./images/motel.jpg" alt="Imagem do resultado">
                                         </div>
                                     </div>
-                                    <div class="row rating-wrap">
-                                        <div class="col-10 rating-infos">
+                                    <div class="row results-wrap">
+                                        <div class="col-10 results-infos">
                                             <h3 class="third-title">Você acertou Y questões</h3>
-                                            <p class="rating-text small-text">
+                                            <p class="results-text small-text">
                                                 Maecenas vitae justo ultrices tortor
                                                 laoreet imperdiet. Praesent suscipit turpis
                                                 in dui ultrices, quis tincidunt erat lacinia.
@@ -179,7 +179,7 @@
                                 </div>
 
                                 <div class="secondary-button">
-                                    <button class="btn shadow-none" onclick="changePageWithSameUrl('create-quiz', 'rating')">
+                                    <button class="btn shadow-none" onclick="changePageWithSameUrl('create-quiz', 'results')">
                                         <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
                                         Adicionar resultado
                                     </button>
@@ -283,27 +283,27 @@
 
                         </div>
 
-                        <div class="create-quiz-section rating">
+                        <div class="create-quiz-section results">
                             <h3 class="subtitle">
                                 Resultados
                             </h3>
                             <div class="primary-divider"></div>
                             
                             <div class="basic-card">
-                                <div class="rating-infos">
+                                <div class="results-infos">
                                     <div class="row g-0">
-                                        <div class="col-3 rating-image">
+                                        <div class="col-3 results-image">
                                             <img src="./images/tais.jpg" alt="Imagem do resultado">
                                         </div>
-                                        <div class="col-8 rating-wrap">       
+                                        <div class="col-8 results-wrap">       
                                             <h3 class="third-title">Você acertou X questões</h3>
-                                            <p class="rating-text simple-text">
+                                            <p class="results-text simple-text">
                                                 Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Suspendisse venenatis
                                                 metus et eros laoreet finibus.
                                             </p>
                                         </div>
-                                        <div class="col-1 rating-wrap management">
+                                        <div class="col-1 results-wrap management">
                                             <div class="remove-question">
                                                 <img src="./images/trash.png" alt="Remove question">
                                             </div>
@@ -319,14 +319,14 @@
                             </div>
 
                             <div class="basic-card">
-                                <div class="rating-infos">
+                                <div class="results-infos">
                                     <div class="row g-0">
-                                        <div class="col-3 rating-image">
+                                        <div class="col-3 results-image">
                                             <img src="./images/motel.jpg" alt="Imagem do resultado">
                                         </div>
-                                        <div class="col-8 rating-wrap">       
+                                        <div class="col-8 results-wrap">       
                                             <h3 class="third-title">Você acertou Y questões</h3>
-                                            <p class="rating-text simple-text">
+                                            <p class="results-text simple-text">
                                                 Maecenas vitae justo ultrices tortor
                                                 laoreet imperdiet. Praesent suscipit turpis
                                                 in dui ultrices, quis tincidunt erat lacinia.
@@ -351,7 +351,7 @@
                             </div>
 
                             <div class="secondary-button">
-                                <button class="btn shadow-none w-auto" onclick="changePageWithSameUrl('create-quiz', 'rating')">
+                                <button class="btn shadow-none w-auto" onclick="changePageWithSameUrl('create-quiz', 'results')">
                                     <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
                                     Adicionar resultado
                                 </button>
@@ -373,8 +373,8 @@
         {% include '@core/pages/create-question/index.html.twig' %}
     </div>
     
-    <div id="rating" class="d-none">
-        {% include '@core/pages/rating/index.html.twig' %}
+    <div id="results" class="d-none">
+        {% include '@core/pages/results/index.html.twig' %}
     </div>
 
     <div class="d-none d-lg-block">
@@ -386,5 +386,5 @@
 {% block scripts %}
     <script src="./js/pages/create-quiz.js"></script>
     <script src="./js/pages/create-question.js"></script>
-    <script src="./js/pages/rating.js"></script>
+    <script src="./js/pages/results.js"></script>
 {% endblock %}

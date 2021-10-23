@@ -93,8 +93,8 @@ function renderQuestionPage(questionAnswersIndex = null) {
     createQuestionController(questionAnswersIndex);
 }
 
-function renderRatingPage() {
-    changePageWithSameUrl('create-quiz', 'rating');
+function renderResultsPage() {
+    changePageWithSameUrl('create-quiz', 'results');
 }
 
 function deleteQuestionAnswers(questionAnswersIndex) {
