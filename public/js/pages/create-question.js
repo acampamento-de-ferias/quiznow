@@ -1,99 +1,113 @@
+const answersList = document.getElementsByClassName('answer');
+const wrongAnswers = document.getElementsByClassName('wrong-answer');
+const wrongIcons = document.getElementsByClassName('wrong-icon');
 const formControl = {
   title: {
     value: '',
-    validate: ''
+    validate: '',
   },
   answers: [
     {
       value: '',
-      validate: ''
+      validate: '',
     },
     {
       value: '',
-      validate: ''
-    }
-  ]
+      validate: '',
+    },
+  ],
 };
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  event.target.querySelector('.title-section textarea').focus();
+});
 
 /**
  * Add new answer input in the list
- * @param {Element} element 
+ * @param {Element} element
  */
-function addNewAnswer(element) {
-  const newWrongAnswer = element[element.length - 1].cloneNode(true);
-  const newWrongAnswerInput = newWrongAnswer.querySelector('input');
-  newWrongAnswerInput.value = '';
-  newWrongAnswer.dataset.id++;
-  element[element.length - 1].after(newWrongAnswer);
-  newWrongAnswerInput.focus();
-  formControl.answers.push({
-    value: '',
-    validate: ''
-  });
-  if (element.length === 7) {
-    changeButtonState('#add-answer', true);
+function addNewAnswer() {
+  if (answersList.length < 8) {
+    const newAnswer = answersList[answersList.length - 1].cloneNode(true);
+    const newAnswerInput = newAnswer.querySelector('input');
+    newAnswerInput.value = '';
+    newAnswer.dataset.id++;
+    answersList[answersList.length - 1].after(newAnswer);
+    newAnswerInput.focus();
+    formControl.answers.push({
+      value: '',
+      validate: '',
+    });
+    document.querySelector('#add-answer').disabled = answersList.length === 8;
+    validateList('answer', 'answers');
+    categoryForm === 'questions-answers' ? changeIconToTrash(wrongIcons) : '';
   }
-  validateList('answer', 'answers');
 }
 
 /**
  * Replace close icon to trash icon
- * @param {Element} elements 
+ * @param {Element} elements
  */
 function changeIconToTrash(elements) {
-  for (const el of elements) {
-    el.alt = 'Remover'
+  for (let el of elements) {
+    el.alt = 'Deletar resposta';
     el.src = './images/trash.png';
-    el.classList.add('remove-question');
+    el.classList.add('cursor-pointer');
   }
 }
 
 /**
  * Replace trash icon to close icon
- * @param {Element} element 
+ * @param {Element} element
  */
 function changeIconToClose(element) {
+  element.alt = 'Resposta errada';
   element.src = './images/close.png';
-  element.classList.remove('remove-question');
+  element.classList.remove('cursor-pointer');
+}
+
+function xpto(button, input) {
+  button.closest(input).remove();
+  document.querySelector('#add-answer').disabled = false;
+  reoderAnswersIndex(button.closest(input));
+  validateList('answer', 'answers');
+  formControl.answers.splice(0, button.dataset.id);
+  formControl.answers.pop();
 }
 
 /**
  * Remove wrong answer element
- * @param {Element} el 
+ * @param {Element} el
  */
 function deleteAnswer(el) {
-  if (el.src.includes('trash')) {
-    el.closest('.wrong-answer').remove();
-    changeButtonState('#add-answer', false);
-    reoderAnswersIndex(el.closest('.wrong-answer'));
-    validateList('answer', 'answers');
-    formControl.answers.splice(0, el.dataset.id);
-    formControl.answers.pop();
+  if (el.src && el.src.includes('trash')) {
+    xpto(el, '.wrong-answer');
     const lastWrongIcon = document.getElementsByClassName('wrong-icon');
     if (lastWrongIcon.length < 2) {
       changeIconToClose(lastWrongIcon[lastWrongIcon.length - 1]);
     }
+  } else if (el.className.includes('dropdown-item') && answersList.length >= 3) {
+    xpto(el, '.personality-answer');
   }
 }
 
 /**
  * Sort answers index in ascending order
- * @param {Element} element 
+ * @param {Element} element
  */
 function reoderAnswersIndex(element) {
-  const answersList = document.getElementsByClassName('answer');
   for (let i = element.dataset.id; i < answersList.length; i++) {
-    answersList[i].dataset.id = (answersList[i].dataset.id) - 1;
+    answersList[i].dataset.id = answersList[i].dataset.id - 1;
   }
 }
 
 /**
  * Enable or disable button
- * @param {String} el 
- * @param {Boolean} value 
+ * @param {String} el
+ * @param {Boolean} value
  */
- function changeButtonState(el, value) {
-  if (value === false) {
+function changeButtonState(el, value) {
+  if (!value) {
     if (formControl.title.validate) {
       document.querySelector(el).disabled = value;
     }
@@ -103,37 +117,21 @@ function reoderAnswersIndex(element) {
 }
 
 /**
- * Init question and answers events
+ * Return to create quiz page submitting info
  */
-function createQuestionController(questionAnswersIndex = null) {
-  let wrongAnswers = document.getElementsByClassName('wrong-answer');
-  let wrongIcons = document.getElementsByClassName('wrong-icon');
-  const addAnswerButton = document.querySelector('#add-answer');
-  const saveButton = document.querySelector('.actions-section button');
-  const cancelQuestion = document.querySelector('.actions-section #cancel-question');
-
-  document.addEventListener('DOMContentLoaded', (event) => {
-    event.target.querySelector('.title-section textarea').focus();
+function saveQuestion() {
+  questionsForm.push({
+    title: formControl.title.value,
+    answers: formControl.answers,
   });
+  changePageWithSameUrl('create-question', 'create-quiz');
+  renderQuestionSection();
+}
 
-  addAnswerButton.addEventListener('click', () => {
-    if (wrongAnswers.length < 7) {
-      addNewAnswer(wrongAnswers);
-      changeIconToTrash(wrongIcons);
-    }
-  });
-
-  saveButton.addEventListener('click', () => {
-    questionsForm.push({
-      title: formControl.title.value,
-      answers: formControl.answers
-    });
-    changePageWithSameUrl('create-question', 'create-quiz');
-    renderQuestionSection();
-  });
-
-  cancelQuestion.addEventListener('click', () => {
-    changePageWithSameUrl('create-question', 'create-quiz');
-    renderQuestionSection();
-  });
-};
+/**
+ * Return to create quiz page without saving
+ */
+function cancelQuestion() {
+  changePageWithSameUrl('create-question', 'create-quiz');
+  renderQuestionSection();
+}

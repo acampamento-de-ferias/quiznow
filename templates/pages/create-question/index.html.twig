@@ -1,85 +1,149 @@
 <main>
-    <div class="basic-card">
-        <div class="title-section">
-            <h3 class="title text-center">Criar pergunta</h3>
-            <div class="secondary-divider d-lg-none"></div>
-            <div class="primary-divider d-none d-lg-block"></div>
-            <div class="form-group default-form-group">
-                <label for="question-title">Título</label>
-                <textarea
-                    class="form-control shadow-none"
-                    id="question-title"
-                    cols="30"
-                    rows="3"
-                    minlength="8"
-                    maxlength="150"
-                    placeholder="8-150 caracteres"
-                    formControl="title"
-                    onkeydown="validateTitle(event, 8, 'keyup')"
-                    onblur="validateTitle(event, 8, 'blur')"
-                    onfocus="handleFocusInput(event)"
-                    required></textarea>
-                <span class="error-message"></span>
-            </div>
-        </div>
-
-        <div class="answers-section">
-            <h4 class="subtitle">Respostas</h4>
-            <div class="questions-answers">
-                <div class="answer right-answer form-group default-form-group" data-id="0">
-                    <input
-                    type="text"
-                    class="form-control shadow-none"
-                    formControl="answers"
-                    onkeydown="validateList('answer', 'answers', event)"
-                    onkeyup="validateList('answer', 'answers', event)"
-                    onfocus="handleFocusInput(event)"
-                    required>
-                    <div class="right-bg">
-                        <img src="./images/check.png" class="right-icon" alt="Resposta correta">
-                    </div>
-                </div>
-                <div class="answer wrong-answer form-group default-form-group" data-id="1">
-                    <input
-                    type="text"
-                    class="form-control shadow-none"
-                    formControl="answers"
-                    onkeydown="validateList('answer', 'answers', event)"
-                    onkeyup="validateList('answer', 'answers', event)"
-                    onfocus="handleFocusInput(event)"
-                    required>
-                    <div class="wrong-bg">
-                        <img src="./images/close.png" onclick="deleteAnswer(this)" class="wrong-icon" alt="Resposta errada">
-                    </div>
-                </div>
-            </div>
-            <!--<div class="personality">
-                <div class="answer answer-config form-group default-form-group">
-                    <input type="text" class="form-control shadow-none" formControl="answers" required>
-                    <div class="config-bg">
-                        <img src="./images/config.png" class="config-icon" alt="Configuração da resposta">
-                    </div>
-                </div>
-                <div class="answer answer-config form-group default-form-group">
-                    <input type="text" class="form-control shadow-none" formControl="answers" required>
-                    <div class="config-bg">
-                        <img src="./images/config.png" class="config-icon" alt="Configuração da resposta">
-                    </div>
-                </div>
-            </div>-->
-            <div class="secondary-button">
-                <button id="add-answer" class="btn shadow-none">
-                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar resposta">
-                    Adicionar resposta
-                </button>
-            </div>
-        </div>
-
-        <div class="actions-section fixed-bottom">
-            <div class="primary-button text-center">
-                <button class="btn shadow-none" disabled>Salvar</button>
-                <a href="#" id="cancel-question">Cancelar</a>
-            </div>
-        </div>
+  <div class="basic-card">
+    <div class="title-section">
+      <h3 class="title text-center">
+        Criar pergunta
+      </h3>
+      <div class="secondary-divider d-lg-none"></div>
+      <div class="primary-divider d-none d-lg-block"></div>
+      <div class="form-group default-form-group">
+        <label for="question-title">Título</label>
+        <textarea class="form-control shadow-none"
+          id="question-title"
+          minlength="8"
+          maxlength="150"
+          placeholder="8-150 caracteres"
+          formControl="title"
+          onkeydown="validateTitle(event, 8, 'keyup')"
+          onblur="validateTitle(event, 8, 'blur')"
+          onfocus="handleFocusInput(event)"
+          required></textarea>
+        <span class="error-message"></span>
+      </div>
     </div>
+
+    <div class="answers-section">
+      <h4 class="subtitle">
+        Respostas
+      </h4>
+      <!--                                                                              
+      <div class="category-question questions-answers d-none">
+        <div class="answer right-answer form-group default-form-group"
+          data-id="0">
+          <input type="text"
+            class="form-control shadow-none"
+            formControl="answers"
+            onkeydown="validateList('answer', 'answers', event)"
+            onkeyup="validateList('answer', 'answers', event)"
+            onfocus="handleFocusInput(event)"
+            required />
+          <div class="right-bg">
+            <img src="./images/check.png"
+              class="right-icon"
+              alt="Resposta correta" />
+          </div>
+        </div>
+        <div class="answer wrong-answer form-group default-form-group"
+          data-id="1">
+          <input type="text"
+            class="form-control shadow-none"
+            formControl="answers"
+            onkeydown="validateList('answer', 'answers', event)"
+            onkeyup="validateList('answer', 'answers', event)"
+            onfocus="handleFocusInput(event)"
+            required />
+          <div class="wrong-bg">
+            <img src="./images/close.png"
+              onclick="deleteAnswer(this)"
+              class="wrong-icon"
+              alt="Resposta errada" />
+          </div>
+        </div>
+      </div>                                                                              -->
+      <div class="category-question personality d-block">
+        <div class="answer personality-answer form-group default-form-group"
+          data-id="0">
+          <input type="text"
+            class="form-control shadow-none"
+            formControl="answers"
+            onkeydown="validateList('answer', 'answers', event)"
+            onkeyup="validateList('answer', 'answers', event)"
+            onfocus="handleFocusInput(event)"
+            required />
+          <div class="more-bg">
+            <button type="button"
+              onclick="displayDropdown(this)"
+              class="btn shadow-none"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              <img src="./images/more.png"
+                class="more-icon"
+                alt="Configurar ou excluir resposta" />
+            </button>
+          </div>
+          <div class="dropdown-menu">
+            <a class="config-rating dropdown-item" href="#">
+              Ir para configurações
+            </a>
+            <a class="delete-answer dropdown-item cursor-pointer"
+              onclick="deleteAnswer(this)">
+              Excluir
+            </a>
+          </div>
+        </div>
+        <div class="answer personality-answer form-group default-form-group"
+          data-id="1">
+          <input type="text"
+            class="form-control shadow-none"
+            formControl="answers"
+            onkeydown="validateList('answer', 'answers', event)"
+            onkeyup="validateList('answer', 'answers', event)"
+            onfocus="handleFocusInput(event)"
+            required />
+          <div class="more-bg">
+            <button type="button"
+              onclick="displayDropdown(this)"
+              class="btn shadow-none"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              <img src="./images/more.png"
+                class="more-icon"
+                alt="Configurar ou excluir resposta" />
+            </button>
+          </div>
+          <div class="dropdown-menu">
+            <a class="config-rating dropdown-item" href="#">
+              Ir para configurações
+            </a>
+            <a class="delete-answer dropdown-item cursor-pointer"
+              onclick="deleteAnswer(this)">
+              Excluir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="secondary-button">
+        <button id="add-answer"
+          class="btn shadow-none"
+          onclick="addNewAnswer()">
+          <img class="plus-icon"
+            src="./images/plus.png"
+            alt="Adicionar resposta" />
+          Adicionar resposta
+        </button>
+      </div>
+    </div>
+
+    <div class="actions-section fixed-bottom">
+      <div class="primary-button text-center">
+        <button class="btn shadow-none" onclick="saveQuestion()" disabled>
+          Salvar
+        </button>
+        <a href="#" id="cancel-question" onclick="cancelQuestion()">Cancelar</a>
+      </div>
+    </div>
+  </div>
 </main>
