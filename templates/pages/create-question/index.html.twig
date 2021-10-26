@@ -15,8 +15,8 @@
                     maxlength="150"
                     placeholder="8-150 caracteres"
                     formControl="title"
-                    onkeydown="validateTitle(event, 8, 'keyup')"
-                    onblur="validateTitle(event, 8, 'blur')"
+                    onkeydown="validateTitle(event, 8, 'keyup', formControl, '.actions-section button')"
+                    onblur="validateTitle(event, 8, 'blur', formControl, '.actions-section button')"
                     onfocus="handleFocusInput(event)"
                     required></textarea>
                 <span class="error-message"></span>

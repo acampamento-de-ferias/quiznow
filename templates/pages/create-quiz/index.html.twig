@@ -44,7 +44,7 @@
 
             </div>
 
-            <form>
+            <form onsubmit="submitQuiz(event)">
                 <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quiz">
                     <div class="accordion-item basic-info">
                         <h2 class="accordion-header" id="heading-basic-infos">
@@ -60,26 +60,37 @@
 
                                 <div class="form-group default-form-group miniatura mt-0">
                                     <p> Miniatura </p>
-                                    <label for="quiz-miniature">
+                                    <label for="quiz-miniature-mobile">
                                         <img src="./images/file.png" alt="Add a image here">
                                         <p> Adicione uma imagem </p>
                                     </label>
-                                    <input type="file" class="custom-file-input d-none" id="quiz-miniature">
+                                    <input id="quiz-miniature-mobile" type="file" class="custom-file-input d-none">
                                 </div>
 
                                 <div class="form-group default-form-group">
-                                    <label for="quiz-title">Título</label>
-                                    <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-title" id="quiz-title" maxlength="256" required>
+                                    <label for="quiz-title-mobile">Título</label>
+                                    <input 
+                                        id="quiz-title-mobile" 
+                                        type="text" 
+                                        class="form-control shadow-none bg-white" 
+                                        formcontrol="quizTitle" 
+                                        onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)"
+                                        onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)" 
+                                        onblur="validateTitle(event, 8, 'blur', formControlQuiz)" 
+                                        onFocus="handleFocusInput(event)"  
+                                        maxlength="256" 
+                                        required>
+                                    <span class="error-message"></span>
                                 </div>
 
                                 <div class="form-group default-form-group">
-                                    <label for="quiz-description">Descrição <span class="optional"> (Opcional) </span></label>
-                                    <textarea class="form-control shadow-none bg-white" id="quiz-description" maxlength="280"></textarea>
+                                    <label for="quiz-description-mobile">Descrição <span class="optional"> (Opcional) </span></label>
+                                    <textarea id="quiz-description-mobile" formcontrol="quizDescription" class="form-control shadow-none bg-white" maxlength="280"></textarea>
                                 </div>
 
                                 <div class="form-group default-form-group">
-                                    <label for="quiz-keywords">Palavras-chave</label>
-                                    <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-keywords" id="quiz-keywords" maxlength="256" required>
+                                    <label for="quiz-keywords-mobile">Palavras-chave</label>
+                                    <input id="quiz-keywords-mobile" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" maxlength="256" required>
                                 </div>
 
                             </div>
@@ -223,7 +234,7 @@
                         </div>
                     </div>
 
-                    <form>
+                    <form onsubmit="submitQuiz(event)">
                         <div class="create-quiz-section basic-info">
                             <h3 class="subtitle">
                                 Informações básicas
@@ -234,29 +245,38 @@
                                     
                                     <div class="form-group default-form-group miniatura">
                                         <p class="label-text"> Miniatura </p>
-                                        <label for="quiz-miniature">
+                                        <label for="quiz-miniature-desktop">
                                             <img src="./images/file.png" alt="Add a image here">
                                             <p class="mt-2 weak-text"> Adicione uma imagem </p>
                                         </label>
-                                        <input type="file" class="custom-file-input d-none" id="quiz-miniature">
+                                        <input id="quiz-miniature-desktop" type="file" class="custom-file-input d-none">
                                     </div>
 
                                 </div>
                                 <div class="col">
 
                                     <div class="form-group default-form-group">
-                                        <label for="quiz-title">Título</label>
-                                        <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-title" id="quiz-title" maxlength="256" required>
+                                        <label for="quiz-title-desktop">Título</label>
+                                        <input id="quiz-title-desktop" 
+                                            type="text" 
+                                            class="form-control shadow-none bg-white" 
+                                            formcontrol="quizTitle" 
+                                            onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)" 
+                                            onblur="validateTitle(event, 8, 'blur', formControlQuiz)" 
+                                            onFocus="handleFocusInput(event)"  
+                                            maxlength="256" 
+                                            required>
+                                        <span class="error-message"></span>
                                     </div>
 
                                     <div class="form-group default-form-group">
-                                        <label for="quiz-description">Descrição <span class="optional"> (Opcional) </span></label>
-                                        <textarea class="form-control shadow-none bg-white" id="quiz-description" maxlength="280"></textarea>
+                                        <label for="quiz-description-desktop">Descrição <span class="optional"> (Opcional) </span></label>
+                                        <textarea id="quiz-description-desktop" class="form-control shadow-none bg-white" formcontrol="quizDescription" onkeyup="changeFieldWithoutValidation(event, formControlQuiz)" maxlength="280"></textarea>
                                     </div>
 
                                     <div class="form-group default-form-group">
-                                        <label for="quiz-keywords">Palavras-chave</label>
-                                        <input type="text" class="form-control shadow-none bg-white" formcontrol="quiz-keywords" id="quiz-keywords" maxlength="256" required>
+                                        <label for="quiz-keywords-desktop">Palavras-chave</label>
+                                        <input id="quiz-keywords-desktop" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" onkeyup="changeFieldWithoutValidation(event, formControlQuiz)" maxlength="256" required>
                                     </div>
 
                                 </div>
@@ -367,7 +387,7 @@
                 </div>
             </div>
         </div>
-    </div>#}
+    </div>
 
     <div id="create-question" class="d-none">
         {% include '@core/pages/create-question/index.html.twig' %}

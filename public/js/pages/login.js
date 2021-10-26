@@ -12,15 +12,6 @@
 };
 
 /**
- * Set formcontrol for each key
- *  
- */
-function changeField(ev) {
-    const formControlNode = ev.target.attributes.formControl.nodeValue;
-    formControl[formControlNode].value = ev.target.value;
-}
-
-/**
 * Send data to backend
 * 
 */
@@ -29,7 +20,7 @@ const formLogin = document.querySelector('#form-login');
 
     // Remove default http request 
     ev.preventDefault();
-    
+   
     // Get data in the form
     const data = {
         email: formControl.email.value,
