@@ -2,17 +2,17 @@
  * Validate input name on blur
  * 
  */
-function validateName(ev, minCharacters, type) {
-    
+function validateName(ev, minCharacters, type, formControlParam = formControl, btnSubmitSelector = 'button[type="submit"]') {
+
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, btnSubmitSelector, formControlParam)) return;
 
     // Set data to formControl
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = true;
+    formControlParam[formControlNode].value = ev.target.value;
+    formControlParam[formControlNode].validate = true;
     resetValidationInput(ev);
 
     // Check if string has at least one number
@@ -24,8 +24,8 @@ function validateName(ev, minCharacters, type) {
         } else {
             ev.target.parentElement.classList.add("focus-field");
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
@@ -38,32 +38,32 @@ function validateName(ev, minCharacters, type) {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
     ev.target.nextElementSibling.innerHTML = "";
-    applySubmitStatus('button[type="submit"]');
+    applySubmitStatus(btnSubmitSelector, formControlParam);
     return true;
 }
 
 /**
-* Validate input email
-* 
-*/
-function validateEmail(ev, type) {
+ * Validate input email
+ * 
+ */
+function validateEmail(ev, type, formControlParam = formControl, btnSubmitSelector = 'button[type="submit"]') {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, btnSubmitSelector, formControlParam)) return;
 
     // Set data to formControl
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = true;
+    formControlParam[formControlNode].value = ev.target.value;
+    formControlParam[formControlNode].validate = true;
     resetValidationInput(ev);
 
     // Check if string is a valid email
@@ -76,32 +76,32 @@ function validateEmail(ev, type) {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
     ev.target.parentElement.classList.add("success-field");
     ev.target.nextElementSibling.innerHTML = "";
-    applySubmitStatus('button[type="submit"]');
+    applySubmitStatus(btnSubmitSelector, formControlParam);
     return true;
 }
 
 /**
-* Validate password
-* 
-*/
-function validatePassword(ev, minCharacters, type, formControlPasswordConfirmationNode = false) {
+ * Validate password
+ * 
+ */
+function validatePassword(ev, minCharacters, type, formControlPasswordConfirmationNode = false, formControlParam = formControl, btnSubmitSelector = 'button[type="submit"]') {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, btnSubmitSelector, formControlParam)) return;
 
     // Set data to formControl
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = true;
+    formControlParam[formControlNode].value = ev.target.value;
+    formControlParam[formControlNode].validate = true;
     resetValidationInput(ev);
 
     const regexNumber = /\d/;
@@ -115,16 +115,16 @@ function validatePassword(ev, minCharacters, type, formControlPasswordConfirmati
             if (passwordConfirmation.value !== ev.target.value) {
                 passwordConfirmation.parentElement.classList.add("failed-field");
                 passwordConfirmation.nextElementSibling.innerHTML = 'O campo confirmar senha deve ser igual ao campo senha';
-                formControl[formControlPasswordConfirmationNode].validate = false;
-                changeButtonState('button[type="submit"]', true);
+                formControlParam[formControlPasswordConfirmationNode].validate = false;
+                applySubmitStatus(btnSubmitSelector, formControlParam);
             } else {
                 passwordConfirmation.nextElementSibling.innerHTML = "";
                 passwordConfirmation.parentElement.classList.add("success-field");
-                formControl[formControlPasswordConfirmationNode].validate = true;
-                applySubmitStatus('button[type="submit"]');
+                formControlParam[formControlPasswordConfirmationNode].validate = true;
+                applySubmitStatus(btnSubmitSelector, formControlParam);
             }
         }
-        
+
     }
 
     // Check if string has at least one number
@@ -136,8 +136,8 @@ function validatePassword(ev, minCharacters, type, formControlPasswordConfirmati
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
@@ -150,8 +150,8 @@ function validatePassword(ev, minCharacters, type, formControlPasswordConfirmati
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
@@ -164,32 +164,32 @@ function validatePassword(ev, minCharacters, type, formControlPasswordConfirmati
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
     ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
-    applySubmitStatus('button[type="submit"]');
+    applySubmitStatus(btnSubmitSelector, formControlParam);
     return true;
 }
 
 /**
-* Validate password confirmation
-* 
-*/
-function validatePasswordConfirmation(ev, type) {
+ * Validate password confirmation
+ * 
+ */
+function validatePasswordConfirmation(ev, type, formControlParam = formControl, btnSubmitSelector = 'button[type="submit"]') {
 
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, btnSubmitSelector, formControlParam)) return;
 
     // Set data to formControl
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = true;
+    formControlParam[formControlNode].value = ev.target.value;
+    formControlParam[formControlNode].validate = true;
     resetValidationInput(ev);
 
     // Check if password is equals than confirm password
@@ -201,14 +201,14 @@ function validatePasswordConfirmation(ev, type) {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = "";
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
     ev.target.nextElementSibling.innerHTML = "";
     ev.target.parentElement.classList.add("success-field");
-    applySubmitStatus('button[type="submit"]');
+    applySubmitStatus(btnSubmitSelector, formControlParam);
     return true;
 }
 
@@ -218,16 +218,17 @@ function validatePasswordConfirmation(ev, type) {
  * @param {Number} minCharacters 
  * @param {String} type 
  */
- function validateTitle(ev, minCharacters, type) {
+// '.actions-section button'
+function validateTitle(ev, minCharacters, type, formControlParam = formControl, btnSubmitSelector = 'button[type="submit"]') {
     // Get form control node
     const formControlNode = ev.target.attributes.formControl.nodeValue;
 
     // Do not validate empty input
-    if (refuseValidationOnEmptyValue(ev, formControlNode, '.actions-section button')) return;
+    if (refuseValidationOnEmptyValue(ev, formControlNode, btnSubmitSelector, formControlParam)) return;
 
     // Set data to formControl
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = true;
+    formControlParam[formControlNode].value = ev.target.value;
+    formControlParam[formControlNode].validate = true;
 
     resetValidationInput(ev);
 
@@ -240,63 +241,26 @@ function validatePasswordConfirmation(ev, type) {
             ev.target.parentElement.classList.add("focus-field");
             ev.target.nextElementSibling.innerHTML = '';
         }
-        formControl[formControlNode].validate = false;
-        changeButtonState('.actions-section button', true);
+        formControlParam[formControlNode].validate = false;
+        applySubmitStatus(btnSubmitSelector, formControlParam);
         return;
     }
 
     ev.target.parentElement.classList.add('success-field');
     ev.target.nextElementSibling.innerHTML = '';
-    applySubmitStatus('.actions-section button');
-    validateList('answer', 'answers');
+    applySubmitStatus(btnSubmitSelector, formControlParam);
     return true;
 }
 
 /**
- * Validate each input from a list
- * @param {Object} ev 
- * @param {String} className 
- * @param {String} formControlNode 
- * @returns 
+ * Apply submit button status
+ * 
  */
-function validateList(className, formControlNode, ev) {
-    const elementsList = document.getElementsByClassName(className);
-    let isEmpty = false;
-
-    for (let i = 0; i < elementsList.length; i++) {
-        formControl[formControlNode][i].value = elementsList[i].firstElementChild.value;
-        
-        // Do not validate empty input
-        if (!elementsList[i].firstElementChild.value.length) {
-            formControl[formControlNode][i].validate = false;
-            isEmpty = true;
-        } else {
-            formControl[formControlNode][i].validate = true;
-        }
-    }
-    
-    if (ev) {
-        resetValidationInput(ev);
-    }
-    
-    if (isEmpty) {
-        changeButtonState('.actions-section button', true);
-        return;
-    }
-    
-    changeButtonState('.actions-section button', false);
-    return true;
-}
-
-/**
-* Apply submit button status
-* 
-*/
-function applySubmitStatus(sel) {
+function applySubmitStatus(sel, formControlParam) {
     const button = document.querySelector(sel);
     let disabled = true;
-    for (const property in formControl) {
-        if (!formControl[property].validate) {
+    for (const property in formControlParam) {
+        if (!formControlParam[property].validate) {
             disabled = false;
         }
     }
@@ -304,9 +268,9 @@ function applySubmitStatus(sel) {
 }
 
 /**
-* Reset validation input
-* 
-*/
+ * Reset validation input
+ * 
+ */
 function resetValidationInput(ev) {
     const element = ev.target ? ev.target : ev;
     if (element.parentElement.classList.contains('failed-field')) {
@@ -330,30 +294,39 @@ function resetValidationInput(ev) {
  * 
  * Do not validate empty input
  */
- function refuseValidationOnEmptyValue(ev, formControlNode, sel) {
+function refuseValidationOnEmptyValue(ev, formControlNode, sel, formControlParam) {
     let isEmpty = false;
     if (!ev.target.value.length) {
-        formControl[formControlNode].value = ev.target.value;
-        formControl[formControlNode].validate = false;
+        formControlParam[formControlNode].value = ev.target.value;
+        formControlParam[formControlNode].validate = false;
         resetValidationInput(ev);
-        applySubmitStatus(sel);
+        applySubmitStatus(sel, formControlParam);
         isEmpty = true;
     }
-    
+
     return isEmpty;
 }
 
 /**
-* Focus input
-*  
-*/
+ * Focus input
+ *  
+ */
 function handleFocusInput(ev) {
     const actualClass = resetValidationInput(ev);
-        if (!ev.target.value.length) return;
+    if (!ev.target.value.length) return;
 
     if (actualClass === "success-field") {
         ev.target.parentElement.classList.add("success-field");
     } else {
         ev.target.parentElement.classList.add("focus-field");
     }
+}
+
+/**
+ * Set formcontrol for each key
+ *  
+ */
+function changeFieldWithoutValidation(ev, formControlParam = formControl) {
+    const formControlNode = ev.target.attributes.formControl.nodeValue;
+    formControlParam[formControlNode].value = ev.target.value;
 }

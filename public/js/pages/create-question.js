@@ -124,7 +124,7 @@ function createQuestionController(questionAnswersIndex = null) {
   });
 
   saveButton.addEventListener('click', () => {
-    questionsForm.push({
+    formControlQuiz.quizQuestions.push({
       title: formControl.title.value,
       answers: formControl.answers
     });

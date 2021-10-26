@@ -28,12 +28,12 @@
                         <div class="primary-divider d-none d-lg-block"></div>
                         <div class="form-group default-form-group">
                             <label for="login-email">E-mail</label>
-                            <input type="text" class="form-control shadow-none" formcontrol="email" onkeyup="changeField(event)" id="login-email" maxlength="256" required>
+                            <input type="text" class="form-control shadow-none" formcontrol="email" onkeyup="changeFieldWithoutValidation(event)" id="login-email" maxlength="256" required>
                         </div>
                         <div class="form-group default-form-group">
                             <label for="login-password">Senha</label>
                             <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
-                            <input type="password" class="form-control shadow-none" formcontrol="password" onkeyup="changeField(event)" id="login-password"  maxlength="32" required>
+                            <input type="password" class="form-control shadow-none" formcontrol="password" onkeyup="changeFieldWithoutValidation(event)" id="login-password"  maxlength="32" required>
                         </div>
                         <div class"row">
                             <div class="col">
