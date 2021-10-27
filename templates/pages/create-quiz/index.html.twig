@@ -74,9 +74,8 @@
                                         type="text" 
                                         class="form-control shadow-none bg-white" 
                                         formcontrol="quizTitle" 
-                                        onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)"
-                                        onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)" 
-                                        onblur="validateTitle(event, 8, 'blur', formControlQuiz)" 
+                                        onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                                        onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
                                         onFocus="handleFocusInput(event)"  
                                         maxlength="256" 
                                         required>
@@ -85,12 +84,12 @@
 
                                 <div class="form-group default-form-group">
                                     <label for="quiz-description-mobile">Descrição <span class="optional"> (Opcional) </span></label>
-                                    <textarea id="quiz-description-mobile" formcontrol="quizDescription" class="form-control shadow-none bg-white" maxlength="280"></textarea>
+                                    <textarea id="quiz-description-mobile" formcontrol="quizDescription" class="form-control shadow-none bg-white" onkeyup="validate(event, 'string', false, formControlQuiz)" maxlength="280"></textarea>
                                 </div>
 
                                 <div class="form-group default-form-group">
                                     <label for="quiz-keywords-mobile">Palavras-chave</label>
-                                    <input id="quiz-keywords-mobile" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" maxlength="256" required>
+                                    <input id="quiz-keywords-mobile" type="text" class="form-control shadow-none bg-white" onkeyup="validate(event, 'string|required', false, formControlQuiz)" formcontrol="quizKeywords" maxlength="256" required>
                                 </div>
 
                             </div>
@@ -261,8 +260,8 @@
                                             type="text" 
                                             class="form-control shadow-none bg-white" 
                                             formcontrol="quizTitle" 
-                                            onkeyup="validateTitle(event, 8, 'keyup', formControlQuiz)" 
-                                            onblur="validateTitle(event, 8, 'blur', formControlQuiz)" 
+                                            onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                                            onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
                                             onFocus="handleFocusInput(event)"  
                                             maxlength="256" 
                                             required>
@@ -271,12 +270,12 @@
 
                                     <div class="form-group default-form-group">
                                         <label for="quiz-description-desktop">Descrição <span class="optional"> (Opcional) </span></label>
-                                        <textarea id="quiz-description-desktop" class="form-control shadow-none bg-white" formcontrol="quizDescription" onkeyup="changeFieldWithoutValidation(event, formControlQuiz)" maxlength="280"></textarea>
+                                        <textarea id="quiz-description-desktop" class="form-control shadow-none bg-white" formcontrol="quizDescription" onkeyup="validate(event, 'string', false, formControlQuiz)" maxlength="280"></textarea>
                                     </div>
 
                                     <div class="form-group default-form-group">
                                         <label for="quiz-keywords-desktop">Palavras-chave</label>
-                                        <input id="quiz-keywords-desktop" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" onkeyup="changeFieldWithoutValidation(event, formControlQuiz)" maxlength="256" required>
+                                        <input id="quiz-keywords-desktop" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" onkeyup="validate(event, 'string|required', false, formControlQuiz)" maxlength="256" required>
                                     </div>
 
                                 </div>
