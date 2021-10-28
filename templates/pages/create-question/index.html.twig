@@ -26,8 +26,7 @@
       <h4 class="subtitle">
         Respostas
       </h4>
-      <!--                                                                              
-      <div class="category-question questions-answers d-none">
+      <div class="category-question d-block" id="qa-answers">
         <div class="answer right-answer form-group default-form-group"
           data-id="0">
           <input type="text"
@@ -59,8 +58,8 @@
               alt="Resposta errada" />
           </div>
         </div>
-      </div>                                                                              -->
-      <div class="category-question personality d-block">
+      </div>
+      <div class="category-question d-none" id="personality-answers">
         <div class="answer personality-answer form-group default-form-group"
           data-id="0">
           <input type="text"
@@ -86,7 +85,7 @@
             <a class="config-rating dropdown-item" href="#">
               Ir para configurações
             </a>
-            <a class="delete-answer dropdown-item cursor-pointer"
+            <a class="delete-answer dropdown-item cursor-not-allowed"
               onclick="deleteAnswer(this)">
               Excluir
             </a>
@@ -117,7 +116,7 @@
             <a class="config-rating dropdown-item" href="#">
               Ir para configurações
             </a>
-            <a class="delete-answer dropdown-item cursor-pointer"
+            <a class="delete-answer dropdown-item cursor-not-allowed"
               onclick="deleteAnswer(this)">
               Excluir
             </a>

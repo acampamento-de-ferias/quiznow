@@ -1,16 +1,27 @@
 .bg-white {
-    background: var(--white-color);
+  background: var(--white-color);
 }
 
 .pb-helper-5 {
-    padding-bottom: 4.375rem;
+  padding-bottom: 4.375rem;
 }
 
 .pb-negative-helper-5 {
-    margin-left: -3.125rem;
-    margin-right: -3.125rem;
+  margin-left: -3.125rem;
+  margin-right: -3.125rem;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.hasAccount {
+  display: block;
+  font-size: 1rem;
+  color: var(--black-color);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+.hasAccount a {
+  font-weight: 700;
 }

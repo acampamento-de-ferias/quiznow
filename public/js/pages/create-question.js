@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * @param {Element} element
  */
 function addNewAnswer() {
+  // fix this
   if (answersList.length < 8) {
     const newAnswer = answersList[answersList.length - 1].cloneNode(true);
     const newAnswerInput = newAnswer.querySelector('input');
@@ -40,7 +41,9 @@ function addNewAnswer() {
     });
     document.querySelector('#add-answer').disabled = answersList.length === 8;
     validateList('answer', 'answers');
-    categoryForm === 'questions-answers' ? changeIconToTrash(wrongIcons) : '';
+    categoryForm === 'questions-answers'
+      ? changeIconToTrash(wrongIcons)
+      : changeDropdownItemState('.delete-answer.cursor-not-allowed', false);
   }
 }
 
@@ -66,7 +69,30 @@ function changeIconToClose(element) {
   element.classList.remove('cursor-pointer');
 }
 
-function xpto(button, input) {
+/**
+ * Set state of dropdown-item
+ * @param {String} selector
+ * @param {Boolean} disabled
+ */
+function changeDropdownItemState(selector, disabled) {
+  for (const item of document.querySelectorAll(selector)) {
+    if (disabled) {
+      item.classList.remove('cursor-pointer');
+      item.classList.add('cursor-not-allowed');
+    } else {
+      item.classList.remove('cursor-not-allowed');
+      item.classList.add('cursor-pointer');
+    }
+  }
+}
+
+/**
+ * Remove all traces of deleted input
+ * @param {Object} button
+ * @param {String} input
+ * @param {String} icon
+ */
+function clearInputTrace(button, input) {
   button.closest(input).remove();
   document.querySelector('#add-answer').disabled = false;
   reoderAnswersIndex(button.closest(input));
@@ -81,13 +107,17 @@ function xpto(button, input) {
  */
 function deleteAnswer(el) {
   if (el.src && el.src.includes('trash')) {
-    xpto(el, '.wrong-answer');
+    clearInputTrace(el, '.wrong-answer');
     const lastWrongIcon = document.getElementsByClassName('wrong-icon');
     if (lastWrongIcon.length < 2) {
       changeIconToClose(lastWrongIcon[lastWrongIcon.length - 1]);
     }
   } else if (el.className.includes('dropdown-item') && answersList.length >= 3) {
-    xpto(el, '.personality-answer');
+    clearInputTrace(el, '.personality-answer');
+    const deleteItensList = document.getElementsByClassName('delete-answer');
+    if (deleteItensList.length <= 2) {
+      changeDropdownItemState('.delete-answer.cursor-pointer', true);
+    }
   }
 }
 

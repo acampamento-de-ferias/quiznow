@@ -1,4 +1,5 @@
-ul, p {
+ul,
+p {
   margin: 0;
   padding: 0;
 }
@@ -17,14 +18,7 @@ ul, p {
 }
 
 #footer ul li a {
-  color: var(--blue-color);
   font: 600 0.75rem Work Sans;
-  text-decoration: none;
-  transition: 0.2;
-}
-
-#footer ul li a:hover {
-  color: var(--navy-blue-color);
 }
 
 .footer-logo {

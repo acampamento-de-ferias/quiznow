@@ -1,69 +1,75 @@
 .card {
-    margin: 2rem 0.75rem 1.5rem;
-    padding: 1rem 1.5rem 1.5rem;
-    background: var(--white-color);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--black-color) 20%;
-    border-radius: 4px;
+  margin: 2rem 0.75rem 1.5rem;
+  padding: 1rem 1.5rem 1.5rem;
+  background: var(--white-color);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--black-color) 20%;
+  border-radius: 4px;
 }
 
 .basic-card {
-    background: var(--white-color);
-    border: 1px solid var(--black-color) 20%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+  background: var(--white-color);
+  border: 1px solid var(--black-color) 20%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
 }
 
 .card .primary-button button {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 2rem;
+  }
 }
 
 @media screen and (min-width: 992px) {
-    .card {
-        margin: 0;
-        padding: 0;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
+  .card {
+    margin: 0;
+    padding: 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-    .basic-card {
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
+  .basic-card {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-    .card .banner {
-        background: var(--navy-blue-color);
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 2rem 1rem 0;
-    }
-    
-    .card .banner p {
-        margin: 3rem 0;
-        font-weight: 600;
-        font-size: 1.5rem;
-        color: var(--black-color);
-    }
+  .card .banner {
+    background: var(--navy-blue-color);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 2rem 1rem 0;
+  }
 
-    .card .primary-button button {
-        margin-bottom: 2rem;
-    }
-    
-    .card .license {
-        margin-bottom: 1rem;
-    }
+  .card .banner p {
+    margin: 3rem 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--black-color);
+  }
 
-    .card .license a {
-        font-size: 0.625rem;
-        text-decoration: none;
-        color: var(--black-color);
-        opacity: 0.8;
-        transition: background 0.2s;
-    }
+  .card .primary-button button {
+    margin-bottom: 2rem;
+  }
 
-    .card .license a:hover {
-        font-size: 0.625rem;
-        text-decoration: none;
-        color: var(--black-color);
-        opacity: 0.5;
-    }
+  .card .license {
+    margin-bottom: 1rem;
+  }
+
+  .card .license a {
+    font-size: 0.625rem;
+    text-decoration: none;
+    color: var(--black-color);
+    opacity: 0.8;
+    transition: background 0.2s;
+  }
+
+  .card .license a:hover {
+    font-size: 0.625rem;
+    text-decoration: none;
+    color: var(--black-color);
+    opacity: 0.5;
+  }
 }

@@ -140,7 +140,7 @@ function changePageWithSameUrl(idToHide, idToShow) {
   document.getElementById(idToShow).classList.remove('d-none');
 
   document.getElementById(idToHide).classList.add('d-none');
-  document.getElementById(idToShow).classList.remove('d-block');
+  document.getElementById(idToHide).classList.remove('d-block');
 }
 
 /**

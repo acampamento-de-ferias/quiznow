@@ -56,7 +56,7 @@ function renderQuestionSection() {
                     </div>
                 </div>
             
-                <h3 class="third-title">${question.title}</h3>
+                <h3 class="fourth-title">${question.title}</h3>
                 <p class="answers">
                     ${question.answers
                       .map(
@@ -79,7 +79,7 @@ function renderQuestionSection() {
         `<div class="basic-card">
             <div class="row">
                 <div class="col-10 question-infos">
-                    <h3 class="third-title">${question.title}</h3>
+                    <h3 class="fourth-title">${question.title}</h3>
                     <p class="answers">
                         ${question.answers
                           .map(
@@ -110,6 +110,9 @@ function renderQuestionSection() {
 
 function renderQuestionPage() {
   changePageWithSameUrl('create-quiz', 'create-question');
+  categoryForm === 'questions-answers'
+    ? changePageWithSameUrl('personality-answers', 'qa-answers')
+    : changePageWithSameUrl('qa-answers', 'personality-answers');
 }
 
 function renderRatingPage() {
