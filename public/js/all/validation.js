@@ -1,304 +1,185 @@
-/**
- * Validate input name on blur
- *
- */
-function validateName(ev, minCharacters, type) {
-  // Get form control node
-  const formControlNode = ev.target.attributes.formControl.nodeValue;
+let eventValidator;
 
-  // Do not validate empty input
-  if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
+function validate(
+  event,
+  validator,
+  hasEffects = false,
+  formControlParam = formControl,
+  btnSubmitSelector = 'button[type="submit"]'
+) {
+  eventValidator = event;
+
+  // Get all validators
+  const arrayValidations = validator.split('|');
+
+  // Get form control node
+  const formControlNode = eventValidator.target.attributes.formControl.nodeValue;
 
   // Set data to formControl
-  formControl[formControlNode].value = ev.target.value;
-  formControl[formControlNode].validate = true;
-  resetValidationInput(ev);
+  formControlParam[formControlNode].value = eventValidator.target.value;
+  formControlParam[formControlNode].validate = true;
+  resetValidationInput(eventValidator);
 
-  // Check if string has at least one number
-  const regex = /\d/;
-  if (regex.test(ev.target.value)) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML = 'O campo nome não pode conter números';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
+  try {
+    for (let validation of arrayValidations) {
+      const validationSplitted = validation.split(':');
+      const method = validationSplitted[0];
+      const param = validationSplitted[1];
+      const stringFunction = method + (param ? '(' + param + ')' : '()');
+      eval(stringFunction);
     }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
-  }
 
-  // Check if string has the minimum of characters
-  if (ev.target.value.length < minCharacters) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML =
-        'O campo nome deve ter ao menos ' + minCharacters + ' caracteres';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
+    if (hasEffects) {
+      eventValidator.target.parentElement.classList.add('success-field');
+      eventValidator.target.nextElementSibling.innerHTML = '';
     }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
+  } catch (e) {
+    formControlParam[formControlNode].validate = false;
+    if (hasEffects && eventValidator.type === 'blur') {
+      eventValidator.target.parentElement.classList.add('failed-field');
+      eventValidator.target.nextElementSibling.innerHTML = e.message;
+    } else if (hasEffects) {
+      eventValidator.target.parentElement.classList.add('focus-field');
+    }
+  } finally {
+    applySubmitStatus(btnSubmitSelector, formControlParam);
   }
-
-  ev.target.parentElement.classList.add('success-field');
-  ev.target.nextElementSibling.innerHTML = '';
-  applySubmitStatus('button[type="submit"]');
-  return true;
 }
 
-/**
- * Validate input email
- *
- */
-function validateEmail(ev, type) {
-  // Get form control node
-  const formControlNode = ev.target.attributes.formControl.nodeValue;
-
-  // Do not validate empty input
-  if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
-
-  // Set data to formControl
-  formControl[formControlNode].value = ev.target.value;
-  formControl[formControlNode].validate = true;
-  resetValidationInput(ev);
-
-  // Check if string is a valid email
-  const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!regex.test(ev.target.value)) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML = 'O campo e-mail deve ser um e-mail válido';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
-  }
-
-  ev.target.parentElement.classList.add('success-field');
-  ev.target.nextElementSibling.innerHTML = '';
-  applySubmitStatus('button[type="submit"]');
-  return true;
-}
-
-/**
- * Validate password
- *
- */
-function validatePassword(ev, minCharacters, type, formControlPasswordConfirmationNode = false) {
-  // Get form control node
-  const formControlNode = ev.target.attributes.formControl.nodeValue;
-
-  // Do not validate empty input
-  if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
-
-  // Set data to formControl
-  formControl[formControlNode].value = ev.target.value;
-  formControl[formControlNode].validate = true;
-  resetValidationInput(ev);
-
-  const regexNumber = /\d/;
-  const regexLetter = /[a-zA-Z]/;
-
-  // Apply changes to force verification on confirmation password
-  if (formControlPasswordConfirmationNode) {
-    const passwordConfirmation = document.querySelector(
-      `[formControl=${formControlPasswordConfirmationNode}]`
+function required() {
+  if (!eventValidator.target.value) {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' não pode ser vazio'
     );
-    if (passwordConfirmation.value.length) {
-      resetValidationInput(passwordConfirmation);
-      if (passwordConfirmation.value !== ev.target.value) {
-        passwordConfirmation.parentElement.classList.add('failed-field');
-        passwordConfirmation.nextElementSibling.innerHTML =
-          'O campo confirmar senha deve ser igual ao campo senha';
-        formControl[formControlPasswordConfirmationNode].validate = false;
-        changeButtonState('button[type="submit"]', true);
-      } else {
-        passwordConfirmation.nextElementSibling.innerHTML = '';
-        passwordConfirmation.parentElement.classList.add('success-field');
-        formControl[formControlPasswordConfirmationNode].validate = true;
-        applySubmitStatus('button[type="submit"]');
-      }
-    }
   }
-
-  // Check if string has at least one number
-  if (!regexNumber.test(ev.target.value)) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos um número';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
-  }
-
-  // Check if string has at least one letter
-  if (!regexLetter.test(ev.target.value)) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML = 'O campo senha deve conter ao menos uma letra';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
-  }
-
-  // Check if string has the minimum of characters
-  if (ev.target.value.length < minCharacters) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML =
-        'O campo senha deve conter ao menos ' + minCharacters + ' caracteres';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
-  }
-
-  ev.target.nextElementSibling.innerHTML = '';
-  ev.target.parentElement.classList.add('success-field');
-  applySubmitStatus('button[type="submit"]');
   return true;
 }
 
-/**
- * Validate password confirmation
- *
- */
-function validatePasswordConfirmation(ev, type) {
-  // Get form control node
-  const formControlNode = ev.target.attributes.formControl.nodeValue;
-
-  // Do not validate empty input
-  if (refuseValidationOnEmptyValue(ev, formControlNode, 'button[type="submit"]')) return;
-
-  // Set data to formControl
-  formControl[formControlNode].value = ev.target.value;
-  formControl[formControlNode].validate = true;
-  resetValidationInput(ev);
-
-  // Check if password is equals than confirm password
-  if (document.getElementById('registerPassword').value !== ev.target.value) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML =
-        'O campo confirmar senha deve ser igual ao campo senha';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('button[type="submit"]', true);
-    return;
+function string() {
+  if (typeof eventValidator.target.value !== 'string') {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' deve ser uma string'
+    );
   }
-
-  ev.target.nextElementSibling.innerHTML = '';
-  ev.target.parentElement.classList.add('success-field');
-  applySubmitStatus('button[type="submit"]');
   return true;
 }
 
-/**
- * Validate input title on blur
- * @param {Object} ev
- * @param {Number} minCharacters
- * @param {String} type
- */
-function validateTitle(ev, minCharacters, type) {
-  // Get form control node
-  const formControlNode = ev.target.attributes.formControl.nodeValue;
-
-  // Do not validate empty input
-  if (refuseValidationOnEmptyValue(ev, formControlNode, '.actions-section button')) return;
-
-  // Set data to formControl
-  formControl[formControlNode].value = ev.target.value;
-  formControl[formControlNode].validate = true;
-
-  resetValidationInput(ev);
-
-  // Check if string has the minimum of characters
-  if (ev.target.value.length < minCharacters) {
-    if (type === 'blur') {
-      ev.target.parentElement.classList.add('failed-field');
-      ev.target.nextElementSibling.innerHTML =
-        'O campo título deve ter ao menos ' + minCharacters + ' caracteres';
-    } else {
-      ev.target.parentElement.classList.add('focus-field');
-      ev.target.nextElementSibling.innerHTML = '';
-    }
-    formControl[formControlNode].validate = false;
-    changeButtonState('.actions-section button', true);
-    return;
+function email() {
+  const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!regex.test(eventValidator.target.value)) {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' deve ser um e-mail válido'
+    );
   }
-
-  ev.target.parentElement.classList.add('success-field');
-  ev.target.nextElementSibling.innerHTML = '';
-  applySubmitStatus('.actions-section button');
-  validateList('answer', 'answers');
   return true;
 }
 
-/**
- * Validate each input from a list
- * @param {Object} ev
- * @param {String} className
- * @param {String} formControlNode
- * @returns
- */
-function validateList(className, formControlNode, ev) {
-  const elementsList = document.getElementsByClassName(className);
-  let isEmpty = false;
+function min(minCharacters) {
+  if (eventValidator.target.value.length < minCharacters) {
+    throw new Error(
+      'O campo ' +
+        eventValidator.target.labels[0].textContent +
+        ' deve ter ao menos ' +
+        minCharacters +
+        ' caracteres'
+    );
+  }
+  return true;
+}
 
-  for (let i = 0; i < elementsList.length; i++) {
-    formControl[formControlNode][i].value = elementsList[i].firstElementChild.value;
+function max(maxCharacters) {
+  if (eventValidator.target.value.length < maxCharacters) {
+    throw new Error(
+      'O campo ' +
+        eventValidator.target.labels[0].textContent +
+        ' deve ter no máximo ' +
+        maxCharacters +
+        ' caracteres'
+    );
+  }
+  return true;
+}
 
-    // Do not validate empty input
-    if (!elementsList[i].firstElementChild.value.length) {
-      formControl[formControlNode][i].validate = false;
-      isEmpty = true;
+function hasNoNumber() {
+  const regex = /\d/;
+  if (regex.test(eventValidator.target.value)) {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' não pode conter números'
+    );
+  }
+  return true;
+}
+
+function hasNumber() {
+  const regex = /\d/;
+  if (!regex.test(eventValidator.target.value)) {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' deve conter números'
+    );
+  }
+  return true;
+}
+
+function hasLetter() {
+  const regex = /[a-zA-Z]/;
+  if (!regex.test(eventValidator.target.value)) {
+    throw new Error(
+      'O campo ' + eventValidator.target.labels[0].textContent + ' deve conter letras'
+    );
+  }
+  return true;
+}
+
+function isEqual(anotherDiv) {
+  anotherDiv.blur();
+  if (eventValidator.target.value !== anotherDiv.value) {
+    throw new Error(
+      'O campo ' +
+        eventValidator.target.labels[0].textContent +
+        ' deve ser igual ao campo ' +
+        anotherDiv.parentNode.childNodes[1].textContent
+    );
+  }
+  return true;
+}
+
+function stalker(anotherDiv, formControlParam = formControl) {
+  if (anotherDiv.value.length) {
+    resetValidationInput(anotherDiv);
+    if (anotherDiv.value !== eventValidator.target.value) {
+      anotherDiv.parentElement.classList.add('failed-field');
+      anotherDiv.nextElementSibling.innerHTML =
+        'O campo ' +
+        anotherDiv.parentNode.childNodes[1].textContent +
+        ' deve ser igual ao campo ' +
+        eventValidator.target.labels[0].textContent;
+      formControlParam[anotherDiv.attributes.formControl.nodeValue].validate = false;
     } else {
-      formControl[formControlNode][i].validate = true;
+      anotherDiv.nextElementSibling.innerHTML = '';
+      anotherDiv.parentElement.classList.add('success-field');
+      formControlParam[anotherDiv.attributes.formControl.nodeValue].validate = true;
     }
   }
-
-  if (ev) {
-    resetValidationInput(ev);
-  }
-
-  if (isEmpty) {
-    changeButtonState('.actions-section button', true);
-    return;
-  }
-
-  changeButtonState('.actions-section button', false);
-  return true;
 }
 
 /**
  * Apply submit button status
  *
  */
-function applySubmitStatus(sel) {
+function applySubmitStatus(sel, formControlParam) {
   const button = document.querySelector(sel);
   let disabled = true;
-  for (const property in formControl) {
-    if (!formControl[property].validate) {
+  for (const property in formControlParam) {
+    if (Array.isArray(formControlParam[property])) {
+      for (const data of formControlParam[property]) {
+        if (data.hasOwnProperty('validate') && !data.validate) {
+          disabled = false;
+        }
+      }
+    } else if (
+      formControlParam[property].hasOwnProperty('validate') &&
+      !formControlParam[property].validate
+    ) {
       disabled = false;
     }
   }
@@ -329,29 +210,11 @@ function resetValidationInput(ev) {
 }
 
 /**
- *
- * Do not validate empty input
- */
-function refuseValidationOnEmptyValue(ev, formControlNode, sel) {
-  let isEmpty = false;
-  if (!ev.target.value.length) {
-    formControl[formControlNode].value = ev.target.value;
-    formControl[formControlNode].validate = false;
-    resetValidationInput(ev);
-    applySubmitStatus(sel);
-    isEmpty = true;
-  }
-
-  return isEmpty;
-}
-
-/**
  * Focus input
  *
  */
 function handleFocusInput(ev) {
   const actualClass = resetValidationInput(ev);
-  if (!ev.target.value.length) return;
 
   if (actualClass === 'success-field') {
     ev.target.parentElement.classList.add('success-field');

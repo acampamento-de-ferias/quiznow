@@ -28,7 +28,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 0.5rem;
   height: 8.16rem;
   width: 90%;
@@ -92,7 +91,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   margin-top: 0.5rem;
   width: 100%;
   height: 10rem;
@@ -135,16 +133,16 @@
   padding: 0.12rem 0.25rem;
 }
 
-/* Rating */
-.rating .basic-card {
+/* Results */
+.results .basic-card {
   margin: 1rem 0;
 }
 
-.rating .basic-card .rating-wrap {
+.results .basic-card .results-wrap {
   padding: 1.5rem 1rem;
 }
 
-.rating .basic-card .rating-text {
+.results .basic-card .results-text {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,7 +150,7 @@
   text-align: initial;
 }
 
-.rating .basic-card .rating-image img {
+.results .basic-card .results-image img {
   width: 100%;
   height: 12.5rem;
 }
@@ -182,6 +180,7 @@
 .create-quiz-desktop {
   padding: 3rem 0 4rem;
 }
+
 .create-quiz-desktop .create-quiz-card {
   padding: 1.563rem 8.875rem 1.5rem;
 }
@@ -226,7 +225,7 @@
   margin-top: 1rem;
 }
 
-.create-quiz-mobile #content-rating .basic-card:first-child,
+.create-quiz-mobile #content-results .basic-card:first-child,
 .create-quiz-mobile #content-questions .basic-card:first-child {
   margin-top: 0;
 }

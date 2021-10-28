@@ -10,30 +10,101 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <img class="img-fluid logo d-lg-none"
-      src="./images/logo-quiznow.png"
-      alt="Logo QuizNow"
-      title="Logo QuizNow" />
-    <div class="card">
-      <div class="row">
-        <div class="col-4 d-none d-lg-block">
-          <div class="banner">
-            <img class="img-fluid"
-              title="QuizNow"
-              alt="Logo QuizNow"
-              src="./images/logo-quiznow.png" />
-            <p class="text-center">
-              Cadastre-se e crie quantos quizzes você quiser.
-            </p>
-            <img class="img-fluid"
-              title="Cadastre-se"
-              alt="Homem em dúvida entre alternativas"
-              src="./images/register-banner.png" />
-            <div class="license">
-              <a href="https://storyset.com/marketing" target="_blank">
-                Marketing illustrations by Storyset
-              </a>
+    <div class="container">
+        <img class="img-fluid logo d-lg-none" src="./images/logo-quiznow.png" alt="Logo QuizNow" title="Logo QuizNow"/>
+        <div class="card">
+            <div class="row">
+                <div class="col-4 d-none d-lg-block">
+                    <div class="banner">
+                        <img class="img-fluid" title="QuizNow" alt="Logo QuizNow" src="./images/logo-quiznow.png" />
+                        <p class="text-center">Cadastre-se e crie quantos quizzes você quiser.</p>
+                        <img class="img-fluid" title="Cadastre-se" alt="Homem em dúvida entre alternativas" src="./images/register-banner.png" />
+                        <div class="license">
+                            <a href="https://storyset.com/marketing" target="_blank">Marketing illustrations by Storyset</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <form id="form-register" class="form">
+                        <h3 class="title text-center">Crie sua conta</h3>
+                        <div class="primary-divider d-none d-lg-block"></div>
+                        <div class="form-group default-form-group">
+                            <label for="registerName">Nome</label>
+                            <i class="fas icon"></i>
+                            <input 
+                                type="text" 
+                                class="form-control shadow-none" 
+                                formControl="name"
+                                id="registerName" 
+                                onkeyup="validate(event, 'string|required|min:3|hasNoNumber', true)"
+                                onblur="validate(event, 'string|required|min:3|hasNoNumber', true)"
+                                onfocus="handleFocusInput(event)"
+                                maxlength="120" 
+                                required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group default-form-group">
+                            <label for="registerEmail">E-mail</label>
+                            <i class="fas icon"></i>
+                            <input 
+                                type="email" 
+                                class="form-control shadow-none" 
+                                formControl="email"
+                                id="registerEmail"
+                                onkeyup="validate(event, 'string|email|required', true)"
+                                onblur="validate(event, 'string|email|required', true)"
+                                onfocus="handleFocusInput(event)"  
+                                maxlength="256" 
+                                required>
+                            <span class="error-message"></span>
+
+                        </div>
+                        <div class="form-group default-form-group">
+                            <label for="registerPassword">Senha</label>
+                            <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
+                            <input 
+                                type="password" 
+                                class="form-control shadow-none" 
+                                formControl="password"
+                                id="registerPassword"
+                                onkeyup="validate(event, 'string|required|min:8|hasNumber|hasLetter|stalker:registerPasswordConfirmation', true)"
+                                onblur="validate(event, 'string|required|min:8|hasNumber|hasLetter|stalker:registerPasswordConfirmation', true)"
+                                onFocus="handleFocusInput(event)"  
+                                maxlength="32" 
+                                placeholder="8-32 caracteres" 
+                                required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group default-form-group">
+                            <label for="registerPasswordConfirmation">Confirmar Senha</label>
+                            <i class="fas fa-eye existing-icon" onclick="handleInputType(event)"></i>
+                            <input 
+                                type="password" 
+                                class="form-control shadow-none" 
+                                id="registerPasswordConfirmation" 
+                                formControl="passwordConfirmation"
+                                onkeyup="validate(event, 'string|required|min:8|hasNumber|hasLetter|isEqual:registerPassword', true)"
+                                onblur="validate(event, 'string|required|min:8|hasNumber|hasLetter|isEqual:registerPassword', true)"
+                                onFocus="handleFocusInput(event)"
+                                maxlength="32" 
+                                required>
+                            <span class="error-message"></span>
+                        </div>
+                        <div id="loading" class="d-none text-center">
+                            <img src="./images/loading.gif" alt="Carregando cadastro de novo usuário" title="Carregando..."/>
+                        </div>
+                        <div class="primary-button">
+                            <button type="submit" class="btn shadow-none" disabled> Cadastrar </button>
+                        </div>
+                        <div class="row text-center d-none d-lg-block">
+                            <div class="col">
+                                <span class="hasAccount">Já tem uma conta? 
+                                    <a href="{{ url }}/login" class="login"> Entre </a>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
           </div>
         </div>

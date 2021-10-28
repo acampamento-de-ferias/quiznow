@@ -1,34 +1,49 @@
 const urlArrowDown = './images/arrow-collapse-down.png';
 const urlArrowRight = './images/arrow-collapse-right.png';
 let categorySelected = document.querySelectorAll('.option.active-option');
-let categoryForm = 'questions-answers';
-let questionsForm = [
-  {
-    title: 'Qual a cor do céu?',
-    answers: [
-      {
-        value: 'Amarelo',
-      },
-      {
-        value: 'Verde',
-      },
-      {
-        value: 'Azul',
-      },
-    ],
+
+const formControlQuiz = {
+  quizCategory: 'questions-answers',
+  quizTitle: {
+    value: '',
+    validate: false,
   },
-  {
-    title: 'O sol é uma estrela',
-    answers: [
-      {
-        value: 'Verdadeiro',
-      },
-      {
-        value: 'Falso',
-      },
-    ],
+  quizDescription: {
+    value: '',
+    validate: true,
   },
-];
+  quizKeywords: {
+    value: '',
+    validate: false,
+  },
+  quizQuestions: [
+    {
+      title: 'Qual a cor do céu?',
+      answers: [
+        {
+          value: 'Amarelo',
+        },
+        {
+          value: 'Verde',
+        },
+        {
+          value: 'Azul',
+        },
+      ],
+    },
+    {
+      title: 'O sol é uma estrela',
+      answers: [
+        {
+          value: 'Verdadeiro',
+        },
+        {
+          value: 'Falso',
+        },
+      ],
+    },
+  ],
+};
 
 document.addEventListener('DOMContentLoaded', function (event) {
   renderQuestionSection();
@@ -42,7 +57,7 @@ function renderQuestionSection() {
   const questionDivMobile = document.querySelector('#question-dinamic-mobile');
 
   // Get the html for desktop
-  const questionHtmlDesktop = questionsForm
+  const questionHtmlDesktop = formControlQuiz.quizQuestions
     .map(
       (question, indexQuestion) =>
         `<div class="basic-card">
@@ -73,7 +88,7 @@ function renderQuestionSection() {
     .join('');
 
   // Get the HTML for mobile
-  const questionHtmlMobile = questionsForm
+  const questionHtmlMobile = formControlQuiz.quizQuestions
     .map(
       (question, indexQuestion) =>
         `<div class="basic-card">
@@ -115,12 +130,12 @@ function renderQuestionPage() {
     : changePageWithSameUrl('qa-answers', 'personality-answers');
 }
 
-function renderRatingPage() {
-  changePageWithSameUrl('create-quiz', 'rating');
+function renderResultsPage() {
+  changePageWithSameUrl('create-quiz', 'results');
 }
 
 function deleteQuestionAnswers(questionAnswersIndex) {
-  questionsForm.splice(questionAnswersIndex, 1);
+  formControlQuiz.quizQuestions.splice(questionAnswersIndex, 1);
   renderQuestionSection();
 }
 
@@ -138,7 +153,7 @@ function selectCategory(className, screen = 'mobile') {
   const element = document.getElementsByClassName(className)[indexScreen];
   element.classList.add('active-option');
   categorySelected = element;
-  categoryForm = categorySelected.getAttribute('data-value');
+  formControlQuiz.quizCategory = categorySelected.getAttribute('data-value');
 }
 
 function selectAccordion(event) {
@@ -171,4 +186,56 @@ function selectAccordion(event) {
     });
     return;
   }
+}
+
+/**
+ * Send data to backend
+ *
+ */
+function submitQuiz(event) {
+  // Remove default http request
+  console.log(formControlQuiz);
+  event.preventDefault();
+
+  // Get data in the form
+  // const data = {
+  //     name: formControl.name.value,
+  //     email: formControl.email.value,
+  //     password: formControl.password.value
+  // };
+
+  // // Show loading before request be finished
+  // const loading = document.getElementById("loading");
+  // openElement(loading)
+
+  // // Send data to backend using fetch
+  // fetch('/register', {
+  //     method: 'POST',
+  //     headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //     },
+  //     dataType: "json",
+  //     mode: "same-origin",
+  //     credentials: "same-origin",
+  //     body: JSON.stringify(data)
+  // }).then(function(response) {
+  //     if (response.status !== 200) {
+  //         throw new Error("Erro: não foi possível realizar sua requisição");
+  //     }
+
+  //     return response.json();
+  // }).then(function(body) {
+  //     if (body.status === 400) {
+  //         throw new Error(body.message);
+  //     }
+
+  //     window.location.href = url;
+  // }).catch(function(error) {
+  //     openElement(document.querySelector("#alert"), false, true);
+  //     document.querySelector("#alert .alert-message").innerHTML = error.message;
+  //     closeElementByTime(document.querySelector("#alert"), 4000);
+  // }).finally(function() {
+  //     closeElement(loading);
+  // });
 }
