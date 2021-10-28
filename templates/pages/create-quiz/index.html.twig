@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block head %}
-    <link type="text/css" rel="stylesheet" href="./css/pages/create-quiz.css" />
-    <link type="text/css" rel="stylesheet" href="./css/pages/create-question.css" />
-    <link type="text/css" rel="stylesheet" href="./css/pages/results.css" />
-    {{ parent() }}
+  <link type="text/css" rel="stylesheet" href="./css/pages/create-quiz.css" />
+  <link type="text/css"
+    rel="stylesheet"
+    href="./css/pages/create-question.css" />
+  <link type="text/css" rel="stylesheet" href="./css/pages/results.css" />
+  {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -24,43 +26,43 @@
 
         <div class="category">
           <div class="option questions-answers active-option"
-            data-value="questions-answers">
+            data-value="questions-answers"
+            onclick="selectCategory('questions-answers')">
             <div class="check">
               <img src="./images/selected.png" alt="Checked icon" />
             </div>
-            <div class="option-wrap questions-answers-wrap cursor-pointer"
-              onclick="selectCategory('questions-answers')">
+            <div class="option-wrap questions-answers-wrap">
               <img src="./images/answer.png"
                 alt="Questions and Answers option" />
             </div>
-            <p class="cursor-pointer"
-              onclick="selectCategory('questions-answers')">
+            <p>
               Perguntas & Respostas
             </p>
           </div>
-          <div class="option personality" data-value="personality">
+          <div class="option personality"
+            data-value="personality"
+            onclick="selectCategory('personality')">
             <div class="check">
               <img src="./images/selected.png" alt="Checked icon" />
             </div>
-            <div class="option-wrap personality-wrap cursor-pointer"
-              onclick="selectCategory('personality')">
+            <div class="option-wrap personality-wrap">
               <img src="./images/personality.png"
                 alt="Questions and Answers option" />
             </div>
-            <p class="cursor-pointer" onclick="selectCategory('personality')">
+            <p>
               Personalidade
             </p>
           </div>
         </div>
       </div>
 
-      <form>
+      <form onsubmit="submitQuiz(event)">
         <div class="accordion accordion-flush pb-helper-5"
           id="accordion-create-quiz">
           <div class="accordion-item basic-info">
             <h2 class="accordion-header" id="heading-basic-infos">
               <button id="button-basic-info"
-                class="accordion-button third-title collapsed shadow-none"
+                class="accordion-button fourth-title collapsed shadow-none"
                 onclick="selectAccordion(this)"
                 type="button"
                 data-bs-toggle="collapse"
@@ -82,42 +84,49 @@
                   <p>
                     Miniatura
                   </p>
-                  <label class="cursor-pointer" for="quiz-miniature">
+                  <label for="quiz-miniature-mobile">
                     <img src="./images/file.png" alt="Add a image here" />
-                    <p class="mt-2 weak-text">
+                    <p>
                       Adicione uma imagem
                     </p>
                   </label>
-                  <input type="file"
-                    class="custom-file-input d-none"
-                    id="quiz-miniature" />
+                  <input id="quiz-miniature-mobile"
+                    type="file"
+                    class="custom-file-input d-none" />
                 </div>
 
                 <div class="form-group default-form-group">
-                  <label for="quiz-title">Título</label>
-                  <input type="text"
+                  <label for="quiz-title-mobile">Título</label>
+                  <input id="quiz-title-mobile"
+                    type="text"
                     class="form-control shadow-none bg-white"
-                    formcontrol="quiz-title"
-                    id="quiz-title"
+                    formcontrol="quizTitle"
+                    onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                    onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                    onFocus="handleFocusInput(event)"
                     maxlength="256"
                     required />
+                  <span class="error-message"></span>
                 </div>
 
                 <div class="form-group default-form-group">
-                  <label for="quiz-description">
+                  <label for="quiz-description-mobile">
                     Descrição <span class="optional">(Opcional)</span>
                   </label>
-                  <textarea class="form-control shadow-none bg-white"
-                    id="quiz-description"
+                  <textarea id="quiz-description-mobile"
+                    formcontrol="quizDescription"
+                    class="form-control shadow-none bg-white"
+                    onkeyup="validate(event, 'string', false, formControlQuiz)"
                     maxlength="280"></textarea>
                 </div>
 
                 <div class="form-group default-form-group">
-                  <label for="quiz-keywords">Palavras-chave</label>
-                  <input type="text"
+                  <label for="quiz-keywords-mobile">Palavras-chave</label>
+                  <input id="quiz-keywords-mobile"
+                    type="text"
                     class="form-control shadow-none bg-white"
-                    formcontrol="quiz-keywords"
-                    id="quiz-keywords"
+                    onkeyup="validate(event, 'string|required', false, formControlQuiz)"
+                    formcontrol="quizKeywords"
                     maxlength="256"
                     required />
                 </div>
@@ -127,7 +136,7 @@
           <div class="accordion-item question">
             <h2 class="accordion-header" id="heading-questions">
               <button id="button-questions"
-                class="accordion-button third-title collapsed shadow-none"
+                class="accordion-button fourth-title collapsed shadow-none"
                 onclick="selectAccordion(this)"
                 type="button"
                 data-bs-toggle="collapse"
@@ -149,187 +158,78 @@
                   <!-- Questions and answers here by javascript -->
                 </div>
 
-            <form onsubmit="submitQuiz(event)">
-                <div class="accordion accordion-flush pb-helper-5" id="accordion-create-quiz">
-                    <div class="accordion-item basic-info">
-                        <h2 class="accordion-header" id="heading-basic-infos">
-                            <button id="button-basic-info" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-basic-infos" aria-expanded="false" aria-controls="content-basic-infos">
-                                <img class="arrow-down" src="./images/arrow-collapse-down.png" alt="Seta para baixo">
-                                <span>
-                                    Informações Básicas
-                                </span> 
-                            </button>
-                        </h2>
-                        <div id="content-basic-infos" class="accordion-collapse collapse show" aria-labelledby="heading-basic-infos" data-bs-parent="#accordion-create-quiz">
-                            <div class="accordion-body">
-
-                                <div class="form-group default-form-group miniatura mt-0">
-                                    <p> Miniatura </p>
-                                    <label for="quiz-miniature-mobile">
-                                        <img src="./images/file.png" alt="Add a image here">
-                                        <p> Adicione uma imagem </p>
-                                    </label>
-                                    <input id="quiz-miniature-mobile" type="file" class="custom-file-input d-none">
-                                </div>
-
-                                <div class="form-group default-form-group">
-                                    <label for="quiz-title-mobile">Título</label>
-                                    <input 
-                                        id="quiz-title-mobile" 
-                                        type="text" 
-                                        class="form-control shadow-none bg-white" 
-                                        formcontrol="quizTitle" 
-                                        onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
-                                        onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
-                                        onFocus="handleFocusInput(event)"  
-                                        maxlength="256" 
-                                        required>
-                                    <span class="error-message"></span>
-                                </div>
-
-                                <div class="form-group default-form-group">
-                                    <label for="quiz-description-mobile">Descrição <span class="optional"> (Opcional) </span></label>
-                                    <textarea id="quiz-description-mobile" formcontrol="quizDescription" class="form-control shadow-none bg-white" onkeyup="validate(event, 'string', false, formControlQuiz)" maxlength="280"></textarea>
-                                </div>
-
-                                <div class="form-group default-form-group">
-                                    <label for="quiz-keywords-mobile">Palavras-chave</label>
-                                    <input id="quiz-keywords-mobile" type="text" class="form-control shadow-none bg-white" onkeyup="validate(event, 'string|required', false, formControlQuiz)" formcontrol="quizKeywords" maxlength="256" required>
-                                </div>
-
-                            </div>
-                        </div>
+                <div class="secondary-button">
+                  <button class="btn shadow-none"
+                    onclick="renderQuestionPage()">
+                    <img class="plus-icon"
+                      src="./images/plus.png"
+                      alt="Adicionar pergunta" />
+                    Adicionar pergunta
+                  </button>
+                </div>
+              </div>'
+            </div>
+          </div>
+          <div class="accordion-item results">
+            <h2 class="accordion-header" id="heading-results">
+              <button id="button-results"
+                class="accordion-button fourth-title collapsed shadow-none"
+                onclick="selectAccordion(this)"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#content-results"
+                aria-expanded="false"
+                aria-controls="content-results">
+                <img class="arrow-right"
+                  src="./images/arrow-collapse-right.png"
+                  alt="Seta para direita" />
+                <span>Resultados</span>
+              </button>
+            </h2>
+            <div id="content-results"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading-results"
+              data-bs-parent="#accordion-create-quiz">
+              <div class="accordion-body">
+                <div class="basic-card">
+                  <div class="row results-image">
+                    <div class="col">
+                      <img src="./images/tais.jpg" alt="Imagem do resultado" />
                     </div>
-                    <div class="accordion-item question">
-                        <h2 class="accordion-header" id="heading-questions">
-                            <button id="button-questions" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-questions" aria-expanded="false" aria-controls="content-questions">
-                                <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
-                                <span>
-                                    Perguntas
-                                </span>
-                            </button>
-                        </h2>
-                        <div id="content-questions" class="accordion-collapse collapse" aria-labelledby="heading-questions" data-bs-parent="#accordion-create-quiz">
-                            <div class="accordion-body">
-                                
-                                <div id="question-dinamic-mobile">
-                                    <!-- Questions and answers here by javascript -->
-                                </div>
-
-                                <div class="secondary-button">
-                                    <button class="btn shadow-none" onclick="renderQuestionPage()">
-                                        <img class="plus-icon" src="./images/plus.png" alt="Adicionar pergunta">
-                                        Adicionar pergunta
-                                    </button>
-                                </div>
-
-                            </div>'
-                        </div>
+                  </div>
+                  <div class="row results-wrap">
+                    <div class="col-10 results-infos">
+                      <h3 class="third-title">
+                        Você acertou X questões
+                      </h3>
+                      <p class="results-text small-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Suspendisse venenatis metus et eros laoreet finibus.
+                      </p>
                     </div>
-                    <div class="accordion-item results">
-                        <h2 class="accordion-header" id="heading-results">
-                            <button id="button-results" class="accordion-button fourth-title collapsed shadow-none" onclick="selectAccordion(this)" type="button" data-bs-toggle="collapse" data-bs-target="#content-results" aria-expanded="false" aria-controls="content-results">
-                                <img class="arrow-right" src="./images/arrow-collapse-right.png" alt="Seta para direita">
-                                <span>
-                                    Resultados
-                                </span>
-                            </button>
-                        </h2>
-                        <div id="content-results" class="accordion-collapse collapse" aria-labelledby="heading-results" data-bs-parent="#accordion-create-quiz">
-                            <div class="accordion-body">
-                                
-                                <div class="basic-card">
-                                    <div class="row results-image">
-                                        <div class="col">
-                                            <img src="./images/tais.jpg" alt="Imagem do resultado">
-                                        </div>
-                                    </div>
-                                    <div class="row results-wrap">
-                                        <div class="col-10 results-infos">
-                                            <h3 class="third-title">Você acertou X questões</h3>
-                                            <p class="results-text small-text">
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit. Suspendisse venenatis
-                                                metus et eros laoreet finibus.
-                                            </p>
-                                        </div>
-                                        <div class="col-2 management">
-                                            <div class="remove-question">
-                                                <img src="./images/trash.png" alt="Remove question">
-                                            </div>
-                                            <div class="edit-question">
-                                                <img src="./images/edit.png" alt="Edit question">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="basic-card">
-                                    <div class="row results-image">
-                                        <div class="col">
-                                            <img src="./images/motel.jpg" alt="Imagem do resultado">
-                                        </div>
-                                    </div>
-                                    <div class="row results-wrap">
-                                        <div class="col-10 results-infos">
-                                            <h3 class="third-title">Você acertou Y questões</h3>
-                                            <p class="results-text small-text">
-                                                Maecenas vitae justo ultrices tortor
-                                                laoreet imperdiet. Praesent suscipit turpis
-                                                in dui ultrices, quis tincidunt erat lacinia.
-                                                Vestibulum viverra, nunc ac varius rhoncus,
-                                                libero tortor imperdiet mauris, sit amet
-                                                viverra turpis lacus ac dolor.
-                                            </p>
-                                        </div>
-                                        <div class="col-2 management">
-                                            <div class="remove-question">
-                                                <img src="./images/trash.png" alt="Remove question">
-                                            </div>
-                                            <div class="edit-question">
-                                                <img src="./images/edit.png" alt="Edit question">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="secondary-button">
-                                    <button class="btn shadow-none" onclick="changePageWithSameUrl('create-quiz', 'results')">
-                                        <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
-                                        Adicionar resultado
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="col-2 management">
+                      <div class="remove-question">
+                        <img src="./images/trash.png" alt="Remove question" />
+                      </div>
+                      <div class="edit-question">
+                        <img src="./images/edit.png" alt="Edit question" />
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="primary-button fixed-footer">
-                    <button type="submit" class="btn publish-quiz shadow-none" disabled>Publicar quiz</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="create-quiz-desktop d-none d-lg-block">
-            <div class="container">
-                <div class="basic-card create-quiz-card">
-                    
-                    <h3 class="title text-center">Criar Quiz</h3>
-                    <div class="primary-divider pb-negative-helper-5"></div>
 
                 <div class="basic-card">
-                  <div class="row rating-image">
+                  <div class="row results-image">
                     <div class="col">
                       <img src="./images/motel.jpg" alt="Imagem do resultado" />
                     </div>
                   </div>
-                  <div class="row rating-wrap">
-                    <div class="col-10 rating-infos">
-                      <h3 class="fourth-title">
+                  <div class="row results-wrap">
+                    <div class="col-10 results-infos">
+                      <h3 class="third-title">
                         Você acertou Y questões
                       </h3>
-                      <p class="rating-text small-text">
+                      <p class="results-text small-text">
                         Maecenas vitae justo ultrices tortor laoreet imperdiet.
                         Praesent suscipit turpis in dui ultrices, quis tincidunt
                         erat lacinia. Vestibulum viverra, nunc ac varius
@@ -348,135 +248,26 @@
                   </div>
                 </div>
 
-                    <form onsubmit="submitQuiz(event)">
-                        <div class="create-quiz-section basic-info">
-                            <h3 class="subtitle">
-                                Informações básicas
-                            </h3>
-                            <div class="primary-divider"></div>
-                            <div class="row">
-                                <div class="col-7">
-                                    
-                                    <div class="form-group default-form-group miniatura">
-                                        <p class="label-text"> Miniatura </p>
-                                        <label for="quiz-miniature-desktop">
-                                            <img src="./images/file.png" alt="Add a image here">
-                                            <p class="mt-2 weak-text"> Adicione uma imagem </p>
-                                        </label>
-                                        <input id="quiz-miniature-desktop" type="file" class="custom-file-input d-none">
-                                    </div>
-
-                                </div>
-                                <div class="col">
-
-                                    <div class="form-group default-form-group">
-                                        <label for="quiz-title-desktop">Título</label>
-                                        <input id="quiz-title-desktop" 
-                                            type="text" 
-                                            class="form-control shadow-none bg-white" 
-                                            formcontrol="quizTitle" 
-                                            onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
-                                            onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
-                                            onFocus="handleFocusInput(event)"  
-                                            maxlength="256" 
-                                            required>
-                                        <span class="error-message"></span>
-                                    </div>
-
-                                    <div class="form-group default-form-group">
-                                        <label for="quiz-description-desktop">Descrição <span class="optional"> (Opcional) </span></label>
-                                        <textarea id="quiz-description-desktop" class="form-control shadow-none bg-white" formcontrol="quizDescription" onkeyup="validate(event, 'string', false, formControlQuiz)" maxlength="280"></textarea>
-                                    </div>
-
-                                    <div class="form-group default-form-group">
-                                        <label for="quiz-keywords-desktop">Palavras-chave</label>
-                                        <input id="quiz-keywords-desktop" type="text" class="form-control shadow-none bg-white" formcontrol="quizKeywords" onkeyup="validate(event, 'string|required', false, formControlQuiz)" maxlength="256" required>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="create-quiz-section question">
-                            <h3 class="subtitle">
-                                Perguntas
-                            </h3>
-                            <div class="primary-divider"></div>
-
-                            <div id="question-dinamic-desktop">
-                                <!-- Questions and answers here by javascript -->
-                            </div>
-                                                        
-                            <div class="secondary-button">
-                                <button class="btn shadow-none w-auto" onclick="renderQuestionPage()">
-                                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar pergunta">
-                                    Adicionar pergunta
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="create-quiz-section results">
-                            <h3 class="subtitle">
-                                Resultados
-                            </h3>
-                            <div class="primary-divider"></div>
-                            
-                            <div class="basic-card">
-                                <div class="results-infos">
-                                    <div class="row g-0">
-                                        <div class="col-3 results-image">
-                                            <img src="./images/tais.jpg" alt="Imagem do resultado">
-                                        </div>
-                                        <div class="col-8 results-wrap">       
-                                            <h3 class="third-title">Você acertou X questões</h3>
-                                            <p class="results-text simple-text">
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipiscing elit. Suspendisse venenatis
-                                                metus et eros laoreet finibus.
-                                            </p>
-                                        </div>
-                                        <div class="col-1 results-wrap management">
-                                            <div class="remove-question">
-                                                <img src="./images/trash.png" alt="Remove question">
-                                            </div>
-                                            <div class="edit-question">
-                                                <img src="./images/edit.png" alt="Edit question">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-
-                            <div class="basic-card">
-                                <div class="results-infos">
-                                    <div class="row g-0">
-                                        <div class="col-3 results-image">
-                                            <img src="./images/motel.jpg" alt="Imagem do resultado">
-                                        </div>
-                                        <div class="col-8 results-wrap">       
-                                            <h3 class="third-title">Você acertou Y questões</h3>
-                                            <p class="results-text simple-text">
-                                                Maecenas vitae justo ultrices tortor
-                                                laoreet imperdiet. Praesent suscipit turpis
-                                                in dui ultrices, quis tincidunt erat lacinia.
-                                                Vestibulum viverra, nunc ac varius rhoncus,
-                                                libero tortor imperdiet mauris, sit amet
-                                                viverra turpis lacus ac dolor.
-                                            </p>
-                                        </div>
-                                        <div class="col-1 management">
-                                            <div class="remove-question">
-                                                <img src="./images/trash.png" alt="Remove question">
-                                            </div>
-                                            <div class="edit-question">
-                                                <img src="./images/edit.png" alt="Edit question">
-                                            </div>
-                                        </div>
+                <div class="secondary-button">
+                  <button class="btn shadow-none"
+                    onclick="changePageWithSameUrl('create-quiz', 'results')">
+                    <img class="plus-icon"
+                      src="./images/plus.png"
+                      alt="Adicionar resultado" />
+                    Adicionar resultado
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="primary-button fixed-footer">
+          <button type="submit" class="btn publish-quiz shadow-none" disabled>
+            Publicar quiz
+          </button>
+        </div>
+      </form>
+    </div>
 
     <div class="create-quiz-desktop d-none d-lg-block">
       <div class="container">
@@ -487,37 +278,35 @@
           <div class="primary-divider pb-negative-helper-5"></div>
 
           <div class="category">
-            <div class="option questions-answers active-option">
+            <div class="option questions-answers active-option"
+              onclick="selectCategory('questions-answers', 'desktop')">
               <div class="check">
                 <img src="./images/selected.png" alt="Checked icon" />
               </div>
-              <div class="option-wrap questions-answers-wrap cursor-pointer"
-                onclick="selectCategory('questions-answers', 'desktop')">
+              <div class="option-wrap questions-answers-wrap">
                 <img src="./images/answer.png"
                   alt="Questions and Answers option" />
               </div>
-              <p class="cursor-pointer"
-                onclick="selectCategory('questions-answers', 'desktop')">
-                Perguntas &amp; Respostas
+              <p>
+                Perguntas & Respostas
               </p>
             </div>
-            <div class="option personality">
+            <div class="option personality"
+              onclick="selectCategory('personality', 'desktop')">
               <div class="check">
                 <img src="./images/selected.png" alt="Checked icon" />
               </div>
-              <div class="option-wrap personality-wrap cursor-pointer"
-                onclick="selectCategory('personality', 'desktop')">
+              <div class="option-wrap personality-wrap">
                 <img src="./images/personality.png"
                   alt="Questions and Answers option" />
               </div>
-              <p class="cursor-pointer"
-                onclick="selectCategory('personality', 'desktop')">
+              <p>
                 Personalidade
               </p>
             </div>
           </div>
 
-          <form>
+          <form onsubmit="submitQuiz(event)">
             <div class="create-quiz-section basic-info">
               <h3 class="subtitle">
                 Informações básicas
@@ -529,43 +318,50 @@
                     <p class="label-text">
                       Miniatura
                     </p>
-                    <label class="cursor-pointer" for="quiz-miniature">
+                    <label for="quiz-miniature-desktop">
                       <img src="./images/file.png" alt="Add a image here" />
                       <p class="mt-2 weak-text">
                         Adicione uma imagem
                       </p>
                     </label>
-                    <input type="file"
-                      class="custom-file-input d-none"
-                      id="quiz-miniature" />
+                    <input id="quiz-miniature-desktop"
+                      type="file"
+                      class="custom-file-input d-none" />
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group default-form-group">
-                    <label for="quiz-title">Título</label>
-                    <input type="text"
+                    <label for="quiz-title-desktop">Título</label>
+                    <input id="quiz-title-desktop"
+                      type="text"
                       class="form-control shadow-none bg-white"
-                      formcontrol="quiz-title"
-                      id="quiz-title"
+                      formcontrol="quizTitle"
+                      onkeyup="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                      onblur="validate(event, 'string|required|min:8', true, formControlQuiz)"
+                      onFocus="handleFocusInput(event)"
                       maxlength="256"
                       required />
+                    <span class="error-message"></span>
                   </div>
 
                   <div class="form-group default-form-group">
-                    <label for="quiz-description">
+                    <label for="quiz-description-desktop">
                       Descrição <span class="optional">(Opcional)</span>
                     </label>
-                    <textarea class="form-control shadow-none bg-white"
-                      id="quiz-description"
+                    <textarea id="quiz-description-desktop"
+                      class="form-control shadow-none bg-white"
+                      formcontrol="quizDescription"
+                      onkeyup="validate(event, 'string', false, formControlQuiz)"
                       maxlength="280"></textarea>
                   </div>
 
                   <div class="form-group default-form-group">
-                    <label for="quiz-keywords">Palavras-chave</label>
-                    <input type="text"
+                    <label for="quiz-keywords-desktop">Palavras-chave</label>
+                    <input id="quiz-keywords-desktop"
+                      type="text"
                       class="form-control shadow-none bg-white"
-                      formcontrol="quiz-keywords"
-                      id="quiz-keywords"
+                      formcontrol="quizKeywords"
+                      onkeyup="validate(event, 'string|required', false, formControlQuiz)"
                       maxlength="256"
                       required />
                   </div>
@@ -573,35 +369,49 @@
               </div>
             </div>
 
-            <div class="secondary-button">
-                <button class="btn shadow-none w-auto" onclick="changePageWithSameUrl('create-quiz', 'results')">
-                    <img class="plus-icon" src="./images/plus.png" alt="Adicionar resultado">
-                    Adicionar resultado
+            <div class="create-quiz-section question">
+              <h3 class="subtitle">
+                Perguntas
+              </h3>
+              <div class="primary-divider"></div>
+
+              <div id="question-dinamic-desktop">
+                <!-- Questions and answers here by javascript -->
+              </div>
+
+              <div class="secondary-button">
+                <button class="btn shadow-none w-auto"
+                  onclick="renderQuestionPage()">
+                  <img class="plus-icon"
+                    src="./images/plus.png"
+                    alt="Adicionar pergunta" />
+                  Adicionar pergunta
                 </button>
+              </div>
             </div>
 
-            <div class="create-quiz-section rating">
+            <div class="create-quiz-section results">
               <h3 class="subtitle">
                 Resultados
               </h3>
               <div class="primary-divider"></div>
 
               <div class="basic-card">
-                <div class="rating-infos">
+                <div class="results-infos">
                   <div class="row g-0">
-                    <div class="col-3 rating-image">
+                    <div class="col-3 results-image">
                       <img src="./images/tais.jpg" alt="Imagem do resultado" />
                     </div>
-                    <div class="col-8 rating-wrap">
-                      <h3 class="fourth-title">
+                    <div class="col-8 results-wrap">
+                      <h3 class="third-title">
                         Você acertou X questões
                       </h3>
-                      <p class="rating-text simple-text">
+                      <p class="results-text simple-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Suspendisse venenatis metus et eros laoreet finibus.
                       </p>
                     </div>
-                    <div class="col-1 rating-wrap management">
+                    <div class="col-1 results-wrap management">
                       <div class="remove-question">
                         <img src="./images/trash.png" alt="Remove question" />
                       </div>
@@ -613,17 +423,39 @@
                 </div>
               </div>
 
-                        <div class="primary-button">
-                            <button type="submit" class="btn publish-quiz shadow-none w-50" disabled>Publicar quiz</button>
-                        </div>
-                    </form>
-                    
+              <div class="basic-card">
+                <div class="results-infos">
+                  <div class="row g-0">
+                    <div class="col-3 results-image">
+                      <img src="./images/motel.jpg" alt="Imagem do resultado" />
+                    </div>
+                    <div class="col-8 results-wrap">
+                      <h3 class="third-title">
+                        Você acertou Y questões
+                      </h3>
+                      <p class="results-text simple-text">
+                        Maecenas vitae justo ultrices tortor laoreet imperdiet.
+                        Praesent suscipit turpis in dui ultrices, quis tincidunt
+                        erat lacinia. Vestibulum viverra, nunc ac varius
+                        rhoncus, libero tortor imperdiet mauris, sit amet
+                        viverra turpis lacus ac dolor.
+                      </p>
+                    </div>
+                    <div class="col-1 management">
+                      <div class="remove-question">
+                        <img src="./images/trash.png" alt="Remove question" />
+                      </div>
+                      <div class="edit-question">
+                        <img src="./images/edit.png" alt="Edit question" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="secondary-button">
                 <button class="btn shadow-none w-auto"
-                  onclick="changePageWithSameUrl('create-quiz', 'rating')">
+                  onclick="changePageWithSameUrl('create-quiz', 'results')">
                   <img class="plus-icon"
                     src="./images/plus.png"
                     alt="Adicionar resultado" />
@@ -631,15 +463,17 @@
                 </button>
               </div>
             </div>
-        </div>
-    </div>
 
-    <div id="create-question" class="d-none">
-        {% include '@core/pages/create-question/index.html.twig' %}
-    </div>
-    
-    <div id="results" class="d-none">
-        {% include '@core/pages/results/index.html.twig' %}
+            <div class="primary-button">
+              <button type="submit"
+                class="btn publish-quiz shadow-none w-50"
+                disabled>
+                Publicar quiz
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -647,8 +481,8 @@
     {% include '@core/pages/create-question/index.html.twig' %}
   </div>
 
-  <div id="rating" class="d-none">
-    {% include '@core/pages/rating/index.html.twig' %}
+  <div id="results" class="d-none">
+    {% include '@core/pages/results/index.html.twig' %}
   </div>
 
   <div class="d-none d-lg-block">
@@ -657,7 +491,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="./js/pages/create-quiz.js"></script>
-    <script src="./js/pages/create-question.js"></script>
-    <script src="./js/pages/results.js"></script>
+  <script src="./js/pages/create-quiz.js"></script>
+  <script src="./js/pages/create-question.js"></script>
+  <script src="./js/pages/results.js"></script>
 {% endblock %}
