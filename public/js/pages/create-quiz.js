@@ -12,10 +12,10 @@ const formControlQuiz = {
         value: '',
         validate: true
     },
-    quizKeywords: [{
+    quizKeywords: {
         value: '',
         validate: false
-    }],
+    },
     quizQuestions: [{
         title: "Qual a cor do céu?",
         answers: [{

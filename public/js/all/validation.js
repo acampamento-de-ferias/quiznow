@@ -15,7 +15,6 @@ function validate(event, validator, hasEffects = false, formControlParam = formC
     resetValidationInput(eventValidator);
 
     try {
-        console.log(arrayValidations);
         for (let validation of arrayValidations) {
             const validationSplitted = validation.split(":");
             const method             = validationSplitted[0];
@@ -141,7 +140,13 @@ function applySubmitStatus(sel, formControlParam) {
     const button = document.querySelector(sel);
     let disabled = true;
     for (const property in formControlParam) {
-        if (!formControlParam[property].validate) {
+        if (Array.isArray(formControlParam[property])) {
+            for (const data of formControlParam[property]) {
+                if (data.hasOwnProperty('validate') && !data.validate) {
+                    disabled = false;
+                }
+            }
+        } else if (formControlParam[property].hasOwnProperty('validate') && !formControlParam[property].validate) {
             disabled = false;
         }
     }
