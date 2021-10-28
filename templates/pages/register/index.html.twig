@@ -1,10 +1,12 @@
-{% extends "components/base.html.twig" %}
+{% extends 'components/base.html.twig' %}
 
-{% block title %} Crie sua conta {% endblock %}
+{% block title %}
+  Crie sua conta
+{% endblock %}
 
 {% block head %}
-    <link type="text/css" rel="stylesheet" href="./css/pages/register.css" />
-    {{ parent() }}
+  <link type="text/css" rel="stylesheet" href="./css/pages/register.css" />
+  {{ parent() }}
 {% endblock %}
 
 {% block content %}
@@ -104,21 +106,119 @@
                     </form>
                 </div>
             </div>
+          </div>
         </div>
-        <div class="row text-center d-lg-none">
-            <div class="col">
-                <span class="hasAccount">Já tem uma conta? 
-                    <a href="{{ url }}/login" class="login"> Entre </a>
-                </span>
+        <div class="col">
+          <form id="form-register" class="form">
+            <h3 class="title text-center">
+              Crie sua conta
+            </h3>
+            <div class="primary-divider d-none d-lg-block"></div>
+            <div class="form-group default-form-group">
+              <label for="registerName">Nome</label>
+              <i class="fas icon"></i>
+              <input type="text"
+                class="form-control shadow-none"
+                formControl="name"
+                id="registerName"
+                onkeyup="validateName(event, 3, 'keyup')"
+                onblur="validateName(event, 3, 'blur')"
+                onfocus="handleFocusInput(event)"
+                maxlength="120"
+                required />
+              <span class="error-message"></span>
             </div>
+            <div class="form-group default-form-group">
+              <label for="registerEmail">E-mail</label>
+              <i class="fas icon"></i>
+              <input type="email"
+                class="form-control shadow-none"
+                formControl="email"
+                id="registerEmail"
+                onkeyup="validateEmail(event, 'keyup')"
+                onblur="validateEmail(event, 'blur')"
+                onFocus="handleFocusInput(event)"
+                maxlength="256"
+                required />
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group default-form-group">
+              <label for="registerPassword">Senha</label>
+              <i class="fas fa-eye existing-icon"
+                onclick="handleInputType(event)">
+
+              </i>
+              <input type="password"
+                class="form-control shadow-none"
+                formControl="password"
+                id="registerPassword"
+                onkeyup="validatePassword(event, 8, 'keyup', 'passwordConfirmation')"
+                onblur="validatePassword(event, 8, 'blur', 'passwordConfirmation')"
+                onFocus="handleFocusInput(event)"
+                maxlength="32"
+                placeholder="8-32 caracteres"
+                required />
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group default-form-group">
+              <label for="registerPasswordConfirmation">Confirmar Senha</label>
+              <i class="fas fa-eye existing-icon"
+                onclick="handleInputType(event)">
+
+              </i>
+              <input type="password"
+                class="form-control shadow-none"
+                id="registerPasswordConfirmation"
+                formControl="passwordConfirmation"
+                onkeyup="validatePasswordConfirmation(event, 'keyup')"
+                onblur="validatePasswordConfirmation(event, 'blur')"
+                onFocus="handleFocusInput(event)"
+                maxlength="32"
+                required />
+              <span class="error-message"></span>
+            </div>
+            <div id="loading" class="d-none text-center">
+              <img src="./images/loading.gif"
+                alt="Carregando cadastro de novo usuário"
+                title="Carregando..." />
+            </div>
+            <div class="primary-button">
+              <button type="submit" class="btn shadow-none" disabled>
+                Cadastrar
+              </button>
+            </div>
+            <div class="row text-center d-none d-lg-block">
+              <div class="col">
+                <span class="hasAccount light-link">
+                  Já tem uma conta?
+                  <a href="{{ url }}/login" class="login">Entre</a>
+                </span>
+              </div>
+            </div>
+          </form>
         </div>
-        <div id="alert" class="alert alert-danger element-effected hide-element default-alert" role="alert">
-            <span class="alert-message pr-3"></span>    
-            <i class="fas fa-times close-icon" onclick="closeElement(event.target.parentElement, '', true)"></i>
-        </div>
+      </div>
     </div>
+    <div class="row text-center d-lg-none">
+      <div class="col">
+        <span class="hasAccount light-link">
+          Já tem uma conta?
+          <a href="{{ url }}/login" class="login">Entre</a>
+        </span>
+      </div>
+    </div>
+    <div id="alert"
+      class="alert alert-danger element-effected hide-element default-alert"
+      role="alert">
+      <span class="alert-message pr-3"></span>
+      <i class="fas fa-times close-icon"
+        onclick="closeElement(event.target.parentElement, '', true)">
+
+      </i>
+    </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}
-    <script src="./js/pages/register.js"></script>
+  <script src="./js/pages/register.js"></script>
 {% endblock %}

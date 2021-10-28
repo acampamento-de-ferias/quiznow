@@ -1,0 +1,22 @@
+.light-link a {
+  color: var(--blue-color);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.light-link a:hover {
+  color: var(--light-blue-color);
+  text-decoration: none;
+}
+
+.soft-link a {
+  opacity: 0.6;
+  text-decoration: underline;
+  color: var(--black-color);
+  transition: 0.2s;
+}
+
+.soft-link a:hover {
+  opacity: 0.4;
+  color: var(--black-color);
+}

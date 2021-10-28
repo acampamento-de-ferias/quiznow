@@ -1,0 +1,28 @@
+.dropdown-menu {
+  padding: 0;
+  border: solid 0.1rem var(--blue-color);
+}
+
+.dropdown-menu a {
+  padding: 0.875rem;
+}
+
+.dropdown-menu a.dropdown-item:active {
+  background-color: var(--blue-color);
+}
+
+.dropdown-menu a.cursor-not-allowed {
+  color: var(--gray-color);
+  cursor: not-allowed;
+}
+
+.dropdown-menu a.cursor-not-allowed:hover,
+.dropdown-menu a.cursor-not-allowed:active {
+  background-color: var(--white-color);
+}
+
+@media (max-width: 375px) {
+  #create-question .basic-card .answers-section .dropdown-menu .dropdown-item {
+    font-size: 0.875rem;
+  }
+}

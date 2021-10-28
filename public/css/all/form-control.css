@@ -1,144 +1,151 @@
 .default-form-group {
-    position: relative;
-    margin-top: 1rem;
+  position: relative;
+  margin-top: 1rem;
 }
 
 .default-form-group .icon,
 .default-form-group .existing-icon {
-    position: absolute;
-    right: 0.625rem;
-    z-index: 1;
-    margin: 2.375rem 0;
-    cursor: pointer;
-    color: var(--dark-gray-color);
+  position: absolute;
+  right: 0.625rem;
+  z-index: 1;
+  margin: 2.375rem 0;
+  cursor: pointer;
+  color: var(--dark-gray-color);
 }
 
 .default-form-group input {
-    margin-top: 0.5rem;
-    padding-right: 2rem;
-    position: relative;
-    border: 1px solid var(--border-color);
-    border-radius: 0.25rem;
-    background: var(--light-gray-color);
+  margin-top: 0.5rem;
+  padding-right: 2rem;
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  background: var(--light-gray-color);
 }
 
 .default-form-group textarea {
-    margin-top: 0.5rem;
-    position: relative;
-    border: 1px solid var(--border-color);
-    border-radius: 0.25rem;
-    background: var(--light-gray-color);
+  margin-top: 0.5rem;
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  background: var(--light-gray-color);
 }
 
 .default-form-group label .optional {
-    font-family: Work Sans;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 1rem;
-    line-height: 1.2rem;
-    color: var(--black-color);
-    opacity: 0.5;
+  font-family: Work Sans;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: var(--black-color);
+  opacity: 0.5;
 }
 
 .success-field input {
-    border: 1px solid var(--green-color);
-    background: var(--white-color);
+  border: 1px solid var(--green-color);
+  background: var(--white-color);
 }
 
 .success-field textarea {
-    border: 1px solid var(--green-color);
-    background: var(--white-color);
+  border: 1px solid var(--green-color);
+  background: var(--white-color);
 }
 
 .success-field input:focus {
-    border: 1px solid var(--green-color);
+  border: 1px solid var(--green-color);
 }
 
 .success-field textarea:focus {
-    border: 1px solid var(--green-color);
+  border: 1px solid var(--green-color);
 }
 
 .success-field label {
-    color: var(--green-color);
+  color: var(--green-color);
 }
 
 .success-field .existing-icon::before {
-    color: var(--green-color);
+  color: var(--green-color);
 }
 
 .success-field .icon::before {
-    color: var(--green-color);
-    content: "\f00c";
+  color: var(--green-color);
+  content: '\f00c';
 }
 
 .focus-field input {
-    border: 1px solid var(--blue-color);
-    background: var(--white-color);
+  border: 1px solid var(--blue-color);
+  background: var(--white-color);
 }
 
 .focus-field textarea {
-    border: 1px solid var(--blue-color);
-    background: var(--white-color);
+  border: 1px solid var(--blue-color);
+  background: var(--white-color);
 }
 
 .focus-field label {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .focus-field .icon::before,
 .focus-field .existing-icon::before {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .failed-field input {
-    border: 1px solid var(--red-color);
-    background: var(--white-color);
+  border: 1px solid var(--red-color);
+  background: var(--white-color);
 }
 
 .failed-field textarea {
-    border: 1px solid var(--red-color);
-    background: var(--white-color);
+  border: 1px solid var(--red-color);
+  background: var(--white-color);
 }
 
 .failed-field .icon::before {
-    color: var(--red-color);
-    content: "\f00d";
+  color: var(--red-color);
+  content: '\f00d';
 }
 
 .failed-field .existing-icon::before {
-    color: var(--red-color);
+  color: var(--red-color);
 }
 
 .failed-field label {
-    color: var(--red-color);
+  color: var(--red-color);
 }
 
 .failed-field .error-message {
-    font-size: 0.75rem;
-    color: var(--red-color);
+  font-size: 0.75rem;
+  color: var(--red-color);
+}
+
+@media (max-width: 375px) {
+  .default-form-group label,
+  .default-form-group label .optional {
+    font-size: 0.875rem;
+  }
 }
 
 @media screen and (min-width: 992px) {
-    .form {
-        padding: 2rem 2rem 0;
-        width: 70%;
-        margin: auto;
-    }
+  .form {
+    padding: 2rem 2rem 0;
+    width: 70%;
+    margin: auto;
+  }
 
-    .default-form-group {
-        margin-top: 1.5rem;
-    }
+  .default-form-group {
+    margin-top: 1.5rem;
+  }
 
-    .default-form-group input {
-        height: 3rem;
-    }
-    
-    .default-form-group textarea {
-        height: 3rem;
-    }
+  .default-form-group input {
+    height: 3rem;
+  }
 
-    .default-form-group .icon,
-    .default-form-group .existing-icon {
-        margin: 2.7rem 0;
-    }
+  .default-form-group textarea {
+    height: 3rem;
+  }
+
+  .default-form-group .icon,
+  .default-form-group .existing-icon {
+    margin: 2.7rem 0;
+  }
 }

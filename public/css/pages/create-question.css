@@ -1,192 +1,205 @@
 #create-question .basic-card {
-    width: 100vw;
-    height: 100vh;
-    padding: 1rem 1rem;
+  width: 100vw;
+  height: 90vh;
+  padding: 1rem 1rem;
 }
 
 #create-question .basic-card .secondary-divider {
-    margin: 0.5rem 1rem 1.5rem;
+  margin: 0.5rem 1rem 1.5rem;
 }
 
 #create-question .basic-card .title-section .form-group {
-    margin: 0 2.5rem;
+  margin: 0 2rem;
+}
+
+#create-question .basic-card .title-section #question-title {
+  height: 12vh;
 }
 
 #create-question .basic-card .answers-section {
-    margin: 2rem 2.5rem 0;
+  margin: 2rem 2rem 0;
+  height: 38vh;
+  overflow: auto;
+  margin-top: 2rem;
 }
 
 #create-question .basic-card .answers-section .answer {
-    margin-top: 0.5rem;
-}
-
-#create-question .basic-card .answers-section {
-    height: 35vh;
-    overflow: auto;
-    margin-top: 2rem;
-}
-
-#create-question .basic-card .answers-section .remove-question {
-    cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 #create-question .basic-card .answers-section button#add-answer {
-    margin: 2rem 0 1rem;
+  margin: 2rem 0 1rem;
 }
 
 #create-question .right-answer .right-bg,
 #create-question .wrong-answer .wrong-bg,
-#create-question .answer-config .config-bg {
-    border-radius: 0 0.25rem 0.25rem 0;
-    width: 12%;
-    height: 100%;
-    position: absolute;
-    top: 0rem;
-    right: 0rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
+#create-question .personality-answer .more-bg {
+  border-radius: 0 0.25rem 0.25rem 0;
+  width: 12%;
+  height: 100%;
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #create-question .right-answer .right-bg {
-    border: var(--green-color) 0.1rem solid;
-    background: rgba(40, 167, 69, 0.3);
+  border: var(--green-color) 0.1rem solid;
+  background: rgba(40, 167, 69, 0.3);
 }
 
 #create-question .wrong-answer .wrong-bg {
-    border: var(--red-color) 0.1rem solid;
-    background: rgba(220, 53, 69, 0.3);
+  border: var(--red-color) 0.1rem solid;
+  background: rgba(220, 53, 69, 0.3);
 }
 
-#create-question .answer-config .config-bg {
-    border: var(--black-color) 0.1rem solid;
-    background: rgba(27, 38, 44, 0.2);
+#create-question .personality-answer .more-bg {
+  border: var(--black-color) 0.1rem solid;
+  background: rgba(27, 38, 44, 0.2);
 }
 
 #create-question .right-answer .right-bg .right-icon,
 #create-question .wrong-answer .wrong-bg .wrong-icon,
-#create-question .answer-config .config-bg .config-icon {
-    width: 1rem;
-    height: 1rem;
+#create-question .personality-answer .more-bg .more-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+#create-question .right-answer .right-bg button,
+#create-question .wrong-answer .wrong-bg button,
+#create-question .personality-answer .more-bg button {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#create-question .personality-answer .dropdown-menu {
+  right: 0;
+  top: 2.25rem;
 }
 
 #create-question .actions-section {
-    background-color: var(--white-color);
+  background-color: var(--white-color);
 }
 
 #create-question .actions-section .primary-button {
-    margin: 1rem;
-    align-items: center;
-    flex-direction: column;
+  margin: 1rem;
+  align-items: center;
+  flex-direction: column;
 }
 
 #create-question .actions-section button.btn {
-    margin-bottom: 1rem;
-    height: 4.5rem;
-    align-items: center;
-    font-size: 1.75rem;
+  margin-bottom: 1rem;
+  height: 4.5rem;
+  align-items: center;
+  font-size: 1.75rem;
 }
 
 #create-question .actions-section #cancel-question {
-    font: 400 1rem Work Sans;
-    color: rgba(27, 38, 44, 0.8);
-    text-decoration: underline;
-    transition: 0.2s;
+  font: 400 1rem Work Sans;
+  color: rgba(27, 38, 44, 0.8);
+  text-decoration: underline;
+  transition: 0.2s;
 }
 
 #create-question .actions-section #cancel-question:hover {
-    color: var(--red-color);
+  color: var(--red-color);
 }
 
-@media (max-width: 360px) {
-    #create-question .basic-card .answers-section .plus-icon {
-        width: 1rem;
-        height: 1rem;
-    }
+@media (max-width: 375px) {
+  #create-question .basic-card .answers-section {
+    height: 28vh;
+  }
 
-    #create-question .basic-card .answers-section #add-answer {
-        font-size: 0.875rem;
-    }
-    
-    #create-question .basic-card .right-answer .right-bg,
-    #create-question .basic-card .wrong-answer .wrong-bg,
-    #create-question .basic-card .answer-config .config-bg {
-        width: 18%;
-    }
-}
+  #create-question .basic-card .right-answer .right-bg,
+  #create-question .basic-card .wrong-answer .wrong-bg,
+  #create-question .basic-card .personality-answer .more-bg {
+    width: 18%;
+  }
 
-@media (min-width: 992px) {
-    #create-question .basic-card {
-        height: auto;
-        max-width: 80%;
-        margin: 3rem auto;
-        padding: 2rem 8rem 1rem;
-    }
+  #create-question .basic-card .actions-section button.btn {
+    height: 4rem;
+    font-size: 1.5rem;
+  }
 
-    #create-question .basic-card .primary-divider {
-        margin: 0.5rem 0 2rem;
-    }
-
-    #create-question .basic-card .title-section .form-group {
-        margin: 0 4rem;
-    }
-
-    #create-question .basic-card .title-section .title {
-        font-size: 2rem;
-    }
-
-    #create-question .basic-card .answers-section {
-        margin: 3rem 4rem 0;
-        height: auto;
-        overflow: hidden;
-    }
-
-    #create-question .basic-card .answers-section .answer {
-        margin-top: 1rem;
-    }
-
-    #create-question .basic-card .answers-section button#add-answer {
-        max-width: 19rem;
-        margin: 2rem auto;
-    }
-    
-    #create-question .basic-card .right-answer .right-bg,
-    #create-question .basic-card .wrong-answer .wrong-bg,
-    #create-question .basic-card .answer-config .config-bg {
-        width: 8%;
-    }
-
-    #create-question .basic-card .title-section #question-title {
-        height: 4rem;
-    }
-
-    #create-question .basic-card .actions-section {
-        position: relative;
-        margin-top: 1.5rem;
-    }
-
-    #create-question .basic-card .actions-section button.btn {
-        font-size: 2rem;
-        max-width: 25rem;
-    }
-
-    #create-question .basic-card .actions-section .primary-button {
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-    }
+  #create-question .actions-section #cancel-question {
+    font-size: 0.875rem;
+  }
 }
 
 @media (min-height: 800px) {
-    #create-question .basic-card .answers-section {
-        height: 44vh;
-    }
+  #create-question .basic-card .answers-section {
+    height: 44vh;
+  }
+}
+
+@media (min-width: 992px) {
+  #create-question .basic-card {
+    height: auto;
+    max-width: 80%;
+    margin: 3rem auto;
+    padding: 2rem 8rem 1rem;
+  }
+
+  #create-question .basic-card .primary-divider {
+    margin: 0.5rem 0 2rem;
+  }
+
+  #create-question .basic-card .title-section .form-group {
+    margin: 0 4rem;
+  }
+
+  #create-question .basic-card .title-section .title {
+    font-size: 2rem;
+  }
+
+  #create-question .basic-card .answers-section {
+    margin: 3rem 4rem 0;
+    height: auto;
+    overflow: hidden;
+  }
+
+  #create-question .basic-card .answers-section .answer {
+    margin-top: 1rem;
+  }
+
+  #create-question .basic-card .answers-section button#add-answer {
+    max-width: 19rem;
+    margin: 2rem auto;
+  }
+
+  #create-question .basic-card .right-answer .right-bg,
+  #create-question .basic-card .wrong-answer .wrong-bg,
+  #create-question .basic-card .personality-answer .more-bg {
+    width: 8%;
+  }
+
+  #create-question .basic-card .title-section #question-title {
+    height: 4rem;
+  }
+
+  #create-question .basic-card .actions-section {
+    position: relative;
+    margin-top: 1.5rem;
+  }
+
+  #create-question .basic-card .actions-section button.btn {
+    font-size: 2rem;
+    max-width: 25rem;
+  }
+
+  #create-question .basic-card .actions-section .primary-button {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-height: 1000px) {
-    #create-question .basic-card .answers-section {
-        height: auto;
-        overflow: hidden;
-    }
+  #create-question .basic-card .answers-section {
+    height: auto;
+    overflow: hidden;
+  }
 }
