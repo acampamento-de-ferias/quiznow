@@ -26,30 +26,30 @@
 
         <div class="category">
           <div class="option questions-answers active-option"
-            data-value="questions-answers"
-            onclick="selectCategory('questions-answers')">
+            data-value="questions-answers">
             <div class="check">
               <img src="./images/selected.png" alt="Checked icon" />
             </div>
-            <div class="option-wrap questions-answers-wrap">
+            <div class="option-wrap questions-answers-wrap cursor-pointer"
+              onclick="selectCategory('questions-answers')">
               <img src="./images/answer.png"
                 alt="Questions and Answers option" />
             </div>
-            <p>
-              Perguntas & Respostas
+            <p class="cursor-pointer"
+              onclick="selectCategory('questions-answers')">
+              Perguntas &amp; Respostas
             </p>
           </div>
-          <div class="option personality"
-            data-value="personality"
-            onclick="selectCategory('personality')">
+          <div class="option personality" data-value="personality">
             <div class="check">
               <img src="./images/selected.png" alt="Checked icon" />
             </div>
-            <div class="option-wrap personality-wrap">
+            <div class="option-wrap personality-wrap cursor-pointer"
+              onclick="selectCategory('personality')">
               <img src="./images/personality.png"
                 alt="Questions and Answers option" />
             </div>
-            <p>
+            <p class="cursor-pointer" onclick="selectCategory('personality')">
               Personalidade
             </p>
           </div>
@@ -62,7 +62,7 @@
           <div class="accordion-item basic-info">
             <h2 class="accordion-header" id="heading-basic-infos">
               <button id="button-basic-info"
-                class="accordion-button fourth-title collapsed shadow-none"
+                class="accordion-button third-title collapsed shadow-none"
                 onclick="selectAccordion(this)"
                 type="button"
                 data-bs-toggle="collapse"
@@ -86,7 +86,7 @@
                   </p>
                   <label for="quiz-miniature-mobile">
                     <img src="./images/file.png" alt="Add a image here" />
-                    <p>
+                    <p class="mt-2 weak-text">
                       Adicione uma imagem
                     </p>
                   </label>
@@ -136,7 +136,7 @@
           <div class="accordion-item question">
             <h2 class="accordion-header" id="heading-questions">
               <button id="button-questions"
-                class="accordion-button fourth-title collapsed shadow-none"
+                class="accordion-button third-title collapsed shadow-none"
                 onclick="selectAccordion(this)"
                 type="button"
                 data-bs-toggle="collapse"
@@ -173,7 +173,7 @@
           <div class="accordion-item results">
             <h2 class="accordion-header" id="heading-results">
               <button id="button-results"
-                class="accordion-button fourth-title collapsed shadow-none"
+                class="accordion-button third-title collapsed shadow-none"
                 onclick="selectAccordion(this)"
                 type="button"
                 data-bs-toggle="collapse"
@@ -199,7 +199,7 @@
                   </div>
                   <div class="row results-wrap">
                     <div class="col-10 results-infos">
-                      <h3 class="third-title">
+                      <h3 class="fourth-title">
                         Você acertou X questões
                       </h3>
                       <p class="results-text small-text">
@@ -226,7 +226,7 @@
                   </div>
                   <div class="row results-wrap">
                     <div class="col-10 results-infos">
-                      <h3 class="third-title">
+                      <h3 class="fourth-title">
                         Você acertou Y questões
                       </h3>
                       <p class="results-text small-text">
@@ -250,7 +250,7 @@
 
                 <div class="secondary-button">
                   <button class="btn shadow-none"
-                    onclick="changePageWithSameUrl('create-quiz', 'results')">
+                    onclick="changeDisplayById('create-quiz', 'results')">
                     <img class="plus-icon"
                       src="./images/plus.png"
                       alt="Adicionar resultado" />
@@ -278,29 +278,31 @@
           <div class="primary-divider pb-negative-helper-5"></div>
 
           <div class="category">
-            <div class="option questions-answers active-option"
-              onclick="selectCategory('questions-answers', 'desktop')">
+            <div class="option questions-answers active-option">
               <div class="check">
                 <img src="./images/selected.png" alt="Checked icon" />
               </div>
-              <div class="option-wrap questions-answers-wrap">
+              <div class="option-wrap questions-answers-wrap cursor-pointer"
+                onclick="selectCategory('questions-answers', 'desktop')">
                 <img src="./images/answer.png"
                   alt="Questions and Answers option" />
               </div>
-              <p>
-                Perguntas & Respostas
+              <p class="cursor-pointer"
+                onclick="selectCategory('questions-answers', 'desktop')">
+                Perguntas &amp; Respostas
               </p>
             </div>
-            <div class="option personality"
-              onclick="selectCategory('personality', 'desktop')">
+            <div class="option personality">
               <div class="check">
                 <img src="./images/selected.png" alt="Checked icon" />
               </div>
-              <div class="option-wrap personality-wrap">
+              <div class="option-wrap personality-wrap cursor-pointer"
+                onclick="selectCategory('personality', 'desktop')">
                 <img src="./images/personality.png"
                   alt="Questions and Answers option" />
               </div>
-              <p>
+              <p class="cursor-pointer"
+                onclick="selectCategory('personality', 'desktop')">
                 Personalidade
               </p>
             </div>
@@ -403,7 +405,7 @@
                       <img src="./images/tais.jpg" alt="Imagem do resultado" />
                     </div>
                     <div class="col-8 results-wrap">
-                      <h3 class="third-title">
+                      <h3 class="fourth-title">
                         Você acertou X questões
                       </h3>
                       <p class="results-text simple-text">
@@ -430,7 +432,7 @@
                       <img src="./images/motel.jpg" alt="Imagem do resultado" />
                     </div>
                     <div class="col-8 results-wrap">
-                      <h3 class="third-title">
+                      <h3 class="fourth-title">
                         Você acertou Y questões
                       </h3>
                       <p class="results-text simple-text">
@@ -455,7 +457,7 @@
 
               <div class="secondary-button">
                 <button class="btn shadow-none w-auto"
-                  onclick="changePageWithSameUrl('create-quiz', 'results')">
+                  onclick="changeDisplayById('create-quiz', 'results')">
                   <img class="plus-icon"
                     src="./images/plus.png"
                     alt="Adicionar resultado" />

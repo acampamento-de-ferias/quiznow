@@ -19,12 +19,21 @@ function handleInputType(ev) {
  *
  */
 window.onunload = function () {
-  const inputs = document.querySelectorAll('input');
+  clearAllInputs();
+};
+
+function clearAllInputs(sel = '') {
+  const inputs = document.querySelectorAll(sel + 'input');
+  const textareas = document.querySelectorAll(sel + 'textarea');
   inputs.forEach(function (input) {
     input.value = '';
     input.checked = false;
   });
-};
+  textareas.forEach(function (textarea) {
+    textarea.value = '';
+    textarea.checked = false;
+  });
+}
 
 /**
  * Open element instantly
@@ -135,7 +144,7 @@ window.onclick = function (event) {
  * Change page (hide/show div) by javascript
  *
  */
-function changePageWithSameUrl(idToHide, idToShow) {
+function changeDisplayById(idToHide, idToShow) {
   document.getElementById(idToShow).classList.add('d-block');
   document.getElementById(idToShow).classList.remove('d-none');
 

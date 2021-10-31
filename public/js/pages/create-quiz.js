@@ -124,14 +124,15 @@ function renderQuestionSection() {
 }
 
 function renderQuestionPage() {
-  changePageWithSameUrl('create-quiz', 'create-question');
-  categoryForm === 'questions-answers'
-    ? changePageWithSameUrl('personality-answers', 'qa-answers')
-    : changePageWithSameUrl('qa-answers', 'personality-answers');
+  getCategory(formControlQuiz.quizCategory);
+  changeDisplayById('create-quiz', 'create-question');
+  formControlQuiz.quizCategory === 'questions-answers'
+    ? changeDisplayById('personality-answers', 'qa-answers')
+    : changeDisplayById('qa-answers', 'personality-answers');
 }
 
 function renderResultsPage() {
-  changePageWithSameUrl('create-quiz', 'results');
+  changeDisplayById('create-quiz', 'results');
 }
 
 function deleteQuestionAnswers(questionAnswersIndex) {
@@ -194,7 +195,6 @@ function selectAccordion(event) {
  */
 function submitQuiz(event) {
   // Remove default http request
-  console.log(formControlQuiz);
   event.preventDefault();
 
   // Get data in the form
@@ -238,4 +238,8 @@ function submitQuiz(event) {
   // }).finally(function() {
   //     closeElement(loading);
   // });
+}
+
+function sendCategory() {
+  return formControlQuiz.quizCategory;
 }

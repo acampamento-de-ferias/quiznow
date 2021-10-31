@@ -16,8 +16,14 @@ function validate(
   const formControlNode = eventValidator.target.attributes.formControl.nodeValue;
 
   // Set data to formControl
-  formControlParam[formControlNode].value = eventValidator.target.value;
-  formControlParam[formControlNode].validate = true;
+  const indexArray = eventValidator.target.parentElement.dataset.id;
+  if (indexArray) {
+    formControlParam[formControlNode][indexArray].value = eventValidator.target.value;
+    formControlParam[formControlNode][indexArray].validate = true;
+  } else {
+    formControlParam[formControlNode].value = eventValidator.target.value;
+    formControlParam[formControlNode].validate = true;
+  }
   resetValidationInput(eventValidator);
 
   try {
@@ -34,7 +40,9 @@ function validate(
       eventValidator.target.nextElementSibling.innerHTML = '';
     }
   } catch (e) {
-    formControlParam[formControlNode].validate = false;
+    indexArray
+      ? (formControlParam[formControlNode][indexArray].validate = false)
+      : (formControlParam[formControlNode].validate = false);
     if (hasEffects && eventValidator.type === 'blur') {
       eventValidator.target.parentElement.classList.add('failed-field');
       eventValidator.target.nextElementSibling.innerHTML = e.message;
@@ -49,7 +57,7 @@ function validate(
 function required() {
   if (!eventValidator.target.value) {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' não pode ser vazio'
+      'O campo ' + eventValidator.target.labels[0].textContent.toLowerCase() + ' não pode ser vazio'
     );
   }
   return true;
@@ -58,7 +66,9 @@ function required() {
 function string() {
   if (typeof eventValidator.target.value !== 'string') {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' deve ser uma string'
+      'O campo ' +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
+        ' deve ser uma string'
     );
   }
   return true;
@@ -68,7 +78,9 @@ function email() {
   const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (!regex.test(eventValidator.target.value)) {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' deve ser um e-mail válido'
+      'O campo ' +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
+        ' deve ser um e-mail válido'
     );
   }
   return true;
@@ -78,7 +90,7 @@ function min(minCharacters) {
   if (eventValidator.target.value.length < minCharacters) {
     throw new Error(
       'O campo ' +
-        eventValidator.target.labels[0].textContent +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
         ' deve ter ao menos ' +
         minCharacters +
         ' caracteres'
@@ -91,7 +103,7 @@ function max(maxCharacters) {
   if (eventValidator.target.value.length < maxCharacters) {
     throw new Error(
       'O campo ' +
-        eventValidator.target.labels[0].textContent +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
         ' deve ter no máximo ' +
         maxCharacters +
         ' caracteres'
@@ -104,7 +116,9 @@ function hasNoNumber() {
   const regex = /\d/;
   if (regex.test(eventValidator.target.value)) {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' não pode conter números'
+      'O campo ' +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
+        ' não pode conter números'
     );
   }
   return true;
@@ -114,7 +128,9 @@ function hasNumber() {
   const regex = /\d/;
   if (!regex.test(eventValidator.target.value)) {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' deve conter números'
+      'O campo ' +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
+        ' deve conter números'
     );
   }
   return true;
@@ -124,7 +140,7 @@ function hasLetter() {
   const regex = /[a-zA-Z]/;
   if (!regex.test(eventValidator.target.value)) {
     throw new Error(
-      'O campo ' + eventValidator.target.labels[0].textContent + ' deve conter letras'
+      'O campo ' + eventValidator.target.labels[0].textContent.toLowerCase() + ' deve conter letras'
     );
   }
   return true;
@@ -135,9 +151,9 @@ function isEqual(anotherDiv) {
   if (eventValidator.target.value !== anotherDiv.value) {
     throw new Error(
       'O campo ' +
-        eventValidator.target.labels[0].textContent +
+        eventValidator.target.labels[0].textContent.toLowerCase() +
         ' deve ser igual ao campo ' +
-        anotherDiv.parentNode.childNodes[1].textContent
+        anotherDiv.parentNode.childNodes[1].textContent.toLowerCase()
     );
   }
   return true;
@@ -150,9 +166,9 @@ function stalker(anotherDiv, formControlParam = formControl) {
       anotherDiv.parentElement.classList.add('failed-field');
       anotherDiv.nextElementSibling.innerHTML =
         'O campo ' +
-        anotherDiv.parentNode.childNodes[1].textContent +
+        anotherDiv.parentNode.childNodes[1].textContent.toLowerCase() +
         ' deve ser igual ao campo ' +
-        eventValidator.target.labels[0].textContent;
+        eventValidator.target.labels[0].textContent.toLowerCase();
       formControlParam[anotherDiv.attributes.formControl.nodeValue].validate = false;
     } else {
       anotherDiv.nextElementSibling.innerHTML = '';
@@ -220,5 +236,23 @@ function handleFocusInput(ev) {
     ev.target.parentElement.classList.add('success-field');
   } else {
     ev.target.parentElement.classList.add('focus-field');
+  }
+}
+
+/**
+ * Reset formControl and clear all inputs effects
+ * @param {Object} formControlParam
+ */
+function clearValidation(formControlParam = null) {
+  for (let property in formControlParam) {
+    if (Array.isArray(formControlParam[property])) {
+      for (let data of formControlParam[property]) {
+        data.value = '';
+        data.validate = false;
+      }
+    } else {
+      formControlParam[property].validate = false;
+      formControlParam[property].value = '';
+    }
   }
 }

@@ -15,10 +15,10 @@
           minlength="8"
           maxlength="150"
           placeholder="8-150 caracteres"
-          formControl="title"
-          onkeydown="validateTitle(event, 8, 'keyup', formControl, '.actions-section button')"
-          onblur="validateTitle(event, 8, 'blur', formControl, '.actions-section button')"
-          onfocus="handleFocusInput(event)"
+          formControl="questionTitle"
+          onkeyup="validate(event, 'string|required|min:8', true, formControlQuestion, '.actions-section button')"
+          onblur="validate(event, 'string|required|min:8', true, formControlQuestion, '.actions-section button')"
+          onFocus="handleFocusInput(event)"
           required></textarea>
         <span class="error-message"></span>
       </div>
@@ -29,14 +29,13 @@
         Respostas
       </h4>
       <div class="category-question d-block" id="qa-answers">
-        <div class="answer right-answer form-group default-form-group"
+        <div class="answer right-answer qa-answer form-group default-form-group"
           data-id="0">
           <input type="text"
             class="form-control shadow-none"
-            formControl="answers"
-            onkeydown="validateList('answer', 'answers', event)"
-            onkeyup="validateList('answer', 'answers', event)"
-            onfocus="handleFocusInput(event)"
+            formControl="questionAnswers"
+            onkeydown="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
+            onkeyup="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
             required />
           <div class="right-bg">
             <img src="./images/check.png"
@@ -44,14 +43,13 @@
               alt="Resposta correta" />
           </div>
         </div>
-        <div class="answer wrong-answer form-group default-form-group"
+        <div class="answer wrong-answer qa-answer form-group default-form-group"
           data-id="1">
           <input type="text"
             class="form-control shadow-none"
-            formControl="answers"
-            onkeydown="validateList('answer', 'answers', event)"
-            onkeyup="validateList('answer', 'answers', event)"
-            onfocus="handleFocusInput(event)"
+            formControl="questionAnswers"
+            onkeydown="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
+            onkeyup="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
             required />
           <div class="wrong-bg">
             <img src="./images/close.png"
@@ -66,10 +64,9 @@
           data-id="0">
           <input type="text"
             class="form-control shadow-none"
-            formControl="answers"
-            onkeydown="validateList('answer', 'answers', event)"
-            onkeyup="validateList('answer', 'answers', event)"
-            onfocus="handleFocusInput(event)"
+            formControl="questionAnswers"
+            onkeydown="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
+            onkeyup="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
             required />
           <div class="more-bg">
             <button type="button"
@@ -97,10 +94,9 @@
           data-id="1">
           <input type="text"
             class="form-control shadow-none"
-            formControl="answers"
-            onkeydown="validateList('answer', 'answers', event)"
-            onkeyup="validateList('answer', 'answers', event)"
-            onfocus="handleFocusInput(event)"
+            formControl="questionAnswers"
+            onkeydown="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
+            onkeyup="validate(event, 'string|required', false, formControlQuestion, '.actions-section button')"
             required />
           <div class="more-bg">
             <button type="button"

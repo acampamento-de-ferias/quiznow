@@ -1,19 +1,19 @@
-const answersList = document.getElementsByClassName('answer');
-const wrongAnswers = document.getElementsByClassName('wrong-answer');
+let answersList = null;
+const addAnswerButton = document.querySelector('#add-answer');
 const wrongIcons = document.getElementsByClassName('wrong-icon');
-const formControl = {
-  title: {
+const formControlQuestion = {
+  questionTitle: {
     value: '',
-    validate: '',
+    validate: false,
   },
-  answers: [
+  questionAnswers: [
     {
       value: '',
-      validate: '',
+      validate: false,
     },
     {
       value: '',
-      validate: '',
+      validate: false,
     },
   ],
 };
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * @param {Element} element
  */
 function addNewAnswer() {
-  // fix this
   if (answersList.length < 8) {
     const newAnswer = answersList[answersList.length - 1].cloneNode(true);
     const newAnswerInput = newAnswer.querySelector('input');
@@ -35,13 +34,13 @@ function addNewAnswer() {
     newAnswer.dataset.id++;
     answersList[answersList.length - 1].after(newAnswer);
     newAnswerInput.focus();
-    formControl.answers.push({
+    formControlQuestion.questionAnswers.push({
       value: '',
       validate: '',
     });
-    document.querySelector('#add-answer').disabled = answersList.length === 8;
-    validateList('answer', 'answers');
-    categoryForm === 'questions-answers'
+    addAnswerButton.disabled = answersList.length === 8;
+    applySubmitStatus('.actions-section button', formControlQuestion);
+    formControlQuiz.quizCategory === 'questions-answers'
       ? changeIconToTrash(wrongIcons)
       : changeDropdownItemState('.delete-answer.cursor-not-allowed', false);
   }
@@ -96,9 +95,8 @@ function clearInputTrace(button, input) {
   button.closest(input).remove();
   document.querySelector('#add-answer').disabled = false;
   reoderAnswersIndex(button.closest(input));
-  validateList('answer', 'answers');
-  formControl.answers.splice(0, button.dataset.id);
-  formControl.answers.pop();
+  formControlQuestion.questionAnswers.splice(0, button.dataset.id);
+  formControlQuestion.questionAnswers.pop();
 }
 
 /**
@@ -119,6 +117,7 @@ function deleteAnswer(el) {
       changeDropdownItemState('.delete-answer.cursor-pointer', true);
     }
   }
+  applySubmitStatus('.actions-section button', formControlQuestion);
 }
 
 /**
@@ -138,7 +137,7 @@ function reoderAnswersIndex(element) {
  */
 function changeButtonState(el, value) {
   if (!value) {
-    if (formControl.title.validate) {
+    if (formControlQuestion.questionTitle.validate) {
       document.querySelector(el).disabled = value;
     }
   } else {
@@ -150,18 +149,32 @@ function changeButtonState(el, value) {
  * Return to create quiz page submitting info
  */
 function saveQuestion() {
-  questionsForm.push({
-    title: formControl.title.value,
-    answers: formControl.answers,
+  formControlQuiz.quizQuestions.push({
+    title: formControlQuestion.questionTitle.value,
+    answers: formControlQuestion.questionAnswers,
   });
-  changePageWithSameUrl('create-question', 'create-quiz');
+  changeDisplayById('create-question', 'create-quiz');
   renderQuestionSection();
+  clearAllInputs('#create-question ');
+  clearValidation(formControlQuestion);
 }
 
 /**
  * Return to create quiz page without saving
  */
 function cancelQuestion() {
-  changePageWithSameUrl('create-question', 'create-quiz');
+  clearAllInputs();
+  changeDisplayById('create-question', 'create-quiz');
   renderQuestionSection();
+}
+
+/**
+ * Set element by category
+ * @param {String} category
+ */
+function getCategory(category) {
+  answersList =
+    category === 'questions-answers'
+      ? document.getElementsByClassName('qa-answer')
+      : document.getElementsByClassName('personality-answer');
 }
